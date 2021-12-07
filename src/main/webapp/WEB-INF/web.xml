@@ -3,21 +3,17 @@
   <display-name>ENI-Encheres</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>  
-   
   </welcome-file-list>
   
-  
-  
-  
     
-    <servlet>
+  <servlet>
     	<servlet-name>accueil</servlet-name>
     	<jsp-file>/WEB-INF/accueil.jsp</jsp-file>    	
-    </servlet>
-    <servlet-mapping>
+  </servlet>
+  <servlet-mapping>
     	<servlet-name>accueil</servlet-name>
     	<url-pattern>/Accueil</url-pattern>
-    	</servlet-mapping>
+  </servlet-mapping>
     
     
     
