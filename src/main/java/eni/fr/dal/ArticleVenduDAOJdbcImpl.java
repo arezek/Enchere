@@ -24,7 +24,7 @@ private static final String SEARCH="select no_article,nom_article,date_fin_enche
 //				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
 //				throw businessException;
 //			}
-			
+			 
 			try(Connection cnx = JdbcTools.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);	
 				)
