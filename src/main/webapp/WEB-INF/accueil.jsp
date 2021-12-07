@@ -11,11 +11,11 @@
 <body>
 	 <header>
             <img src="" id="logo"/>
-            <a href="">Connexion<img src="" id="cnxIcon"/></a>
-            <a href="">S'inscrire<img src="" id="signInIcon"/></a>
+            <a href="login.jsp">Connexion<img src="" id="cnxIcon"/></a>
+            <a href="signUp.jsp">S'inscrire<img src="" id="signInIcon"/></a>
         </header>
         <section id="searchBar">
-            <form action="">
+            <form action="<%=request.getContextPath()%>/ServletRecherche" method="get">
                 <label><img src="" id="searchIcon"/></label>
                 <input type="text" placeholder="rechercher" >
                 <label for="categories">Catégorie</label>
