@@ -8,16 +8,16 @@ import java.util.List;
 
 public class ArticleVendu {
 
-	private int noArticle;
-	private String nomArticle;
-	private String description;
-	private LocalDate dateDebutEncheres;
-	private LocalDate dateFinEncheres;
-	private int miseAPrix;
-	private int prixVente;
-	private String etatVente;
-//	private List<Utilisateur> listeUtilisateur;
-//	private List<Categorie> listeCategorie;
+	public int noArticle;
+	public String nomArticle;
+	public String description;
+	public LocalDate dateDebutEncheres;
+	public LocalDate dateFinEncheres;
+	public int miseAPrix;
+	public int prixVente;
+	public String etatVente;
+//	public List<Utilisateur> listeUtilisateur;
+//	public List<Categorie> listeCategorie;
 //	
 	
 	/**
@@ -44,6 +44,9 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
 	}
+	
+	
+	
 	/**
 	 * @param noArticle
 	 * @param nomArticle
@@ -62,6 +65,18 @@ public class ArticleVendu {
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+	}
+	
+	
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			int prixVente, String etatVente) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
 	}
