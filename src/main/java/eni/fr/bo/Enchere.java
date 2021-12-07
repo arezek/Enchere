@@ -2,6 +2,10 @@ package eni.fr.bo;
 
 import java.time.LocalDate;
 
+/**
+ * @author EUGENIE FUCHS 
+ */
+
 public class Enchere {
 	
 
