@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eni.fr.bo.ArticleVendu;
-import fr.eni.papeterie.dal.DALException;
-import fr.eni.papeterie.dal.jdbc.JdbcTools;
-
 
 public class ArticleVenduDAOJdbcImpl implements  ArticleVenduDAO {
 
