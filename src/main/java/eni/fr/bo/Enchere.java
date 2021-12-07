@@ -8,7 +8,8 @@ import java.time.LocalDate;
 
 public class Enchere {
 	
-
+	Utilisateur utilisateurQuiEncherit;
+	ArticleVendu articleVendu;
 	LocalDate dateEnchere;
 	int montantEnchere;
 	

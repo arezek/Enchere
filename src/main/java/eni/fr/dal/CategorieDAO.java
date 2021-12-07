@@ -8,13 +8,13 @@ import eni.fr.bo.Categorie;
  */
 
 public interface CategorieDAO {
-		//Sélectionner un Categorie par son noCategorie
+		//Sélectionner un Categorie par son noCategorie (test)
 		public Categorie selectById(int noCategorie) throws DALException;
 		
 		//Sélectionner tous les Categories 
 		public Categorie selectAll() throws DALException;
 		
-		//Modifier les attributs d'un Categorie connu en BD
+		//Modifier les attributs d'un Categorie connu en BD (test)
 		public void update(Categorie categorie) throws DALException;
 		
 		//Insérer une nouvelle Categorie
