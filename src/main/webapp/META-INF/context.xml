@@ -8,7 +8,7 @@
 		
 		url="jdbc:sqlserver://localhost;databasename=bd_trocenchere"
 		username="sa"
-		password="6200"
+		password="Zabaka1988"
 		
 		maxTotal="100"
 		maxIdle="30"
