@@ -5,3 +5,5 @@
 .classpath
 
 .project
+
+/src/main/java/eni/fr/dal/settings.properties
