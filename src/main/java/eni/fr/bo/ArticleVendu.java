@@ -1,4 +1,4 @@
-package fr.eni.eniencheres.bo;
+package eni.fr.bo;
 
 /**
  * @author zabaka fatima zahra
