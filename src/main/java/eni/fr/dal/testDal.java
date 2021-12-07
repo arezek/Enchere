@@ -1,6 +1,9 @@
 package eni.fr.dal;
 
+
+
 import eni.fr.bo.Utilisateur;
+
 
 public class testDal {
 
@@ -9,9 +12,18 @@ public class testDal {
 	}
 
 	public static void main(String[] args) {
-		Utilisateur test1 = new Utilisateur("gege", "gérard", "bouchard", "gege@mail.com", "tel", "rue", "cp", "ville", "mdp fdp") ;
-		UtilisateurDAOJdbcImpl testinsert = new UtilisateurDAOJdbcImpl();
-		testinsert.insert(test1); 
+//		Utilisateur test1 = new Utilisateur("gege", "gérard", "bouchard", "gege@mail.com", "tel", "rue", "cp", "ville", "mdp fdp") ;
+//		UtilisateurDAOJdbcImpl testinsert = new UtilisateurDAOJdbcImpl();
+//		testinsert.insert(test1); 
+		
+		
+		UtilisateurDAOJdbcImpl  dao = new UtilisateurDAOJdbcImpl ();
+		
+		
+		
+		
+		
+		dao.insert(new Utilisateur("gege", "gérard", "bouchard", "gege@mail.com", "tel", "rue", "cp", "ville", "mdp fdp"));
 	}
 
 }

@@ -11,7 +11,7 @@ import eni.fr.bo.Utilisateur;
 
 class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
-	private static final String INSERT="INSERT INTO Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe) VALUES(?,?,?,?,?,?,?,?,?);";
+	private static final String INSERT="INSERT INTO Utilisateurs(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,100,0);";
 	
 	@Override
 	public void insert(Utilisateur utilisateur) /*throws BusinessException*/ {
@@ -22,7 +22,7 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 //			throw businessException;
 //		}
 		
-		try(Connection cnx = ConnectionProvider.getConnection();
+		try(Connection cnx = JdbcTools.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);	
 			)
 		{
