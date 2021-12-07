@@ -3,12 +3,12 @@ package eni.fr.dal;
 
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
-import org.apache.tomcat.jni.Local;
+
+
 
 import eni.fr.bo.ArticleVendu;
-import eni.fr.bo.Utilisateur;
+
 
 
 public class testDal {

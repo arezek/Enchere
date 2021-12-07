@@ -9,6 +9,44 @@
     <title>Document</title>
 </head>
 <body>
+	 <header>
+            <img src="" id="logo"/>
+            <a href="">Connexion<img src="" id="cnxIcon"/></a>
+            <a href="">S'inscrire<img src="" id="signInIcon"/></a>
+        </header>
+        <section id="searchBar">
+            <form action="">
+                <label><img src="" id="searchIcon"/></label>
+                <input type="text" placeholder="rechercher" >
+                <label for="categories">Catégorie</label>
+                <select name="categories" id="categories">
+                    
+                    <option value="5">Toutes</option>
+                    <option value="1">Informatique</option>
+                    <option value="2">Ameublement</option>
+                    <option value="3">Vetement</option>
+                    <option value="4">Sport Loisirs</option>
+                    
+                </select>
+                <input type="submit" value="rechercher" >
+            </form>
+        </section>
+        <section>
+            /*boucle*/
+            <div class="articleIndex">
+                <img src="" class="imgArticleIndex"/>
+                <h3 class="titreArticleIndex">titre de l'article</h3>
+                <p class="prix">420 points</p>
+                <p class="vendeur">par 
+                    <a href="" class="vendeurLine">
+                        Vendeur
+                    </a>
+                </p>
+                <p class="adresse">
+                    CP + ville
+                </p>
+            </div>
+        </section>
     
 </body>
 </html>
