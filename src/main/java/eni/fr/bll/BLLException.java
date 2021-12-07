@@ -1,4 +1,4 @@
-package eni.fr.bo;
+package eni.fr.bll;
 
 public class BLLException extends Exception {
 	
