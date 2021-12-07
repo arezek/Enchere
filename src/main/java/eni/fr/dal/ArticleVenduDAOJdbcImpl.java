@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 
 import eni.fr.bo.ArticleVendu;
 
+
 public class ArticleVenduDAOJdbcImpl implements  ArticleVenduDAO {
 
 	
-private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description , date_debut_encheres, date_fin_encheres, prix_initial, etat_vente,no_utilisateur,no_categorie ) VALUES(?,?,?,?,?,?,2,1)";
+private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description , date_debut_encheres, date_fin_encheres, prix_initial, etat_vente,no_utilisateur,no_categorie ) VALUES(?,?,?,?,?,?,?,2)";
 
 
 	@Override
@@ -28,12 +29,17 @@ private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,de
 			{
 				
 				int i = 1;
+				
 				pstmt.setString(i++, articleVendu.getNomArticle()); 
 				pstmt.setString(i++, articleVendu.getDescription());
 				pstmt.setDate(i++, java.sql.Date.valueOf(articleVendu.getDateDebutEncheres()));
 				pstmt.setDate(i++, java.sql.Date.valueOf(articleVendu.getDateFinEncheres()));
 				pstmt.setInt(i++, articleVendu.getMiseAPrix());				
 				pstmt.setString(i++, articleVendu.getEtatVente());
+				
+				
+				
+				
 				pstmt.executeUpdate();
 				ResultSet rs = pstmt.getGeneratedKeys();
 				if(rs.next())

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import eni.fr.BusinessException;
+
 import eni.fr.bo.Utilisateur;
 
 
