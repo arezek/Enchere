@@ -1,4 +1,4 @@
-package eni.fr.ihm;
+package eni.fr.ihm.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
