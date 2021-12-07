@@ -32,16 +32,18 @@ public class testDal {
 //		dao.insert(new Utilisateur("gege", "gérard", "bouchard", "gege@mail.com", "tel", "rue", "cp", "ville", "mdp fdp"));
 		
 		
-		ArticleVenduDAOJdbcImpl  article = new ArticleVenduDAOJdbcImpl ();
+		//ArticleVenduDAOJdbcImpl  article = new ArticleVenduDAOJdbcImpl ();
 		
 		
 		
 		
 		
-		article.insert(new ArticleVendu("nom_article" , "description",LocalDate.of(2020,01,15),  LocalDate.of(2008,10,13), 20, "encours"));
+		//article.insert(new ArticleVendu("nom_article" , "description",LocalDate.of(2020,01,15),  LocalDate.of(2008,10,13), 20, "encours"));
 		
 		
+		ArticleVenduDAOJdbcImpl article = new ArticleVenduDAOJdbcImpl();
 		
+		article.search("nom_article", 1);
 		
 		          
 		
