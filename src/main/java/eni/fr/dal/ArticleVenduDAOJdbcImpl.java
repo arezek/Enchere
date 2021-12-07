@@ -9,6 +9,7 @@ import java.util.List;
 
 import eni.fr.bo.ArticleVendu;
 //yeah
+
 public class ArticleVenduDAOJdbcImpl implements  ArticleVenduDAO {
 
 	
