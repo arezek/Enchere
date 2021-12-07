@@ -69,20 +69,6 @@ private static final String SEARCH="select no_article,nom_article,date_fin_enche
 		
 		
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@Override
 	public ArticleVendu selectById(int noArticle) throws DALException {
@@ -90,14 +76,11 @@ private static final String SEARCH="select no_article,nom_article,date_fin_enche
 		return null;
 	}
 
-	
-
 	@Override
 	public void update(ArticleVendu articleVendu) throws DALException {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 	@Override
 	public void delete(int noArticle) throws DALException {
@@ -105,38 +88,10 @@ private static final String SEARCH="select no_article,nom_article,date_fin_enche
 		
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	@Override
 	public List<ArticleVendu> selectAll() throws DALException {
 		
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	@Override
 	public List<ArticleVendu> search(String nomArticle, int noCategorie) throws DALException {
@@ -171,8 +126,4 @@ private static final String SEARCH="select no_article,nom_article,date_fin_enche
 				}
 				
 				return liste;
-	
-	
-	
-
 }
