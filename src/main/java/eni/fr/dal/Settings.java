@@ -2,7 +2,7 @@ package eni.fr.dal;
 
 import java.util.Properties;
 
-import fr.eni.papeterie.dal.Settings;
+
 
 public class Settings {
 	
