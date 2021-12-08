@@ -42,7 +42,11 @@ public class testDal {
 		
 		ArticleVenduDAOJdbcImpl article = new ArticleVenduDAOJdbcImpl();
 		
-		article.search("nom_article", 1);
+//		article.search("nom_article", 1);
+//		article.selectAll();
+		article.delete(4);
+		
+		
 
 		
 		
