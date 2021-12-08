@@ -42,11 +42,27 @@ public class testDal {
 		
 		ArticleVenduDAOJdbcImpl article = new ArticleVenduDAOJdbcImpl();
 		
+		ArticleVendu art = new ArticleVendu();
+		
 //		article.search("nom_article", 1);
 //		article.selectAll();
-		article.delete(4);
+		//article.delete(4);
+		
+		article.update(art);
+		
+		System.out.println("Modification d'un article : " );
+		System.out.println("Article avant modification : " + art.toString());
+		art.setString("nom_article");
+		pstmt.setString(i++, articleVendu.getDescription());
+		pstmt.setDate(i++, java.sql.Date.valueOf(articleVendu.getDateDebutEncheres()));
+		pstmt.setDate(i++, java.sql.Date.valueOf(articleVendu.getDateFinEncheres()));
+		pstmt.setInt(i++, articleVendu.getMiseAPrix());
+		pstmt.setString(i++, articleVendu.getEtatVente());
 		
 		
+		
+		articleDAO.update(a1);
+		System.out.println("Article après modification : " + a1.toString() );
 
 		
 		
