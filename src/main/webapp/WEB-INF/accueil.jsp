@@ -37,11 +37,10 @@
             /*boucle*/
             <%
             ArrayList<ArticleVendu> articlesVendus = (ArrayList<ArticleVendu>)request.getAttribute("articlesVendus");
-		if(articlesVendus!=null)
+	if(articlesVendus!=null)
 		{
-			for(ArticleVendu art: articlesVendus){
+	for(ArticleVendu art: articlesVendus){ 
 	%>
-	
 			<div class="articleIndex">
                 <img src="" class="imgArticleIndex"/>
                 <h3 class="titreArticleIndex"><%=art.getNomArticle() %></h3>
@@ -55,11 +54,11 @@
                     <%=art.getNoUtilisateur().getCodePostal() %>
                     <%=art.getNoUtilisateur().getVille() %>
                 </p>
-            </div>
+            </div> 
 	<%		}
 		} 
 	%>
-	
+
             
         </section>
     
