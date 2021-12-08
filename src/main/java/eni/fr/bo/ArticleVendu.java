@@ -80,6 +80,21 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
 	}
+	
+	/**
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 */
+	public ArticleVendu(int noArticle, String nomArticle, LocalDate dateFinEncheres,
+			int miseAPrix) {
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+	}
 	/**
 	 * @return the noArticle
 	 */
