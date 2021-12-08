@@ -16,7 +16,7 @@ import eni.fr.bo.ArticleVendu;
 public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description , date_debut_encheres, date_fin_encheres, prix_initial, etat_vente,no_utilisateur,no_categorie ) VALUES(?,?,?,?,?,?,?,2)";
-	private static final String SEARCH = "SELECT nom_article, prix_initial, date_fin_encheres, libelle ,nom , code_postal, ville FROM ARTICLES_VENDUS INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN UTILISATEURS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur WHERE nom_article = ? AND CATEGORIES.no_categorie = ?";
+	private static final String SEARCH = "SELECT no_article, nom_article, 	description, prix_initial, date_debut_encheres, date_fin_encheres, prix_vente ,no_utilisateur , no_categorie, etat_vente FROM ARTICLES_VENDUS WHERE nom_article = ? AND no_categorie = ?";
 
 	@Override
 	public void insert(ArticleVendu articleVendu) throws DALException {
@@ -100,11 +100,13 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			rs = rqt.executeQuery();
 			rs.next();
 			
-			String dateFinEnchereString = rs.getString("date_fin_encheres");
+			String dateDebutEnchereString = rs.getString("date_debut_encheres");
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.FRENCH);
+			LocalDate dateDebutEnchere = LocalDate.parse(dateDebutEnchereString, formatter);
+			
+			String dateFinEnchereString = rs.getString("date_fin_encheres");
 			LocalDate dateFinEnchere = LocalDate.parse(dateFinEnchereString, formatter);
 			
-			System.out.println(rs.getString("nom_article") + " " + rs.getInt("prix_initial") + " " + dateFinEnchere);
 			ArticleVendu art = null;
 
 
@@ -123,10 +125,16 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 //			WHERE nom_article = 'nom_article' AND CATEGORIES.no_categorie = 1
 			
 			while (rs.next()) {
-				art = new ArticleVendu(rs.getString("nom_article"), rs.getInt("prix_initial"), dateFinEnchere
-						
-//						,rs.getString("libelle"), rs.getString("nom"), rs.getString("code_postal"),
-//						rs.getString("ville")
+				art = new ArticleVendu(rs.getInt("no_article"),
+						rs.getString("nom_article"), 
+						rs.getString("description"), 
+						dateDebutEnchere, 
+						dateFinEnchere, 
+						rs.getInt("prix_initial"), 
+						rs.getInt("prix_vente"), 
+						rs.getString("etat_vente"), 
+						rs.getInt("no_utilisateur"),
+						rs.getInt("no_categorie")
 						);
 
 				liste.add(art);
