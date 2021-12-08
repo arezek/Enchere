@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -11,12 +12,18 @@ import java.util.List;
 import java.util.Locale;
 
 import eni.fr.bo.ArticleVendu;
+import eni.fr.bo.Categorie;
+import eni.fr.bo.Utilisateur;
 //yeah
 
 public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description , date_debut_encheres, date_fin_encheres, prix_initial, etat_vente,no_utilisateur,no_categorie ) VALUES(?,?,?,?,?,?,?,2)";
 	private static final String SEARCH = "SELECT no_article, nom_article, 	description, prix_initial, date_debut_encheres, date_fin_encheres, prix_vente ,no_utilisateur , no_categorie, etat_vente FROM ARTICLES_VENDUS WHERE nom_article = ? AND no_categorie = ?";
+	private static final String SELECTALL = "SELECT nom_article,prix_initial,date_fin_encheres,code_postal,ville,nom FROM ARTICLES_VENDUS  INNER JOIN UTILISATEURS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur WHERE nom_article = 'nom_article'";
+	private static final String DELETE = "";
+	private static final String UPDATE = "";
+	int i = 1;
 
 	@Override
 	public void insert(ArticleVendu articleVendu) throws DALException {
@@ -30,8 +37,6 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 		try (Connection cnx = JdbcTools.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);) {
-
-			int i = 1;
 
 			pstmt.setString(i++, articleVendu.getNomArticle());
 			pstmt.setString(i++, articleVendu.getDescription());
@@ -63,25 +68,71 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 	@Override
 	public ArticleVendu selectById(int noArticle) throws DALException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void update(ArticleVendu articleVendu) throws DALException {
-		// TODO Auto-generated method stub
-
+		 String sql = UPDATE+articleVendu.getNoArticle();
+	        try(Connection con = ConnectionProvider.getConnection();
+	        PreparedStatement Pstmt = con.prepareStatement(UPDATE,PreparedStatement.RETURN_GENERATED_KEYS);
+	                ) 
+	        {
+	        
+	        	Pstmt.setString(i++, articleVendu.getNomArticle());
+				Pstmt.setString(i++, articleVendu.getDescription());
+				Pstmt.setDate(i++, java.sql.Date.valueOf(articleVendu.getDateDebutEncheres()));
+				Pstmt.setDate(i++, java.sql.Date.valueOf(articleVendu.getDateFinEncheres()));
+				Pstmt.setInt(i++, articleVendu.getMiseAPrix());
+				Pstmt.setString(i++, articleVendu.getEtatVente());
+	          
+	            Pstmt.executeUpdate();
+	            
+	        } catch (SQLException e) {
+	        	
+	            throw new DALException("erreur de requete update",e);
+	            
+	        }
 	}
-
+	
 	@Override
 	public void delete(int noArticle) throws DALException {
-		// TODO Auto-generated method stub
-
+		try (Connection con = ConnectionProvider.getConnection();
+                PreparedStatement Pstmt = con.prepareStatement(DELETE)){
+                String sql = DELETE;
+                Pstmt.setInt(1, noArticle);
+                Pstmt.executeUpdate();
+        }catch (SQLException e) {
+        throw new DALException("erreur de requete Delete",e);
+    }
 	}
 
 	@Override
 	public List<ArticleVendu> selectAll() throws DALException {
-		return null;
+		List<ArticleVendu> articlesVendus = new ArrayList<ArticleVendu>();
+		try (Connection con = ConnectionProvider.getConnection();
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(SELECTALL);) {
+			ArticleVendu article = null;
+			while (rs.next()) {
+
+				Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
+						rs.getString("rue"), rs.getString("codePostal"), rs.getString("ville"), rs.getString("motDePasse"), rs.getInt("credit"), rs.getBoolean("administrateur"));
+				
+				article = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
+						rs.getDate("date_fin_enchere").toLocalDate(), rs.getInt("prix_initial"),
+						rs.getString("etat_vente"));
+				
+				article.setNoUtilisateur(utilisateur);
+
+			}
+
+			articlesVendus.add(article);
+
+		} catch (SQLException e) {
+			throw new DALException("erreur de requete select ALL", e);
+		}
+		return articlesVendus;
 
 	}
 
@@ -90,61 +141,39 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 		ResultSet rs = null;
 		List<ArticleVendu> liste = new ArrayList<ArticleVendu>();
-		try (Connection con = ConnectionProvider.getConnection();
-				PreparedStatement rqt = con.prepareStatement(SEARCH);)
+		try (Connection con = ConnectionProvider.getConnection(); PreparedStatement rqt = con.prepareStatement(SEARCH);)
 
 		{
-			
+
 			rqt.setString(1, nomArticle);
 			rqt.setInt(2, noCategorie);
 			rs = rqt.executeQuery();
 			rs.next();
-			
-			String dateDebutEnchereString = rs.getString("date_debut_encheres");
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.FRENCH);
-			LocalDate dateDebutEnchere = LocalDate.parse(dateDebutEnchereString, formatter);
-			
-			String dateFinEnchereString = rs.getString("date_fin_encheres");
-			LocalDate dateFinEnchere = LocalDate.parse(dateFinEnchereString, formatter);
-			
+
 			ArticleVendu art = null;
 
-
-//			SELECT nom_article as nom_art,
-//			prix_initial as prix,
-//			date_fin_encheres as fin_de_enchere,
-//			libelle AS cat,
-//			nom AS vendeur,
-//			code_postal AS cp,
-//			ville AS villeVendeur
-//			FROM ARTICLES_VENDUS
-//			INNER JOIN CATEGORIES
-//			ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie
-//			INNER JOIN UTILISATEURS
-//			ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur
-//			WHERE nom_article = 'nom_article' AND CATEGORIES.no_categorie = 1
-			
 			while (rs.next()) {
-				art = new ArticleVendu(rs.getInt("no_article"),
-						rs.getString("nom_article"), 
-						rs.getString("description"), 
-						dateDebutEnchere, 
-						dateFinEnchere, 
-						rs.getInt("prix_initial"), 
-						rs.getInt("prix_vente"), 
-						rs.getString("etat_vente"), 
-						rs.getInt("no_utilisateur"),
-						rs.getInt("no_categorie")
-						);
+				Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
+						rs.getString("rue"), rs.getString("codePostal"), rs.getString("ville"), rs.getString("motDePasse"), rs.getInt("credit"), rs.getBoolean("administrateur"));
+				
+				Categorie categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+				
+				art = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
+						rs.getDate("date_fin_enchere").toLocalDate(), rs.getInt("prix_initial"),
+						rs.getString("etat_vente"));
+				
+				art.setNoUtilisateur(utilisateur);
+				art.setNoCategorie(categorie);
+				
+			}
 
 				liste.add(art);
 
-			}
-			
 		} catch (SQLException e) {
+			
 			throw new DALException("erreur de requete de recherche d'articles", e);
 		}
-		
+
 		return liste;
 	}
 }

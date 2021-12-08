@@ -9,25 +9,37 @@ public class Retrait {
 	public String rue;
 	public String code_postal;
 	public String ville;
+	public ArticleVendu noArticle;
 	
-	
-	public Retrait(int idRetrait, String rue, String code_postal, String ville) {
+	public Retrait() {
+		
+	}
+
+	public Retrait(String rue, String code_postal, String ville, ArticleVendu noArticle) {
+		super();
+		this.rue = rue;
+		this.code_postal = code_postal;
+		this.ville = ville;
+		this.noArticle = noArticle;
+	}
+
+	public Retrait(int idRetrait, String rue, String code_postal, String ville, ArticleVendu noArticle) {
 		super();
 		this.idRetrait = idRetrait;
 		this.rue = rue;
 		this.code_postal = code_postal;
 		this.ville = ville;
+		this.noArticle = noArticle;
 	}
 
-
-	public Retrait(String rue, String code_postal, String ville) {
-		super();
-		this.rue = rue;
-		this.code_postal = code_postal;
-		this.ville = ville;
+	public int getIdRetrait() {
+		return idRetrait;
 	}
-	
-	
+
+	public void setIdRetrait(int idRetrait) {
+		this.idRetrait = idRetrait;
+	}
+
 	public String getRue() {
 		return rue;
 	}
@@ -52,10 +64,18 @@ public class Retrait {
 		this.ville = ville;
 	}
 
+	public ArticleVendu getNoArticle() {
+		return noArticle;
+	}
+
+	public void setNoArticle(ArticleVendu noArticle) {
+		this.noArticle = noArticle;
+	}
+
 	@Override
 	public String toString() {
-		return "RetraitDAO [rue=" + rue + ", code_postal=" + code_postal + ", ville=" + ville + "]";
+		return "Retrait [idRetrait=" + idRetrait + ", rue=" + rue + ", code_postal=" + code_postal + ", ville=" + ville
+				+ ", noArticle=" + noArticle + "]";
 	}
-	
 	
 }

@@ -16,33 +16,27 @@ public class ArticleVendu {
 	public int miseAPrix;
 	public int prixVente;
 	public String etatVente;
-	public int noUtilisateur;
-	public int noCategorie;
-//	public List<Utilisateur> listeUtilisateur;
-//	public List<Categorie> listeCategorie;
-//	
-	
-	/**
-	 * 
-	 */
+	public Utilisateur noUtilisateur;
+	public Categorie noCategorie;
 	
 	public ArticleVendu() {
+	
 	}
-	/**
-	 * @param noArticle
-	 * @param nomArticle
-	 * @param description
-	 * @param dateDebutEncheres
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param prixVente
-	 * @param etatVente
-	 * @param noUtilisateur
-	 * @param noCategorie
-	 */
+
+	public ArticleVendu(String nomArticle, LocalDate dateFinEncheres, int miseAPrix, String etatVente,
+			Utilisateur noUtilisateur, Categorie noCategorie) {
+		super();
+		this.nomArticle = nomArticle;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.etatVente = etatVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+	}
+
 	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, int prixVente, String etatVente, int noUtilisateur,
-			int noCategorie) {
+			LocalDate dateFinEncheres, int miseAPrix, int prixVente, String etatVente, Utilisateur noUtilisateur,
+			Categorie noCategorie) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -55,192 +49,96 @@ public class ArticleVendu {
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 	}
-	/**
-	 * @param nomArticle
-	 * @param description
-	 * @param dateDebutEncheres
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param prixVente
-	 * @param etatVente
-	 */
-	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			int miseAPrix, int prixVente, String etatVente) {
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-	}
 	
-	
-	
-	/**
-	 * @param noArticle
-	 * @param nomArticle
-	 * @param description
-	 * @param dateDebutEncheres
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param prixVente
-	 * @param etatVente
-	 */
-	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, int prixVente, String etatVente) {
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-	}
-	
-	
-	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			int prixVente, String etatVente) {
+	public ArticleVendu(int noArticle, String nomArticle, LocalDate dateFinEncheres, int miseAPrix, String etatVente) {
 		super();
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-	}
-	
-	/**
-	 * @param noArticle
-	 * @param nomArticle
-	 * @param description
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 */
-	public ArticleVendu(int noArticle, String nomArticle, LocalDate dateFinEncheres,
-			int miseAPrix) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
+		this.etatVente = etatVente;
 	}
 
-	public ArticleVendu(String nomArticle, int miseAPrix, LocalDate dateFinEnchere) {
-		this.nomArticle = nomArticle;
-		this.miseAPrix = miseAPrix;
-		this.dateFinEncheres = dateFinEncheres;
-	}
-	/**
-	 * @return the noArticle
-	 */
 	public int getNoArticle() {
 		return noArticle;
 	}
-	/**
-	 * @return the nomArticle
-	 */
-	public String getNomArticle() {
-		return nomArticle;
-	}
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-	/**
-	 * @return the dateDebutEncheres
-	 */
-	public LocalDate getDateDebutEncheres() {
-		return dateDebutEncheres;
-	}
-	/**
-	 * @return the dateFinEncheres
-	 */
-	public LocalDate getDateFinEncheres() {
-		return dateFinEncheres;
-	}
-	/**
-	 * @return the miseAPrix
-	 */
-	public int getMiseAPrix() {
-		return miseAPrix;
-	}
-	/**
-	 * @return the prixVente
-	 */
-	public int getPrixVente() {
-		return prixVente;
-	}
-	/**
-	 * @return the etatVente
-	 */
-	public String getEtatVente() {
-		return etatVente;
-	}
-	/**
-	 * @param noArticle the noArticle to set
-	 */
+
 	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
 	}
-	/**
-	 * @param nomArticle the nomArticle to set
-	 */
+
+	public String getNomArticle() {
+		return nomArticle;
+	}
+
 	public void setNomArticle(String nomArticle) {
 		this.nomArticle = nomArticle;
 	}
-	/**
-	 * @param description the description to set
-	 */
+
+	public String getDescription() {
+		return description;
+	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	/**
-	 * @param dateDebutEncheres the dateDebutEncheres to set
-	 */
+
+	public LocalDate getDateDebutEncheres() {
+		return dateDebutEncheres;
+	}
+
 	public void setDateDebutEncheres(LocalDate dateDebutEncheres) {
 		this.dateDebutEncheres = dateDebutEncheres;
 	}
-	/**
-	 * @param dateFinEncheres the dateFinEncheres to set
-	 */
+
+	public LocalDate getDateFinEncheres() {
+		return dateFinEncheres;
+	}
+
 	public void setDateFinEncheres(LocalDate dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
-	/**
-	 * @param miseAPrix the miseAPrix to set
-	 */
+
+	public int getMiseAPrix() {
+		return miseAPrix;
+	}
+
 	public void setMiseAPrix(int miseAPrix) {
 		this.miseAPrix = miseAPrix;
 	}
-	/**
-	 * @param prixVente the prixVente to set
-	 */
+
+	public int getPrixVente() {
+		return prixVente;
+	}
+
 	public void setPrixVente(int prixVente) {
 		this.prixVente = prixVente;
 	}
-	/**
-	 * @param etatVente the etatVente to set
-	 */
+
+	public String getEtatVente() {
+		return etatVente;
+	}
+
 	public void setEtatVente(String etatVente) {
 		this.etatVente = etatVente;
 	}
-	
-	
-	public int getNoUtilisateur() {
+
+	public Utilisateur getNoUtilisateur() {
 		return noUtilisateur;
 	}
-	public int getNoCategorie() {
-		return noCategorie;
-	}
-	public void setNoUtilisateur(int noUtilisateur) {
+
+	public void setNoUtilisateur(Utilisateur noUtilisateur) {
 		this.noUtilisateur = noUtilisateur;
 	}
-	public void setNoCategorie(int noCategorie) {
+
+	public Categorie getNoCategorie() {
+		return noCategorie;
+	}
+
+	public void setNoCategorie(Categorie noCategorie) {
 		this.noCategorie = noCategorie;
 	}
+
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
@@ -248,7 +146,5 @@ public class ArticleVendu {
 				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", noUtilisateur="
 				+ noUtilisateur + ", noCategorie=" + noCategorie + "]";
 	}
-	
-	
-	
+
 }
