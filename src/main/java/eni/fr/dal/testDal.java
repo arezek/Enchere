@@ -42,9 +42,13 @@ public class testDal {
 		
 		ArticleVenduDAOJdbcImpl article = new ArticleVenduDAOJdbcImpl();
 		
+		ArticleVendu art = new ArticleVendu();
+		
 //		article.search("nom_article", 1);
 //		article.selectAll();
-		article.delete(4);
+		//article.delete(4);
+		
+		article.update(art);
 		
 		
 

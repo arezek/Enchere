@@ -22,7 +22,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	private static final String SEARCH = "SELECT no_article, nom_article, 	description, prix_initial, date_debut_encheres, date_fin_encheres, prix_vente ,no_utilisateur , no_categorie, etat_vente FROM ARTICLES_VENDUS WHERE nom_article = ? AND no_categorie = ?";
 	private static final String SELECTALL = "SELECT nom_article,prix_initial,date_fin_encheres,code_postal,ville,nom FROM ARTICLES_VENDUS  INNER JOIN UTILISATEURS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur WHERE nom_article = 'nom_article'";
 	private static final String DELETE = "delete from ARTICLES_VENDUS where no_article=?";
-	private static final String UPDATE = "";
+	private static final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article = 'article', description = 'nv article', date_debut_encheres = '2008-10-11', date_fin_encheres = '2008-10-11', prix_initial = 10, no_categorie = 2 FROM ARTICLES_VENDUS as a INNER JOIN CATEGORIES as c ON c.no_categorie = a.no_categorie WHERE no_article = 4";
 	int i = 1;
 
 	@Override
@@ -73,7 +73,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 	@Override
 	public void update(ArticleVendu articleVendu) throws DALException {
-	        try(Connection con = ConnectionProvider.getConnection();
+	        try(Connection con = JdbcTools.getConnection();
 	        PreparedStatement Pstmt = con.prepareStatement(UPDATE,PreparedStatement.RETURN_GENERATED_KEYS);
 	                ) 
 	        {
