@@ -45,7 +45,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			pstmt.setInt(i++, articleVendu.getMiseAPrix());
 			pstmt.setString(i++, articleVendu.getEtatVente());
 
-			pstmt.executeUpdate();
+			pstmt.executeUpdate(); 
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
 				articleVendu.setNoArticle(rs.getInt(1));
