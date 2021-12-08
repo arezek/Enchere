@@ -1,3 +1,4 @@
+<%@page import="eni.fr.bo.ArticleVendu"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,10 +17,10 @@
         </header>
         <section id="searchBar">
             <form action="<%=request.getContextPath()%>/ServletRecherche" method="get">
-                <label><img src="" id="searchIcon"/></label>
-                <input type="text" placeholder="rechercher" >
-                <label for="categories">Catégorie</label>
-                <select name="categories" id="categories">
+                <label name="rechercherNom"><img src="" id="searchIcon"/></label>
+                <input type="text" placeholder="rechercher" name="rechercherNom" >
+                <label for="rechercherCategories">Catégorie</label>
+                <select name="rechercherCategories" id="categories">
                     
                     <option value="5">Toutes</option>
                     <option value="1">Informatique</option>
@@ -33,10 +34,16 @@
         </section>
         <section>
             /*boucle*/
-            <div class="articleIndex">
+            <%
+            ArticleVendu articleVendu = (ArticleVendu)request.getAttribute("articleVendu");
+		if(articleVendu!=null)
+		{
+	%>
+	
+			<div class="articleIndex">
                 <img src="" class="imgArticleIndex"/>
-                <h3 class="titreArticleIndex">titre de l'article</h3>
-                <p class="prix">420 points</p>
+                <h3 class="titreArticleIndex"><%=articleVendu.getNomArticle() %></h3>
+                <p class="prix"><%=articleVendu.getMiseAPrix() %></p>
                 <p class="vendeur">par 
                     <a href="" class="vendeurLine">
                         Vendeur
@@ -46,6 +53,11 @@
                     CP + ville
                 </p>
             </div>
+	<%	
+		} 
+	%>
+	
+            
         </section>
     
 </body>

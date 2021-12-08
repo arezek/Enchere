@@ -90,7 +90,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 		ResultSet rs = null;
 		List<ArticleVendu> liste = new ArrayList<ArticleVendu>();
-		try (Connection con = JdbcTools.getConnection();
+		try (Connection con = ConnectionProvider.getConnection();
 				PreparedStatement rqt = con.prepareStatement(SEARCH);)
 
 		{
