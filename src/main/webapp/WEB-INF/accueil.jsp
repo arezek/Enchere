@@ -48,11 +48,12 @@
                 <p class="prix"><%=art.getMiseAPrix() %></p>
                 <p class="vendeur">par 
                     <a href="" class="vendeurLine">
-                        Vendeur
+                        <%=art.getNoUtilisateur().getNom() %>
                     </a>
                 </p>
                 <p class="adresse">
-                    CP + ville
+                    <%=art.getNoUtilisateur().getCodePostal() %>
+                    <%=art.getNoUtilisateur().getVille() %>
                 </p>
             </div>
 	<%		}
