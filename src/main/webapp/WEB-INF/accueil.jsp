@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="eni.fr.bo.ArticleVendu"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -35,15 +36,16 @@
         <section>
             /*boucle*/
             <%
-            ArticleVendu articleVendu = (ArticleVendu)request.getAttribute("articleVendu");
-		if(articleVendu!=null)
+            ArrayList<ArticleVendu> articlesVendus = (ArrayList<ArticleVendu>)request.getAttribute("articlesVendus");
+		if(articlesVendus!=null)
 		{
+			for(ArticleVendu art: articlesVendus){
 	%>
 	
 			<div class="articleIndex">
                 <img src="" class="imgArticleIndex"/>
-                <h3 class="titreArticleIndex"><%=articleVendu.getNomArticle() %></h3>
-                <p class="prix"><%=articleVendu.getMiseAPrix() %></p>
+                <h3 class="titreArticleIndex"><%=art.getNomArticle() %></h3>
+                <p class="prix"><%=art.getMiseAPrix() %></p>
                 <p class="vendeur">par 
                     <a href="" class="vendeurLine">
                         Vendeur
@@ -53,7 +55,7 @@
                     CP + ville
                 </p>
             </div>
-	<%	
+	<%		}
 		} 
 	%>
 	

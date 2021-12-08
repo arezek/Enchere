@@ -39,9 +39,9 @@ public class ServletRecherche extends HttpServlet {
 				rechercherNom = request.getParameter("rechercherNom");
 				rechercherCategories = request.getParameter("rechercherCategories");
 				ArticleVenduDAO articleVenduManager = new ArticleVenduDAOJdbcImpl();
-				ArticleVendu articleVendu;
-				articleVendu = (ArticleVendu) articleVenduManager.search(rechercherNom,Integer.parseInt(rechercherCategories));
-				request.setAttribute("articleVendu", articleVendu);
+				List<ArticleVendu> articlesVendus;
+				articlesVendus = (List<ArticleVendu>) articleVenduManager.search(rechercherNom,Integer.parseInt(rechercherCategories));
+				request.setAttribute("articlesVendus", articlesVendus);
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
