@@ -107,7 +107,6 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			System.out.println(rs.getString("nom_article") + " " + rs.getInt("prix_initial") + " " + dateFinEnchere);
 			ArticleVendu art = null;
 
-		
 
 //			SELECT nom_article as nom_art,
 //			prix_initial as prix,
