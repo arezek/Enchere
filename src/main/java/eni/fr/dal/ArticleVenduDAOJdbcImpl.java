@@ -21,7 +21,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description , date_debut_encheres, date_fin_encheres, prix_initial, etat_vente,no_utilisateur,no_categorie ) VALUES(?,?,?,?,?,?,?,2)";
 	private static final String SEARCH = "SELECT no_article, nom_article, 	description, prix_initial, date_debut_encheres, date_fin_encheres, prix_vente ,no_utilisateur , no_categorie, etat_vente FROM ARTICLES_VENDUS WHERE nom_article = ? AND no_categorie = ?";
 	private static final String SELECTALL = "SELECT nom_article,prix_initial,date_fin_encheres,code_postal,ville,nom FROM ARTICLES_VENDUS  INNER JOIN UTILISATEURS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur WHERE nom_article = 'nom_article'";
-	private static final String DELETE = "";
+	private static final String DELETE = "delete from ARTICLES_VENDUS where no_article=?";
 	private static final String UPDATE = "";
 	int i = 1;
 
@@ -97,9 +97,8 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	
 	@Override
 	public void delete(int noArticle) throws DALException {
-		try (Connection con = ConnectionProvider.getConnection();
+		try (Connection con = JdbcTools.getConnection();
                 PreparedStatement Pstmt = con.prepareStatement(DELETE)){
-                String sql = DELETE;
                 Pstmt.setInt(1, noArticle);
                 Pstmt.executeUpdate();
         }catch (SQLException e) {
@@ -110,7 +109,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	@Override
 	public List<ArticleVendu> selectAll() throws DALException {
 		List<ArticleVendu> articlesVendus = new ArrayList<ArticleVendu>();
-		try (Connection con = ConnectionProvider.getConnection();
+		try (Connection con = JdbcTools.getConnection();
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(SELECTALL);) {
 			ArticleVendu article = null;
@@ -141,7 +140,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 		ResultSet rs = null;
 		List<ArticleVendu> liste = new ArrayList<ArticleVendu>();
-		try (Connection con = ConnectionProvider.getConnection(); PreparedStatement rqt = con.prepareStatement(SEARCH);)
+		try (Connection con = JdbcTools.getConnection(); PreparedStatement rqt = con.prepareStatement(SEARCH);)
 
 		{
 
