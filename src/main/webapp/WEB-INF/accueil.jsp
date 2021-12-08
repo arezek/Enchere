@@ -11,8 +11,8 @@
 <body>
 	 <header>
             <img src="" id="logo"/>
-            <a href="login.jsp">Connexion<img src="" id="cnxIcon"/></a>
-            <a href="signUp.jsp">S'inscrire<img src="" id="signInIcon"/></a>
+            <a href="login">Connexion<img src="" id="cnxIcon"/></a>
+            <a href="signUp">S'inscrire<img src="" id="signInIcon"/></a>
         </header>
         <section id="searchBar">
             <form action="<%=request.getContextPath()%>/ServletRecherche" method="get">
