@@ -9,7 +9,47 @@
     <title>Document</title>
 </head>
 <body>
-<h1>inscrption</h1>
+<h1>inscription</h1>
+<h2>Créer un compte</h2>
+<form method="post" action="">
+  <label for="pseudo">Pseudo:</label><br>
+  <input type="text" id="pseudo" name="pseudo" value=""><br>
+  
+  <label for="nom">Nom:</label><br>
+  <input type="text" id="nom" name="nom" value=""><br>
+  
+    <label for="prenom">Prenom:</label><br>
+  <input type="text" id="prenom" name="prenom" value=""><br>
+  
+    <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" value=""><br>
+  
+    <label for="telephone">Teléphone:</label><br>
+  <input type="tel" id="telephone" name="telephone" value=""><br>
+  
+    <label for="rue">Rue:</label><br>
+  <input type="text" id="rue" name="rue" value=""><br>
+  
+    <label for="cp">Code Postal:</label><br>
+  <input type="text" id="cp" name="cp" value=""><br>
+  
+   <label for="ville">Ville:</label><br>
+  <input type="text" id="ville" name="ville" value=""><br>
+  
+   <label for="mdp">Mot de passe:</label><br>
+  <input type="password" id="mdp" name="mdp" value=""><br>
+  
+   <label for="mdpc">Confirmation:</label><br>
+  <input type="password" id="mdpc" name="mdpc" value=""><br>
+  
+  
+  
+  
+  <input type="submit" value="Créer">  
+  <a href="Accueil"><button>Annuler</button></a>
+
+</form> 
+
     
 </body>
 </html>
