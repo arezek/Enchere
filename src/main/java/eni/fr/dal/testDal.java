@@ -37,7 +37,6 @@ public class testDal {
 		
 		
 		
-		
 		//article.insert(new ArticleVendu("nom_article" , "description",LocalDate.of(2020,01,15),  LocalDate.of(2008,10,13), 20, "encours"));
 		
 		
