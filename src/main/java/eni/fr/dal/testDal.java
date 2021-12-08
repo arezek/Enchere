@@ -44,8 +44,7 @@ public class testDal {
 		ArticleVenduDAOJdbcImpl article = new ArticleVenduDAOJdbcImpl();
 		
 		article.search("nom_article", 1);
-		
-		          
+
 		
 		
 		

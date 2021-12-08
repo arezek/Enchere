@@ -95,6 +95,12 @@ public class ArticleVendu {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 	}
+
+	public ArticleVendu(String nomArticle, int miseAPrix, LocalDate dateFinEnchere) {
+		this.nomArticle = nomArticle;
+		this.miseAPrix = miseAPrix;
+		this.dateFinEncheres = dateFinEncheres;
+	}
 	/**
 	 * @return the noArticle
 	 */
