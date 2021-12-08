@@ -16,6 +16,8 @@ public class ArticleVendu {
 	public int miseAPrix;
 	public int prixVente;
 	public String etatVente;
+	public int noUtilisateur;
+	public int noCategorie;
 //	public List<Utilisateur> listeUtilisateur;
 //	public List<Categorie> listeCategorie;
 //	
@@ -23,7 +25,35 @@ public class ArticleVendu {
 	/**
 	 * 
 	 */
+	
 	public ArticleVendu() {
+	}
+	/**
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param etatVente
+	 * @param noUtilisateur
+	 * @param noCategorie
+	 */
+	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int miseAPrix, int prixVente, String etatVente, int noUtilisateur,
+			int noCategorie) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
 	}
 	/**
 	 * @param nomArticle
@@ -199,6 +229,18 @@ public class ArticleVendu {
 	}
 	
 	
+	public int getNoUtilisateur() {
+		return noUtilisateur;
+	}
+	public int getNoCategorie() {
+		return noCategorie;
+	}
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+	public void setNoCategorie(int noCategorie) {
+		this.noCategorie = noCategorie;
+	}
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
