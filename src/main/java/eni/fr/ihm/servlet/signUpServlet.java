@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import eni.fr.bo.ArticleVendu;
 import eni.fr.bo.Utilisateur;
@@ -73,6 +74,10 @@ public class signUpServlet extends HttpServlet {
 					
 					Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
 						 codePostal, ville, motDePasse, credit, administrateur);
+					
+					HttpSession session = request.getSession();
+					session.setAttribute("utilisateur", utilisateur);
+					
 					try {
 						utilisateurD.insert(utilisateur);
 					} catch (DALException e) {
