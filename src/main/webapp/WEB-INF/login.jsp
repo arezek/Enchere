@@ -18,9 +18,6 @@
   <label for="nom">Mot de passe :</label><br>
   <input type="text" id="mdp" name="mdp" value=""><br>
   
-  <label for="prenom">Prénom:</label><br>
-  <input type="text" id="prenom" name="prenom" value=""><br>
-  
   <input type="submit" value="Connexion">
    
   <input type="checkbox" id="souvenirDeMoi" name ="souvenirDeMoi">
@@ -30,11 +27,13 @@
    
  </form>  
  
- <form method="post" action="<%=request.getContextPath()%>/signUpServlet">
+ <form method="get" action="<%=request.getContextPath()%>/signUpServlet">
   
    <input type="submit" value="Créer un compte">
    
  </form> 
+ 
+ 
   
 </body>
 </html>
