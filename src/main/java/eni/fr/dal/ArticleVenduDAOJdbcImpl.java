@@ -19,7 +19,7 @@ import eni.fr.bo.Utilisateur;
 public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description , date_debut_encheres, date_fin_encheres, prix_initial, etat_vente,no_utilisateur,no_categorie ) VALUES(?,?,?,?,?,?,?,2)";
-	private static final String SEARCH = "SELECT no_article, nom_article, 	description, prix_initial, date_debut_encheres, date_fin_encheres, prix_vente ,no_utilisateur , no_categorie, etat_vente FROM ARTICLES_VENDUS WHERE nom_article = ? AND no_categorie = ?";
+	private static final String SEARCH = "SELECT no_article, nom_article,date_fin_encheres, prix_initial, etat_vente, no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur, no_categorie, libelle FROM ARTICLES_VENDUS  INNER JOIN UTILISATEURS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur WHERE nom_article = ? AND no_categorie = ?";
 	private static final String SELECTALL = "SELECT nom_article,prix_initial,date_fin_encheres,code_postal,ville,nom FROM ARTICLES_VENDUS  INNER JOIN UTILISATEURS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur WHERE nom_article = 'nom_article'";
 	private static final String DELETE = "delete from ARTICLES_VENDUS where no_article=?";
 	private static final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article = 'article', description = 'nv article', date_debut_encheres = '2008-10-11', date_fin_encheres = '2008-10-11', prix_initial = 10, no_categorie = 2 FROM ARTICLES_VENDUS as a INNER JOIN CATEGORIES as c ON c.no_categorie = a.no_categorie WHERE no_article = 4";
@@ -139,16 +139,17 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 		ResultSet rs = null;
 		List<ArticleVendu> liste = new ArrayList<ArticleVendu>();
-		try (Connection con = JdbcTools.getConnection(); PreparedStatement rqt = con.prepareStatement(SEARCH);)
+		try (Connection con = JdbcTools.getConnection(); 
+			 PreparedStatement rqt = con.prepareStatement(SEARCH);)
 
 		{
-
+			ArticleVendu art = new ArticleVendu();
 			rqt.setString(1, nomArticle);
 			rqt.setInt(2, noCategorie);
 			rs = rqt.executeQuery();
-			rs.next();
+//			rs.next();
 
-			ArticleVendu art = null;
+			
 
 			while (rs.next()) {
 				Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
@@ -163,9 +164,11 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 				art.setNoUtilisateur(utilisateur);
 				art.setNoCategorie(categorie);
 				
+				liste.add(art);
+				
 			}
 
-				liste.add(art);
+				
 
 		} catch (SQLException e) {
 			
