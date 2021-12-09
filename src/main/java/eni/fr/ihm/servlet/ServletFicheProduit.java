@@ -29,16 +29,16 @@ public class ServletFicheProduit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		int numArticle;
+		String numArticle;
 		
 			
 			try {
-				numArticle =Integer.parseInt(request.getParameter("no_article")) ;
+				numArticle = request.getParameter("no_article") ;
 				
-//				int noCategorie=Integer.parseInt(rechercherCategories);
+				int numArticleInt =1;
 				ArticleVenduDAO articleVenduManager = new ArticleVenduDAOJdbcImpl();
-				ArticleVendu articleVendu=(ArticleVendu)articleVenduManager.selectById(numArticle);
-			
+				ArticleVendu articleVendu=(ArticleVendu)articleVenduManager.selectById(numArticleInt);
+//			System.out.println(numArticleInt);
 				request.setAttribute("articleVendu", articleVendu);
 				
 			} catch (NumberFormatException e) {
