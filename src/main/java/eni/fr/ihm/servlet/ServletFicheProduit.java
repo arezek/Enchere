@@ -35,7 +35,7 @@ public class ServletFicheProduit extends HttpServlet {
 			try {
 				numArticle = request.getParameter("no_article") ;
 				
-				int numArticleInt =1;
+				int numArticleInt =Integer.valueOf(numArticle);
 				ArticleVenduDAO articleVenduManager = new ArticleVenduDAOJdbcImpl();
 				ArticleVendu articleVendu=(ArticleVendu)articleVenduManager.selectById(numArticleInt);
 //			System.out.println(numArticleInt);
