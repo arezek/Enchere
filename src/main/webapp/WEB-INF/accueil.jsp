@@ -2,23 +2,28 @@
 <%@page import="eni.fr.bo.ArticleVendu"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Document</title>
 </head>
 <body>
-	 <header>
-            <img src="" id="logo"/>
-            <a href="login">Connexion<img src="" id="cnxIcon"/></a>
-            <a href="signUp">S'inscrire<img src="" id="signInIcon"/></a>
+	    <header>
+            <div id="headerbloc">
+                <img src="img/eni_enchere_logo.png" id="logo"/>
+                <a href="login" class="headerlinks">Connexion<img src="img/connexion.png" id="cnxIcon"/></a>
+                <a href="signUp" class="headerlinks">S'inscrire<img src="img/inscription.png" id="signInIcon"/></a>
+            </div>
         </header>
+        <div id="separator"></div>
         <section id="searchBar">
             <form action="<%=request.getContextPath()%>/ServletRecherche" method="get">
-                <label name="rechercherNom"><img src="" id="searchIcon"/></label>
+                <label name="rechercherNom"><img src="img/search.png" id="searchIcon"/></label>
                 <input type="text" placeholder="rechercher" name="rechercherNom" >
                 <label for="rechercherCategories">Catégorie</label>
                 <select name="rechercherCategories" id="categories">

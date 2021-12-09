@@ -1,0 +1,31 @@
+@charset "UTF-8";
+body {
+    font-family: Helvetica,Arial, sans-serif;
+}
+header {
+    height: 40px;
+}
+#headerbloc {
+    width: 70%;
+    margin: auto;
+}
+#logo{
+	width: 200px;
+}
+.headerlinks {
+    float: right;
+    margin-left: 15 px;
+}
+.headerlinks img{
+	width: 10px;
+	margin-left: 5 px;
+}
+#separator{
+	height: 10px;
+    width: 100%;
+    background: linear-gradient(
+0deg, rgba(122,122,122,0) 0%, rgba(130,226,212,1) 100%);
+}
+#searchIcon {
+	width: 20px;
+}
