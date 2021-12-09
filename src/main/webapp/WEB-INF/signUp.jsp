@@ -46,7 +46,7 @@
   
   
   <input type="submit" value="Créer">  
-  <a href="Accueil"><button>Annuler</button></a>
+  <a href="<%=request.getContextPath()%>/accueilServlet"><button>Annuler</button></a>
 
 </form> 
 
