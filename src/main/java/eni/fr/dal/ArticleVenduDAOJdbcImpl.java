@@ -89,7 +89,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 				
 				art.setNoUtilisateur(utilisateur);
 				art.setNoCategorie(categorie);
-				
+				System.out.println(art.getDescription());
 			
 
 				
