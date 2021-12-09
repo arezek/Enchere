@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<!--@author Fabien M. Gavoille  -->
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -34,7 +35,7 @@
         	<p><%=art.getNoCategorie().getLibelle() %></p>
         	<p>fin de l'enchere:</p>
         	<p><%=art.getDateFinEncheres() %></p>
-        	<p> par : <a href=""><%=art.getNoUtilisateur().getPseudo() %></a></p>
+        	<p> par : <a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=<%=art.getNoUtilisateur().getNoUtilisateur() %>"><%=art.getNoUtilisateur().getPseudo() %></a></p>
         	<p>retrait:</p>
         	<p>retraits.Rue</p>
         	<p>retraits.code_postal + " " + retraits.ville</p>
