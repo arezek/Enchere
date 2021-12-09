@@ -1,6 +1,7 @@
 package eni.fr.ihm.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -33,12 +34,12 @@ public class ServletFicheProduit extends HttpServlet {
 		
 			
 			try {
-				numArticle = request.getParameter("no_article") ;
+				numArticle = request.getParameter("noArticle") ;
 				
-				int numArticleInt =Integer.valueOf(numArticle);
+				int numArticleInt =Integer.parseInt(numArticle);
 				ArticleVenduDAO articleVenduManager = new ArticleVenduDAOJdbcImpl();
 				ArticleVendu articleVendu=(ArticleVendu)articleVenduManager.selectById(numArticleInt);
-//			System.out.println(numArticleInt);
+			System.out.println(articleVendu.getEtatVente());
 				request.setAttribute("articleVendu", articleVendu);
 				
 			} catch (NumberFormatException e) {
@@ -54,11 +55,11 @@ public class ServletFicheProduit extends HttpServlet {
 //		{
 //			List<Integer> listeCodesErreur=new ArrayList<>();
 //			listeCodesErreur.add(CodesResultatServlets.FORMAT_AVIS_NOTE_ERREUR);
-//			request.setAttribute("listeCodesErreur",listeCodesErreur);
+//			request.setAttribute("listeCodesErreur",listeCodesErreur);}
 		
 		
-		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/ficheProduit.jsp");
-		rd.forward(request, response);
+			RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/ficheProduit.jsp");
+			rd.forward(request, response);
 			
 	}
 

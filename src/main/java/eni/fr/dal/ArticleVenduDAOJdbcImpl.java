@@ -78,21 +78,35 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			
 			rqt.setInt(1, noArticle);
 			rs = rqt.executeQuery();
+			rs.next();
 
-				Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
-						rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
+			Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), 
+					rs.getString("pseudo"), 
+					rs.getString("nom"), 
+					rs.getString("prenom"), 
+					rs.getString("email"), 
+					rs.getString("telephone"),
+					rs.getString("rue"), 
+					rs.getString("code_postal"), 
+					rs.getString("ville"), 
+					rs.getString("mot_de_passe"), 
+					rs.getInt("credit"), 
+					rs.getBoolean("administrateur"));
 				
-				Categorie categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+			Categorie categorie = new Categorie(rs.getInt("no_categorie"), 
+					rs.getString("libelle"));
 				
-				art = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),rs.getString("description"),rs.getDate("date_debut_encheres").toLocalDate(),
-						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"), rs.getString("etat_vente"));
+			art = new ArticleVendu(rs.getInt("no_article"), 
+					rs.getString("nom_article"),
+					rs.getString("description"),
+					rs.getDate("date_debut_encheres").toLocalDate(),
+					rs.getDate("date_fin_encheres").toLocalDate(), 
+					rs.getInt("prix_initial"), 
+					rs.getString("etat_vente"));
 				
-				art.setNoUtilisateur(utilisateur);
-				art.setNoCategorie(categorie);
-				System.out.println(art.getDescription());
-			
-
-				
+			art.setNoUtilisateur(utilisateur);
+			art.setNoCategorie(categorie);
+			System.out.println(art.getDescription());
 
 		} catch (SQLException e) {
 			

@@ -20,17 +20,21 @@
                 <a href="signUp" class="headerlinks">S'inscrire<img src="img/inscription.png" id="signInIcon"/></a>
             </div>
         </header>
+        <% ArticleVendu art= (ArticleVendu)request.getAttribute("articleVendu");
+        if(art!=null)
+		{System.out.println(art.toString());
+        %>
         <section>photos</section>
         <section>
-        	<h2> ArticleVendu.nom_Article </h2>
-        	<h3>nombre de points"prix"</h3>
+        	<h2> <%=art.getNomArticle() %> </h2>
+        	<h3><%=art.getMiseAPrix() %></h3>
         	<p>description:</p>
-        	<p>articleVendu.Description</p>
+        	<p><%=art.getDescription() %></p>
         	<p>categorie:</p>
-        	<p>categorie.libelle</p>
+        	<p><%=art.getNoCategorie().getLibelle() %></p>
         	<p>fin de l'enchere:</p>
-        	<p>articleVendu.date_fin_enchere</p>
-        	<p> par : <a href="">Utilisateur.pseudo</a></p>
+        	<p><%=art.getDateFinEncheres() %></p>
+        	<p> par : <a href=""><%=art.getNoUtilisateur().getPseudo() %></a></p>
         	<p>retrait:</p>
         	<p>retraits.Rue</p>
         	<p>retraits.code_postal + " " + retraits.ville</p>
@@ -41,6 +45,6 @@
        			<input type="submit" value="echerir">
         	</form>
         </section>
-
+		<%} %>
 </body>
 </html>

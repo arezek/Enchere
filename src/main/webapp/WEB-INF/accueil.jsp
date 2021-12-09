@@ -46,20 +46,22 @@
 		{
 	for(ArticleVendu art: articlesVendus){ 
 	%>
-			<div class="articleIndex">
-                <img src="" class="imgArticleIndex"/>
-                <h3 class="titreArticleIndex"><%=art.getNomArticle() %></h3>
-                <p class="prix"><%=art.getMiseAPrix() %></p>
-                <p class="vendeur">par 
-                    <a href="" class="vendeurLine">
-                        <%=art.getNoUtilisateur().getNom() %>
-                    </a>
-                </p>
-                <p class="adresse">
-                    <%=art.getNoUtilisateur().getCodePostal() %>
-                    <%=art.getNoUtilisateur().getVille() %>
-                </p>
-            </div> 
+			<a href="<%=request.getContextPath()%>/ServletFicheProduit?noArticle=<%=art.getNoArticle() %>">
+				<div class="articleIndex">
+	                <img src="" class="imgArticleIndex"/>
+	                <h3 class="titreArticleIndex"><%=art.getNomArticle() %></h3>
+	                <p class="prix"><%=art.getMiseAPrix() %></p>
+	                <p class="vendeur">par 
+	                    <a href="" class="vendeurLine">
+	                        <%=art.getNoUtilisateur().getNom() %>
+	                    </a>
+	                </p>
+	                <p class="adresse">
+	                    <%=art.getNoUtilisateur().getCodePostal() %>
+	                    <%=art.getNoUtilisateur().getVille() %>
+	                </p>
+	            </div>
+            </a> 
 	<%		}
 		} 
 	%>
