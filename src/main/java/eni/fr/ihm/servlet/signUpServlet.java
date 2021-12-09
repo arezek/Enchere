@@ -95,6 +95,9 @@ public class signUpServlet extends HttpServlet {
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
+			
+			RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+			rd.forward(request, response);
 	}
 
 }
