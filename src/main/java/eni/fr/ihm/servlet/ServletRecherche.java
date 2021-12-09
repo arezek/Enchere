@@ -1,6 +1,7 @@
 package eni.fr.ihm.servlet;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class ServletRecherche extends HttpServlet {
 			try {
 				rechercherNom = request.getParameter("rechercherNom");
 				rechercherCategories = request.getParameter("rechercherCategories");
+//				int noCategorie=Integer.parseInt(rechercherCategories);
 				ArticleVenduDAO articleVenduManager = new ArticleVenduDAOJdbcImpl();
 				List<ArticleVendu> articlesVendus;
 				articlesVendus = (List<ArticleVendu>) articleVenduManager.search(rechercherNom,Integer.parseInt(rechercherCategories));

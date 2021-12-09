@@ -9,7 +9,7 @@ import eni.fr.bo.Utilisateur;
 
 
 
-class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
+public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	private static final String INSERT="INSERT INTO Utilisateurs(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,100,0);";
 	
@@ -22,7 +22,7 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 //			throw businessException;
 //		}
 		
-		try(Connection cnx = JdbcTools.getConnection();
+		try(Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);	
 			)
 		{

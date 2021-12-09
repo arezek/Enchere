@@ -1,6 +1,7 @@
 package eni.fr.ihm.servlet;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -16,11 +17,12 @@ import eni.fr.dal.ArticleVenduDAO;
 import eni.fr.dal.ArticleVenduDAOJdbcImpl;
 import eni.fr.dal.DALException;
 import eni.fr.dal.UtilisateurDAO;
+import eni.fr.dal.UtilisateurDAOJdbcImpl;
 
 /**
  * Servlet implementation class signupServlet
  */
-@WebServlet("/signupServlet")
+@WebServlet("/signUpServlet")
 public class signUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -61,29 +63,31 @@ public class signUpServlet extends HttpServlet {
 				ville= request.getParameter("ville");
 				motDePasse = request.getParameter("mdp");
 				motDePasseConfirme = request.getParameter("mdpc");
+				UtilisateurDAO utilisateurD=new UtilisateurDAOJdbcImpl();
 				
 				if(pseudo != null && nom != null && prenom != null && email != null && 
 						telephone != null && rue != null && codePostal != null && ville != null
-						&& motDePasse != null && motDePasseConfirme != null && motDePasse == motDePasseConfirme)
+						&& motDePasse != null && motDePasseConfirme != null && motDePasse.equals(motDePasseConfirme))
+				
 				{
 					
 					Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
 						 codePostal, ville, motDePasse, credit, administrateur);
+					try {
+						utilisateurD.insert(utilisateur);
+					} catch (DALException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
 					
-					UtilisateurDAO
-					= new UtilisateurDAOJdbcImpl();
-					
-					List<ArticleVendu> articlesVendus;
-					
-					articlesVendus = (List<ArticleVendu>) articleVenduManager.search(rechercherNom,Integer.parseInt(rechercherCategories));
-					request.setAttribute("articlesVendus", articlesVendus);
+				
+					System.out.println(utilisateur.getNom()+" "+utilisateur.getRue()+" "+utilisateur.getPrenom()+" "+utilisateur.getEmail()+" "+utilisateur.getTelephone()+" ");
 					
 				}
 				
 				
 			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			} catch (DALException e) {
 				e.printStackTrace();
 			}
 	}
