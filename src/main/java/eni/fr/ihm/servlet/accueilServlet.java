@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import eni.fr.bo.Utilisateur;
+
 /**
  * Servlet implementation class accueilServlet
  */
@@ -22,7 +24,7 @@ public class accueilServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/accueil.jsp");
 		rd.forward(request, response);
-			
+		
 	}
 
 	/**

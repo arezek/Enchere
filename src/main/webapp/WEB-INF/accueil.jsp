@@ -21,12 +21,11 @@
             <div id="headerbloc">
                 <img src="img/eni_enchere_logo.png" id="logo"/>
                 
-  				
        			
                 <c:if test="${isConnected = true }">
                 	<a href="" class="headerlinks">Enchères</a>
                 	<a href="" class="headerlinks">Vendre un article</a>
-                	<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=<%=utilisateur.getNoUtilisateur().getNoUtilisateur() %>" class="headerlinks">Mon Profil</a>
+                	<a href="" class="headerlinks">Mon Profil</a>
                 	<a href="" class="headerlinks">Déconnexion</a>
                 	 	
                 </c:if>

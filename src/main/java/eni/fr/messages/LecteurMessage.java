@@ -1,4 +1,4 @@
-package eni.fr.ihm.messages;
+package eni.fr.messages;
 
 import java.util.ResourceBundle;
 
