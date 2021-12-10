@@ -12,9 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import eni.fr.bo.Utilisateur;
+import eni.fr.dal.DALException;
+import eni.fr.dal.UtilisateurDAO;
+import eni.fr.dal.UtilisateurDAOJdbcImpl;
 
 /**
- * Servlet implementation class loginServlet
+ * Servlet implementation class profilServlet
+ * @author Fabien M. Gavoille et Eugénie Fuchs
  */
 @WebServlet("/loginServlet")
 public class loginServlet extends HttpServlet {
@@ -25,8 +29,7 @@ public class loginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/login.jsp");
-		rd.forward(request, response);
-		
+		rd.forward(request, response);		
 
 	}
 
@@ -34,42 +37,47 @@ public class loginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(true);
 		
-		// récupérer les identifiatns et les stocker dans la variable de session
+		// récupérer les identifiants et les stocker dans la variable de session
 		String pseudo = request.getParameter("identifiant");
 		String motDePasse = request.getParameter("mdp");
-		ServletContext context = getServletContext();
-		Utilisateur utilisateurEnSession = (Utilisateur)context.getAttribute(pseudo);
+		UtilisateurDAO utilisateurValidation = new UtilisateurDAOJdbcImpl();
+		HttpSession session;
 		
-		// utilisateur n'existe pas ou mauvais mdp
-		if(utilisateurEnSession == null || !motDePasse.equals(utilisateurEnSession.getMotDePasse())) {
+		try {
+			Utilisateur utilisateur = (Utilisateur) utilisateurValidation.selectByPseudo(pseudo);
 			
-			session.setAttribute("hasErrors", true);
-			session.setAttribute("isConnected", false);
+			if(motDePasse.equals(utilisateur.getMotDePasse())) {
+				
+				session = request.getSession();
+				
+				//ServletContext context = this.getServletContext();
+				Utilisateur utilisateurEnSession = (Utilisateur) request.getAttribute(pseudo);
+				
+				session.setAttribute("isConnected", true);
+				
+				//int hc = utilisateurEnSession.getIdSession().hashCode();
+				session.setAttribute("identifiant", pseudo);
+				
+				// redirect l'utilisateur vers la page d'accueil
+				response.sendRedirect("/WEB-INF/accueil.jsp");
 			
-			// redirect to login page
+			} else {
+				
+				session = request.getSession();
+				
+				session.setAttribute("hasErrors", true);
+				session.setAttribute("isConnected", false);
+				response.sendRedirect("login.jsp");
+				
+			}
 			
-			response.sendRedirect("login.jsp");
+		} catch (DALException e) {
 			
-		} else if (motDePasse.equals(utilisateurEnSession.getMotDePasse())) {
-			
-			session.setAttribute("isConnected", true);
-			int hc = utilisateurEnSession.getIdSession().hashCode();
-			session.setAttribute(pseudo, hc);
-			
-			// redirect l'utilisateur vers la page d'accueil
-			response.sendRedirect("accueil.jsp?id="+hc);
+			e.printStackTrace();
 			
 		}
 		
-		
-		session.setAttribute("identifiant", pseudo);
-		
-		// utilisation et redirection des identifiants dans accueil.jsp
-		RequestDispatcher rd2=request.getRequestDispatcher("/WEB-INF/accueil.jsp");
-		rd2.forward(request, response);
-
 	}
 	
 }

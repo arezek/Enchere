@@ -3,6 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:set scope="session" var="isConnected" value="${sessionScope['isConnected'] }"/>
+<c:set scope="session" var="hasErrors" value="${sessionScope['hasErrors'] }"/>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,8 +20,23 @@
 	    <header>
             <div id="headerbloc">
                 <img src="img/eni_enchere_logo.png" id="logo"/>
+                
+  				
+       			
+                <c:if test="${isConnected = true }">
+                	<a href="" class="headerlinks">Enchères</a>
+                	<a href="" class="headerlinks">Vendre un article</a>
+                	<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=<%=utilisateur.getNoUtilisateur().getNoUtilisateur() %>" class="headerlinks">Mon Profil</a>
+                	<a href="" class="headerlinks">Déconnexion</a>
+                	 	
+                </c:if>
+                
+                
+                <c:if test="${isConnected = false }">
                 <a href="login" class="headerlinks">Connexion<img src="img/connexion.png" id="cnxIcon"/></a>
                 <a href="signUp" class="headerlinks">S'inscrire<img src="img/inscription.png" id="signInIcon"/></a>
+				</c:if>
+
             </div>
         </header>
         <div id="separator"></div>
