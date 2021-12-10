@@ -25,7 +25,7 @@
                 <c:if test="${isConnected = true }">
                 	<a href="" class="headerlinks">Enchères</a>
                 	<a href="" class="headerlinks">Vendre un article</a>
-                	<a href="" class="headerlinks">Mon Profil</a>
+                	<a href="profil" class="headerlinks">Mon Profil</a>
                 	<a href="" class="headerlinks">Déconnexion</a>
                 	 	
                 </c:if>
@@ -56,6 +56,50 @@
                 <input type="submit" value="rechercher" >
             </form>
         </section>
+        
+        <section>
+        
+        	<c:if test="${isConnected = true }">
+        	
+        		<div>
+        			
+        			<input type="radio" id="achat" name="achat" value="achat" checked>
+        			<label for ="achat">Achat</label>
+        			
+        			<div>
+        			
+        				<input type="checkbox" id="enchereOuverte" name="enchereOuverte" value="enchereOuverte" checked>
+        				<label for ="enchereOuverte">enchères ouvertes</label>
+        				<input type="checkbox" id="enchereEnCours" name="enchereEnCours" value="enchereEnCours">
+        				<label for ="enchereEnCours">mes enchères en cours</label>
+        				<input type="checkbox" id="enchereRemportee" name="enchereRemportee" value="enchereRemportee">
+        				<label for ="enchereRemportee">mes enchères remportées</label>
+        			
+        			</div>
+        			
+        		</div>
+        		<div>
+        			
+        			<input type="radio" id="ventes" name="ventes" value="ventes">
+        			<label for ="ventes">Mes ventes</label>
+        			
+        			<div>
+        			
+        				<input type="checkbox" id="venteEnCours" name="venteEnCours" value="venteEnCours" checked>
+        				<label for ="venteEnCours">mes ventes en cours</label>
+        				<input type="checkbox" id="venteNonDebutee" name="venteNonDebutee" value="venteNonDebutee">
+        				<label for ="venteNonDebutee">ventes non débutées</label>
+        				<input type="checkbox" id="venteTerminee" name="venteTerminee" value="venteTerminee">
+        				<label for ="venteTerminee">ventes terminées</label>
+        			
+        			</div>
+        			
+        		</div>
+        	
+        	</c:if>
+        
+        </section>
+        
         <section>
             /*boucle*/
             <%
