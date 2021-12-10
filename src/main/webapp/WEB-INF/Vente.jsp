@@ -30,7 +30,7 @@
   			<label for="description">Description:</label><br>
   			<textarea name="description" id="description" rows="3" cols="20"></textarea><br>
   			<label for="categorie">Categorie:</label><br>
-  			 <select name="rechercherCategories" id="categories">     
+  			 <select name="categories" id="categories">     
                     <option value="5" selected="selected" disabled="disabled">Toutes</option>
                     <option value="1">Informatique</option>
                     <option value="2">Ameublement</option>
