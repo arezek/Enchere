@@ -34,11 +34,14 @@ public class loginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(true);
+		
 		
 		// récupérer les identifiatns et les stocker dans la variable de session
 		String pseudo = request.getParameter("identifiant");
 		String motDePasse = request.getParameter("mdp");
+		
+		HttpSession session = request.getSession(true);
+		
 		ServletContext context = getServletContext();
 		Utilisateur utilisateurEnSession = (Utilisateur)context.getAttribute(pseudo);
 		
@@ -55,11 +58,11 @@ public class loginServlet extends HttpServlet {
 		} else if (motDePasse.equals(utilisateurEnSession.getMotDePasse())) {
 			
 			session.setAttribute("isConnected", true);
-			int hc = utilisateurEnSession.getIdSession().hashCode();
-			session.setAttribute(pseudo, hc);
+			//int hc = utilisateurEnSession.getIdSession().hashCode();
+			session.setAttribute(pseudo, "identifiant");
 			
 			// redirect l'utilisateur vers la page d'accueil
-			response.sendRedirect("accueil.jsp?id="+hc);
+			response.sendRedirect("accueil.jsp");
 			
 		}
 		
