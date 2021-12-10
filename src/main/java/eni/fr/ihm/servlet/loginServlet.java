@@ -45,33 +45,32 @@ public class loginServlet extends HttpServlet {
 		HttpSession session;
 		
 		try {
-			Utilisateur utilisateur = (Utilisateur) utilisateurValidation.selectByPseudo(pseudo);
+			Utilisateur utilisateurLogged = (Utilisateur) utilisateurValidation.selectByPseudo(pseudo);
 			
-			if(motDePasse.equals(utilisateur.getMotDePasse())) {
+			if(motDePasse.equals(utilisateurLogged.getMotDePasse())) {
 				
 				session = request.getSession();
-				System.out.println("wééééé sa marche");
+				
 				//ServletContext context = this.getServletContext();
 				//Utilisateur utilisateurEnSession = (Utilisateur) request.getAttribute(pseudo);
 				
-//				session.setAttribute("isConnected", true);
+				session.setAttribute("isConnected", true);
 				
 				//int hc = utilisateurEnSession.getIdSession().hashCode();
-//				session.setAttribute("utilisateur", utilisateur);
+				session.setAttribute("utilisateurLogged", utilisateurLogged);
 				
 				//session.setAttribute("identifiant", pseudo);
 				
 				// redirect l'utilisateur vers la page d'accueil
-				response.sendRedirect("/WEB-INF/accueil.jsp");
-//				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/accueil.jsp");
-//				rd.forward(request, response);
+				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+				rd.forward(request, response);
 			
 			} else {
 				
+				session = request.getSession();
 				
-				System.out.println("gnéééééé sa marchepo");
-//				session.setAttribute("hasErrors", true);
-//				session.setAttribute("isConnected", false);
+				session.setAttribute("hasErrors", true);
+				session.setAttribute("isConnected", false);
 				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/login.jsp");
 				rd.forward(request, response);
 				
