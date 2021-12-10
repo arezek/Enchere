@@ -10,6 +10,9 @@ public interface UtilisateurDAO {
 
 	//Sélectionner un Categorie par son noCategorie
 	public Utilisateur selectById(int noUtilisateur) throws DALException;
+	
+	//Sélectionner un Categorie par son noCategorie
+	public Utilisateur selectByPseudo(String pseudo) throws DALException;
 				
 	//Sélectionner tous les Categories 
 	public Utilisateur selectAll() throws DALException;
