@@ -36,7 +36,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 //				throw businessException;
 //			}
 
-		try (Connection cnx = JdbcTools.getConnection();
+		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);) {
 
 			pstmt.setString(i++, articleVendu.getNomArticle());
@@ -119,7 +119,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 	@Override
 	public void update(ArticleVendu articleVendu) throws DALException {
-	        try(Connection con = JdbcTools.getConnection();
+	        try(Connection con = ConnectionProvider.getConnection();
 	        PreparedStatement Pstmt = con.prepareStatement(UPDATE,PreparedStatement.RETURN_GENERATED_KEYS);
 	                ) 
 	        {
@@ -142,7 +142,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	
 	@Override
 	public void delete(int noArticle) throws DALException {
-		try (Connection con = JdbcTools.getConnection();
+		try (Connection con = ConnectionProvider.getConnection();
                 PreparedStatement Pstmt = con.prepareStatement(DELETE)){
                 Pstmt.setInt(1, noArticle);
                 Pstmt.executeUpdate();
@@ -154,7 +154,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	@Override
 	public List<ArticleVendu> selectAll() throws DALException {
 		List<ArticleVendu> articlesVendus = new ArrayList<ArticleVendu>();
-		try (Connection con = JdbcTools.getConnection();
+		try (Connection con = ConnectionProvider.getConnection();
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(SELECTALL);) {
 			ArticleVendu article = null;
