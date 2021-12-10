@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<!--@author Fabien M. Gavoille  -->
+<!--@author Fabien M. Gavoille / @author ZABAKA fatima zahra  -->
 <html lang="fr">
 <head>
     <meta charset="UTF-8">

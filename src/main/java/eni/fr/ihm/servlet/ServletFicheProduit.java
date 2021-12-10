@@ -18,7 +18,8 @@ import eni.fr.dal.DALException;
 
 /**
  * Servlet implementation class ServletFicheProduit
- * @author Fabien M. Gavoille  
+ * @author Fabien M. Gavoille 
+ * @author Zabaka fatima zahra 
  */
 @WebServlet("/ServletFicheProduit")
 public class ServletFicheProduit extends HttpServlet {
