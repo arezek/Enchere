@@ -50,27 +50,28 @@ public class loginServlet extends HttpServlet {
 			if(motDePasse.equals(utilisateur.getMotDePasse())) {
 				
 				session = request.getSession();
-				
+				System.out.println("wééééé sa marche");
 				//ServletContext context = this.getServletContext();
 				//Utilisateur utilisateurEnSession = (Utilisateur) request.getAttribute(pseudo);
 				
-				session.setAttribute("isConnected", true);
+//				session.setAttribute("isConnected", true);
 				
 				//int hc = utilisateurEnSession.getIdSession().hashCode();
-				session.setAttribute("utilisateur", utilisateur);
+//				session.setAttribute("utilisateur", utilisateur);
 				
 				//session.setAttribute("identifiant", pseudo);
 				
 				// redirect l'utilisateur vers la page d'accueil
-				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/accueil.jsp");
-				rd.forward(request, response);
+				response.sendRedirect("/WEB-INF/accueil.jsp");
+//				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+//				rd.forward(request, response);
 			
 			} else {
 				
-				session = request.getSession();
 				
-				session.setAttribute("hasErrors", true);
-				session.setAttribute("isConnected", false);
+				System.out.println("gnéééééé sa marchepo");
+//				session.setAttribute("hasErrors", true);
+//				session.setAttribute("isConnected", false);
 				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/login.jsp");
 				rd.forward(request, response);
 				
