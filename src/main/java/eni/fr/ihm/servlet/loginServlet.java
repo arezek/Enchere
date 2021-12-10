@@ -52,15 +52,18 @@ public class loginServlet extends HttpServlet {
 				session = request.getSession();
 				
 				//ServletContext context = this.getServletContext();
-				Utilisateur utilisateurEnSession = (Utilisateur) request.getAttribute(pseudo);
+				//Utilisateur utilisateurEnSession = (Utilisateur) request.getAttribute(pseudo);
 				
 				session.setAttribute("isConnected", true);
 				
 				//int hc = utilisateurEnSession.getIdSession().hashCode();
-				session.setAttribute("identifiant", pseudo);
+				session.setAttribute("utilisateur", utilisateur);
+				
+				//session.setAttribute("identifiant", pseudo);
 				
 				// redirect l'utilisateur vers la page d'accueil
-				response.sendRedirect("/WEB-INF/accueil.jsp");
+				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+				rd.forward(request, response);
 			
 			} else {
 				
@@ -68,7 +71,8 @@ public class loginServlet extends HttpServlet {
 				
 				session.setAttribute("hasErrors", true);
 				session.setAttribute("isConnected", false);
-				response.sendRedirect("login.jsp");
+				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/login.jsp");
+				rd.forward(request, response);
 				
 			}
 			
