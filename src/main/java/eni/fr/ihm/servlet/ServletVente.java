@@ -61,7 +61,7 @@ public class ServletVente extends HttpServlet {
 			miseAPrix= Integer.parseInt(request.getParameter("miseaprix"));
 			dateDebutEncheres= LocalDate.parse(request.getParameter("debutenchere"));
 			dateFinEncheres=LocalDate.parse(request.getParameter("finenchere"));
-			noCategorie=request.getParameter("categories");
+			Class<Categorie> categorie =Class.forName(request.getParameter("categories"));
 //			String rue= request.getParameter("rue");
 //			String codepostal= request.getParameter("codepostal");
 //			String ville= request.getParameter("ville");
