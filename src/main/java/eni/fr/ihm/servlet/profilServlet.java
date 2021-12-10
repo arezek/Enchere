@@ -19,7 +19,7 @@ import eni.fr.dal.UtilisateurDAOJdbcImpl;
 
 /**
  * Servlet implementation class profilServlet
- * @author Fabien M. Gavoille
+ * @author Fabien M. Gavoille et Eugénie FUCHS
  */
 @WebServlet("/profilServlet")
 public class profilServlet extends HttpServlet {

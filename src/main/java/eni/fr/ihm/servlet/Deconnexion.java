@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Deconnexion
+ * @author GAVOILLE Fabien FUCHS Eugénie
  */
 @WebServlet("/Deconnexion")
 public class Deconnexion extends HttpServlet {

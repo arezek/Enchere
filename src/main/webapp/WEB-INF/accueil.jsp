@@ -5,7 +5,11 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!--@author GAVOILLE Fabien FUCHS Eugénie ALLIOUCHE KERBOUA Abdelrezak ZABAKA Fatima-Zahra  -->
+
+
 <c:set scope="session" var="utilisateurLogged" value="${sessionScope['utilisateurLogged'] }"/>
+
 
 <!DOCTYPE html>
 <html lang="fr">
