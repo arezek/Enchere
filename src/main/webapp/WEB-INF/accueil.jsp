@@ -68,11 +68,11 @@
         
         <section>
         
-        	<c:if test="${isConnected = true }">
+        	<c:if test="${not empty utilisateurLogged }">
         	
         		<div>
         			
-        			<input type="radio" id="achat" name="achat" value="achat" checked>
+        			<input type="radio" id="achat" name="article" value="achat" checked>
         			<label for ="achat">Achat</label>
         			
         			<div>
@@ -89,7 +89,7 @@
         		</div>
         		<div>
         			
-        			<input type="radio" id="ventes" name="ventes" value="ventes">
+        			<input type="radio" id="ventes" name="article" value="ventes">
         			<label for ="ventes">Mes ventes</label>
         			
         			<div>
@@ -112,7 +112,7 @@
         <section>
             /*boucle*/
             <%
-            ArrayList<ArticleVendu> articlesVendus = (ArrayList<ArticleVendu>)request.getAttribute("articlesVendus");
+            ArrayList<ArticleVendu> articlesVendus = (ArrayList<ArticleVendu>)request.getAttribute("listeArticles");
 	if(articlesVendus!=null)
 		{
 	for(ArticleVendu art: articlesVendus){ 
@@ -136,9 +136,8 @@
 	<%		}
 		} 
 	%>
-
-            
+         
         </section>
-    
+       
 </body>
 </html>
