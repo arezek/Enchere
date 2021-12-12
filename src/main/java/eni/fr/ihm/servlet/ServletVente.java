@@ -25,6 +25,7 @@ import fr.eni.javaee.suividesrepas.BusinessException;
 import fr.eni.javaee.suividesrepas.bll.RepasManager;
 
 /**
+ * @author ZABAKA FATIMA ZAHRA
  * Servlet implementation class ServletVente
  */
 @WebServlet("/ServletVente")
@@ -44,9 +45,10 @@ public class ServletVente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//commentaire
 		String nomArticle;
 		String description;
-		Categorie noCategorie;
+		String noCategorie;
 		//photo
 		int miseAPrix;
 		LocalDate dateDebutEncheres;
@@ -61,7 +63,8 @@ public class ServletVente extends HttpServlet {
 			miseAPrix= Integer.parseInt(request.getParameter("miseaprix"));
 			dateDebutEncheres= LocalDate.parse(request.getParameter("debutenchere"));
 			dateFinEncheres=LocalDate.parse(request.getParameter("finenchere"));
-			noCategorie=request.getParameter("categories");
+			int no_categorie = Integer. parseInt(request. getParameter("no_categorie"));
+			Class<?> categorie =Class.forName(request.getParameter("categories")) ;
 //			String rue= request.getParameter("rue");
 //			String codepostal= request.getParameter("codepostal");
 //			String ville= request.getParameter("ville");

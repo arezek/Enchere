@@ -37,13 +37,25 @@ public class ServletRecherche extends HttpServlet {
 		
 			
 			try {
+				
 				rechercherNom = request.getParameter("rechercherNom");
 				rechercherCategories = request.getParameter("rechercherCategories");
 //				int noCategorie=Integer.parseInt(rechercherCategories);
 				ArticleVenduDAO articleVenduManager = new ArticleVenduDAOJdbcImpl();
-				List<ArticleVendu> articlesVendus;
-				articlesVendus = (List<ArticleVendu>) articleVenduManager.search(rechercherNom,Integer.parseInt(rechercherCategories));
-				request.setAttribute("articlesVendus", articlesVendus);
+				List<ArticleVendu> listeArticles;
+				
+				if (rechercherNom == null && rechercherCategories == null ) {
+					
+					listeArticles = (List<ArticleVendu>) articleVenduManager.selectAll();
+					
+				} else {
+				
+					listeArticles = (List<ArticleVendu>) articleVenduManager.search(rechercherNom,Integer.parseInt(rechercherCategories));					
+				
+				}
+				
+				request.setAttribute("listeArticles", listeArticles);
+				
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
