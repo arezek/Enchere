@@ -7,33 +7,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/query.css">
+    <title>Connexion</title>
 </head>
 <body>
-<h1>Connexion</h1>
+<h1 class="titleLogin">Connexion</h1>
 
-<form method="post" action="<%=request.getContextPath()%>/loginServlet">
-  <label for="pseudo">Identifiant :</label><br>
-  <input type="text" id="identifiant" name="identifiant" value=""><br>
-  
-  <label for="nom">Mot de passe :</label><br>
-  <input type="text" id="mdp" name="mdp" value=""><br>
-  
-  <input type="submit" value="Connexion">
+<div id="separator"></div>
+
+
+  <form method="post" action="<%=request.getContextPath()%>/loginServlet">
+  <div class="formLogin">  
+    <div class="form">
+      <label for="pseudo">Identifiant  </label><br>
+    </div>
+
+    <div class="form">
+      <input type="text" id="identifiant" name="identifiant" value=""><br>
+    </div>
+
+    <div class="form">
+      <label for="nom">Mot de passe </label><br>
+    </div>
+    <div class="form">
+        <input type="password" id="mdp" name="mdp" value=""><br>
+    </div>  
+    <div class="form">
+      <label for="prenom">Prénom  </label><br>
+    </div>
+    <div class="form">
+      <input type="text" id="prenom" name="prenom" value=""><br> 
+    </div>
+    <div class="form">
+      <input type="submit" class="loginButton"  value="Connexion">      
+    </div> 
+    <div class="form">
+      <input type="checkbox" id="souvenirDeMoi" name ="souvenirDeMoi">
+      <label for="souvenirDeMoi" class="passLogin">Se souvenir de moi</label>
+    </div>
+    <div class="form">
+      <a href="" class="passLogin">Mot de passe oublié</a>
+    </div>
+  </div> 
+  </form>         
    
-  <input type="checkbox" id="souvenirDeMoi" name ="souvenirDeMoi">
-  <label for="souvenirDeMoi">Se souvenir de moi</label>
-  
-  <a href="">Mot de passe oublié</a>
-   
- </form>  
- 
- <form method="get" action="<%=request.getContextPath()%>/signUpServlet">
-  
-   <input type="submit" value="Créer un compte">
-   
- </form> 
- 
+  <form method="post" action="<%=request.getContextPath()%>/signUpServlet">
+    
+    <input type="submit" class ="loginButton"  value="Créer un compte">
+     
+  </form>
  
   
 </body>

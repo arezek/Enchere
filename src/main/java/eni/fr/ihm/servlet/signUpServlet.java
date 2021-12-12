@@ -2,7 +2,7 @@ package eni.fr.ihm.servlet;
 
 import java.io.IOException;
 
-import java.util.List;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,10 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import eni.fr.bo.ArticleVendu;
+
 import eni.fr.bo.Utilisateur;
-import eni.fr.dal.ArticleVenduDAO;
-import eni.fr.dal.ArticleVenduDAOJdbcImpl;
+
 import eni.fr.dal.DALException;
 import eni.fr.dal.UtilisateurDAO;
 import eni.fr.dal.UtilisateurDAOJdbcImpl;

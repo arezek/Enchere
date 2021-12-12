@@ -14,12 +14,17 @@
 </head>
 <body>
 <% Utilisateur utilisateur= (Utilisateur)request.getAttribute("utilisateur");
-        if(utilisateur!=null)
-		{System.out.println(utilisateur.toString());
+    if(utilisateur!=null)
+    {System.out.println(utilisateur.toString());
 %>
-    <h1>Profil Vendeur</h1>
-    <h1>Mon profil</h1>
-    
+
+
+    <h1 class="titleProfil">Profil</h1>  
+    <div id="separator"></div> 
+    <h2 class="titleVendor" >Profil Vendeur</h2>
+    <h3 class="titleMyprofil">Mon profil</h3>
+
+
     <p>Pseudo: <%=utilisateur.getPseudo() %></p>
     <p>Nom: <%=utilisateur.getNom() %></p>
     <p>Prénom: <%=utilisateur.getPrenom() %></p>
@@ -29,9 +34,11 @@
     <p>Code postal: <%=utilisateur.getCodePostal() %></p>
     <p>Ville : <%=utilisateur.getVille() %></p>
     <%} %>
-<form method="post" action="<%=request.getContextPath()%>/profilServlet">
-  
-   <input type="submit" value="Modifier">
+    
+    <form method="post" action="<%=request.getContextPath()%>/profilServlet">
+    
+     
+   <input type="submit" id="edtiProfilButton" value="Modifier">
    
 </form> 
     

@@ -13,57 +13,120 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/query.css">
     <title>Nouvelle Vente</title>
 </head>
 <body>
+<h1>Nouvelle Vente</h1>
+	<div id="separator"></div>
+	<div class="bid">
+		<section class="leftBid">		
+			<a href="" id="imgLink"><img src="/img/pic.jpg" id="imgArticleVente" alt="Photo Article"></a>       
+		</section>
+		
+		<section class="rightBid">		
+			
+			<form action="<%=request.getContextPath()%>/ServletVente" method="post">
+				<div class="fieldset">
+					<div class="buyForm">
+						<label for="article">Article</label>
+					</div>
 
-	<section>
-		<p>ENI-Enchères</p>
-		<p>photo</p>
-	</section>
-	
-	<section>
-	<h3>Nouvelle Vente</h3>
-		<form action="<%=request.getContextPath()%>/ServletVente" method="post">
-		<fieldset>
-			<label for="article">Article:</label><br>
-  			<input type="text" id="article" name="article" value=""><br>
-  			<label for="description">Description:</label><br>
-  			<textarea name="description" id="description" rows="3" cols="20"></textarea><br>
-  			<label for="categorie">Categorie:</label><br>
-  			 <select name="categories" id="categories">     
-                    <option value="5" selected="selected" disabled="disabled">Toutes</option>
-                    <option value="1">Informatique</option>
-                    <option value="2">Ameublement</option>
-                    <option value="3">Vetement</option>
-                    <option value="4">Sport Loisirs</option>
-                    
-                </select><br>
-            <label for="photo">photo de l'article:</label><br>
-            <label for="miseaprix">Mise à prix:</label><br>
-            <input type="number" id="miseaprix" name="miseaprix"
-       			min="100"  step="10" placeholder="100"><br>
-       		<label for="debutenchere">Début de l'enchère:</label><br>
-  			<input type="date" id="debutenchere" name="debutenchere" value=""><br>
-       		<label for="finenchere">Fin de l'enchère:</label><br>
-  			<input type="date" id="finenchere" name="finenchere" value=""><br>
-  		</fieldset>
-  		<fieldset>
-  			<legend>Retrait</legend>
-  			<label for="rue">Rue:</label><br>
-  			<input type="text" id="rue" name="rue" value=""><br>
-  			 <label for="codepostal">Code Postal:</label><br>
-  			<input type="text" id="codepostal" name="codepostal" value=""><br>
-  			<label for="ville">Ville:</label><br>
-  			<input type="text" id="ville" name="ville" value=""><br>
-  			
-  		</fieldset>
-       			
-       			<input type="submit" value="Enregistrer">
-       			<input type="reset" value="Annuler">
-       			
-        	</form>
-               
-</section>
+					<div class="buyForm">
+						<input type="text" id="article" name="article" value="">
+					</div>
+
+					<div class="buyForm">
+						<label for="description">Description</label>
+					</div>
+
+					<div class="buyForm">
+						<textarea name="description" id="description" rows="4" cols="40"></textarea>
+					</div>
+
+					<div class="buyForm">
+						<label for="categorie">Categorie</label>
+					</div>
+
+					<div class="buyForm">
+						<select name="categories" id="categories">     
+							<option value="5" selected="selected" disabled="disabled">Toutes</option>
+							<option value="1">Informatique</option>
+							<option value="2">Ameublement</option>
+							<option value="3">Vetement</option>
+							<option value="4">Sport Loisirs</option>
+						</select>	
+					</div>
+
+					<div class="buyForm">
+						<label for="photo">Photo de l'article     </label><button> Charger</button>
+					</div>
+
+					<div class="buyForm">
+						<label for="miseaprix">Mise à prix</label>
+					</div>
+
+					<div class="buyForm">
+						<input type="number" id="miseaprix" name="miseaprix"
+							min="100"  step="10" placeholder="100">
+					</div>
+
+					<div class="buyForm">
+						<label for="debutenchere">Début de l'enchère</label>
+					</div>
+
+					<div class="buyForm">
+						<input type="date" id="debutenchere" name="debutenchere" value="">
+					</div>
+
+					<div class="buyForm">
+						<label for="finenchere">Fin de l'enchère</label>
+					</div>
+
+					<div class="buyForm">
+						<input type="date" id="finenchere" name="finenchere" value="">
+					</div>	
+				</div>		
+				<div class="fieldsetRetrait">		
+					
+					<div class="buyForm">
+						<label id="legend">Retrait</label>
+					</div>
+
+					<div class="buyForm">
+						<label for="rue">Rue</label>
+					</div>
+
+					<div class="buyForm">
+						<input type="text" id="rue" name="rue" value="">
+					</div>
+
+					<div class="buyForm">
+						<label for="codepostal">Code Postal</label>
+					</div>
+
+					<div class="buyForm">
+						<input type="text" id="codepostal" name="codepostal" value="">
+					</div>					
+
+					<div class="buyForm">
+						<label for="ville">Ville</label>
+					</div>
+
+					<div class="buyForm">
+						<input type="text" id="ville" name="ville" value="">
+					</div>														
+				</div >
+				<div class="buyButton">
+					<input type="submit" class="signUpButton" value="Enregistrer">
+					<input type="reset" id="signUpButton" value="Annuler">
+				</div>	   
+							   
+							   
+			</form>
+				   
+		</section>
+
+	</div>
 </body>
 </html>

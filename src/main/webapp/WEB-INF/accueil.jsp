@@ -1,5 +1,6 @@
 <%@page import="eni.fr.bo.Utilisateur"%>
-<%@page import="java.util.ArrayList"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <%@page import="eni.fr.bo.ArticleVendu"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,51 +19,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/query.css">
+    <title>Accueil</title>
 </head>
 <body>
-	    <header>
-            <div id="headerbloc">
-                <img src="img/eni_enchere_logo.png" id="logo"/>
-                <% Utilisateur utilisateurLogged = (Utilisateur)session.getAttribute("utilisateurLogged"); 
+	<header>
+    	<div id="headerbloc">
+        	<img src="img/eni_enchere_logo.png" id="logo"/>
+        </div>    
+        <% Utilisateur utilisateurLogged = (Utilisateur)session.getAttribute("utilisateurLogged"); 
                 	/* boolean isConnected = (boolean)session.getAttribute("isConnected");
-                	if (isConnected == true){ */
-                	%>
-       			
-                <c:if test="${not empty utilisateurLogged  }"> 
-                	<a href="" class="headerlinks">Enchères</a>
-                	<a href="" class="headerlinks">Vendre un article</a>
-                	<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=<%=utilisateurLogged.getNoUtilisateur() %>" class="headerlinks">Mon Profil</a>
-                	<a href="" class="headerlinks">Déconnexion</a>
+                	if (isConnected == true){ */ %>
+        <c:if test="${not empty utilisateurLogged  }"> 
+        	<a href="" class="headerlinks">Enchères</a>
+          	<a href="" class="headerlinks">Vendre un article</a>
+          	<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=<%=utilisateurLogged.getNoUtilisateur() %>" class="headerlinks">Mon Profil</a>
+          	<a href="" class="headerlinks">Déconnexion</a>
                 	<%-- <% } else { %> --%> 	
-               </c:if> 
+        </c:if> 
                 
-                
-               <c:if test="${empty utilisateurLogged  }"> 
-                <a href="login" class="headerlinks">Connexion<img src="img/connexion.png" id="cnxIcon"/></a>
-                <a href="signUp" class="headerlinks">S'inscrire<img src="img/inscription.png" id="signInIcon"/></a>
-			   </c:if> 
+        <div>  
+			<c:if test="${empty utilisateurLogged  }"> 
+			<a href="login" class="headerlinks">Connexion<img src="img/connexion.png" id="cnxIcon"/></a>
+			<a href="signUp" class="headerlinks">S'inscrire<img src="img/inscription.png" id="signInIcon"/></a>
+			</c:if> 
+		</div>             
 			<%-- 	<%} %> --%>
 
-            </div>
-        </header>
+            
+	</header>
           
         <div id="separator"></div>
+        
         <section id="searchBar">
             <form action="<%=request.getContextPath()%>/ServletRecherche" method="get">
-                <label name="rechercherNom"><img src="img/search.png" id="searchIcon"/></label>
-                <input type="text" placeholder="rechercher" name="rechercherNom" >
-                <label for="rechercherCategories">Catégorie</label>
-                <select name="rechercherCategories" id="categories">
-                    
-                    <option value="5">Toutes</option>
-                    <option value="1">Informatique</option>
-                    <option value="2">Ameublement</option>
-                    <option value="3">Vetement</option>
-                    <option value="4">Sport Loisirs</option>
-                    
-                </select>
-                <input type="submit" value="rechercher" >
+            	<div class="searchContent">
+                	<label for="rechercherNom"><img src="img/search.png" id="searchIcon"/></label>
+                	<input type="text" placeholder="rechercher" name="rechercherNom" id="searchInput" >
+		        </div>
+                <div id="catList">
+                    <label for="rechercherCategories" id="catLabel">Catégorie  </label>
+                    <select name="rechercherCategories" id="categories">                    
+                        <option value="5">Toutes</option>
+                        <option value="1">Informatique</option>
+                        <option value="2">Ameublement</option>
+                        <option value="3">Vetement</option>
+                        <option value="4">Sport Loisirs</option>                    
+                     </select>
+                </div>
+                <div>
+                    <input type="submit" value="Rechercher" id="searchButton" >
+                </div>
+                                 
             </form>
         </section>
         
@@ -71,45 +79,34 @@
         	<c:if test="${not empty utilisateurLogged }">
         	
         		<div>
-        			
         			<input type="radio" id="achat" name="article" value="achat" checked>
         			<label for ="achat">Achat</label>
-        			
-        			<div>
-        			
-        				<input type="checkbox" id="enchereOuverte" name="enchereOuverte" value="enchereOuverte" checked>
-        				<label for ="enchereOuverte">enchères ouvertes</label>
-        				<input type="checkbox" id="enchereEnCours" name="enchereEnCours" value="enchereEnCours">
-        				<label for ="enchereEnCours">mes enchères en cours</label>
-        				<input type="checkbox" id="enchereRemportee" name="enchereRemportee" value="enchereRemportee">
-        				<label for ="enchereRemportee">mes enchères remportées</label>
-        			
-        			</div>
-        			
+        		</div>	
+        		<div>        			
+       				<input type="checkbox" id="enchereOuverte" name="enchereOuverte" value="enchereOuverte" checked>
+       				<label for ="enchereOuverte">enchères ouvertes</label>
+       				<input type="checkbox" id="enchereEnCours" name="enchereEnCours" value="enchereEnCours">
+       				<label for ="enchereEnCours">mes enchères en cours</label>
+       				<input type="checkbox" id="enchereRemportee" name="enchereRemportee" value="enchereRemportee">
+       				<label for ="enchereRemportee">mes enchères remportées</label>
         		</div>
-        		<div>
-        			
+        		<div>        			
         			<input type="radio" id="ventes" name="article" value="ventes">
         			<label for ="ventes">Mes ventes</label>
-        			
-        			<div>
-        			
-        				<input type="checkbox" id="venteEnCours" name="venteEnCours" value="venteEnCours" checked>
-        				<label for ="venteEnCours">mes ventes en cours</label>
-        				<input type="checkbox" id="venteNonDebutee" name="venteNonDebutee" value="venteNonDebutee">
-        				<label for ="venteNonDebutee">ventes non débutées</label>
-        				<input type="checkbox" id="venteTerminee" name="venteTerminee" value="venteTerminee">
-        				<label for ="venteTerminee">ventes terminées</label>
-        			
-        			</div>
-        			
         		</div>
-        	
+        		<div>	
+       				<input type="checkbox" id="venteEnCours" name="venteEnCours" value="venteEnCours" checked>
+       				<label for ="venteEnCours">mes ventes en cours</label>
+       				<input type="checkbox" id="venteNonDebutee" name="venteNonDebutee" value="venteNonDebutee">
+       				<label for ="venteNonDebutee">ventes non débutées</label>
+       				<input type="checkbox" id="venteTerminee" name="venteTerminee" value="venteTerminee">
+       				<label for ="venteTerminee">ventes terminées</label>        			
+        		</div>       	
         	</c:if>
         
         </section>
         
-        <section>
+        <section class="section">
             /*boucle*/
             <%
             ArrayList<ArticleVendu> articlesVendus = (ArrayList<ArticleVendu>)request.getAttribute("listeArticles");
@@ -117,22 +114,20 @@
 		{
 	for(ArticleVendu art: articlesVendus){ 
 	%>
-			<a href="<%=request.getContextPath()%>/ServletFicheProduit?noArticle=<%=art.getNoArticle() %>">
-				<div class="articleIndex">
-	                <img src="" class="imgArticleIndex"/>
+			<a href="<%=request.getContextPath()%>/ServletFicheProduit?noArticle=<%=art.getNoArticle() %>"></a>
+			<div class="articleIndex">
+            	<div class="left">
+                	<img src="img/pic.jpg" class="imgArticleIndex"/>
+                </div>
+                <div class="right">
 	                <h3 class="titreArticleIndex"><%=art.getNomArticle() %></h3>
 	                <p class="prix"><%=art.getMiseAPrix() %></p>
-	                <p class="vendeur">par 
-	                    <a href="" class="vendeurLine">
-	                        <%=art.getNoUtilisateur().getNom() %>
-	                    </a>
-	                </p>
-	                <p class="adresse">
-	                    <%=art.getNoUtilisateur().getCodePostal() %>
-	                    <%=art.getNoUtilisateur().getVille() %>
-	                </p>
-	            </div>
-            </a> 
+	                <p class="vendeur">Par   <a href="" class="vendeurLine"> <%=art.getNoUtilisateur().getNom() %></a></p>
+	                <p class="adresse"></p><%=art.getNoUtilisateur().getCodePostal() %>
+	                    <%=art.getNoUtilisateur().getVille() %></p>          
+                </div>
+             </div> 
+            
 	<%		}
 		} 
 	%>

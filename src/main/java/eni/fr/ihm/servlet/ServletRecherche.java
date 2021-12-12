@@ -2,7 +2,7 @@ package eni.fr.ihm.servlet;
 
 import java.io.IOException;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;

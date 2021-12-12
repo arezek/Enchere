@@ -9,10 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import eni.fr.bo.ArticleVendu;
+
 import eni.fr.bo.Utilisateur;
-import eni.fr.dal.ArticleVenduDAO;
-import eni.fr.dal.ArticleVenduDAOJdbcImpl;
 import eni.fr.dal.DALException;
 import eni.fr.dal.UtilisateurDAO;
 import eni.fr.dal.UtilisateurDAOJdbcImpl;
