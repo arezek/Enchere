@@ -1,5 +1,6 @@
 
 <!--@author ZABAKA fatima zahra  -->
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="eni.fr.bo.ArticleVendu"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
