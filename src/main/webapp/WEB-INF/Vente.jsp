@@ -1,6 +1,6 @@
 
 <!--@author ZABAKA fatima zahra  -->
-
+<%@page import="eni.fr.bo.Utilisateur"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="eni.fr.bo.ArticleVendu"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,9 +14,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/query.css">
+     <%@ include file="/includes/head.jsp" %>
     <title>Nouvelle Vente</title>
 </head>
 <body>
+<%@ include file="/includes/header.jsp" %>
 <h1>Nouvelle Vente</h1>
 	<div id="separator"></div>
 	<div class="bid">
@@ -59,8 +61,8 @@
 						</select>	
 					</div>
 
-					<div class="buyForm">
-				<%-- 	<c:if test="${ !empty fichier }"><p><c:out value="Le fichier ${ fichier } (${ description }) a été uploadé !" /></p --%>></c:if>
+			<%-- 		<div class="buyForm">
+					<c:if test="${ !empty fichier }"><p><c:out value="Le fichier ${ fichier } (${ description }) a été uploadé !" /></p>
 						<form method="post" action="" enctype="multipart/form-data">        
  							<p>
 								<label for="photo">Photo de l'article  </label>
@@ -68,7 +70,7 @@
 							</p>
 							<input type="submit" value="Charger" />
 						</form>						
-					</div>
+					</div> --%>
 
 					<div class="buyForm">
 						<label for="miseaprix">Mise à prix</label>
