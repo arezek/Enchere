@@ -33,9 +33,7 @@
     <div class="form">
         <input type="password" id="mdp" name="mdp" value=""><br>
     </div>      
-    <div class="form">
-      <input type="text" id="prenom" name="prenom" value=""><br> 
-    </div>
+   
     <div class="form">
       <input type="submit" class="loginButton"  value="Connexion">      
     </div> 
