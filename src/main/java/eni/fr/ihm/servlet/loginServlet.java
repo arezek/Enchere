@@ -1,11 +1,13 @@
 package eni.fr.ihm.servlet;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +30,18 @@ public class loginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Cookie[] cookies=request.getCookies();
+		if (cookies!=null) {
+			for (Cookie cookie:cookies) {
+				if (cookie.getName().equals("identifiant") ) {
+					request.setAttribute("identifiant", cookie.getValue());
+					request.setAttribute("mdp", cookie.getValue());
+					System.out.println(cookie.getValue());
+				}
+			}
+	
+		}
+		
 		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/login.jsp");
 		rd.forward(request, response);		
 
@@ -41,7 +55,20 @@ public class loginServlet extends HttpServlet {
 		// récupérer les identifiants et les stocker dans la variable de session
 		String pseudo = request.getParameter("identifiant");
 		String motDePasse = request.getParameter("mdp");
+		//String souvenirDeMoi=request.getParameter("souvenirDeMoi");
+		Cookie cookie2 = new Cookie("identifiant",pseudo);
+		Cookie cookie1 = new Cookie("mdp",motDePasse);
+		
+		cookie1.setMaxAge(60*60*10); 
+		cookie2.setMaxAge(60*60*10); 
+
+
+		response.addCookie( cookie1 );
+		response.addCookie( cookie2 );
+		
+		
 		UtilisateurDAO utilisateurValidation = new UtilisateurDAOJdbcImpl();
+	
 		HttpSession session;
 		
 		try {

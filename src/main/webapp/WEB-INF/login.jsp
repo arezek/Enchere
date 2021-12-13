@@ -24,21 +24,21 @@
     </div>
 
     <div class="form">
-      <input type="text" id="identifiant" name="identifiant" value=""><br>
+      <input type="text" id="identifiant" name="identifiant" value="${identifiant}"><br>
     </div>
 
     <div class="form">
       <label for="nom">Mot de passe </label><br>
     </div>
     <div class="form">
-        <input type="password" id="mdp" name="mdp" value=""><br>
+        <input type="password" id="mdp" name="mdp" value="${mdp}"><br>
     </div>      
    
     <div class="form">
       <input type="submit" class="loginButton"  value="Connexion">      
     </div> 
     <div class="form">
-      <input type="checkbox" id="souvenirDeMoi" name ="souvenirDeMoi">
+      <input type="checkbox" id="souvenirDeMoi" name ="souvenirDeMoi" >
       <label for="souvenirDeMoi" class="passLogin">Se souvenir de moi</label>
     </div>
     <div class="form">
