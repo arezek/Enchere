@@ -4,16 +4,17 @@
     	<div id="headerbloc">
         	<img src="img/eni_enchere_logo.png" id="logo"/>
         </div>    
-        <% 
+        ${sessionScope.utilisateurLogged}
+        <%-- <% 
         Utilisateur utilisateurLogged = (Utilisateur)session.getAttribute("utilisateurLogged"); 
                 	/* boolean isConnected = (boolean)session.getAttribute("isConnected");
-                	if (isConnected == true){ */ %>
+                	if (isConnected == true){ */ %> --%>
                 	
         <c:if test="${not empty utilisateurLogged  }"> 
         <p> Bonjour ${sessionScope.utilisateurLogged.getPseudo()} </p>
         	<a href="" class="headerlinks">Enchères</a>
           	<a href="" class="headerlinks">Vendre un article</a>
-          	<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=<%=utilisateurLogged.getNoUtilisateur() %>" class="headerlinks">Mon Profil</a>
+          	<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Mon Profil</a>
           	<a href="" class="headerlinks">Déconnexion</a>
                 	<%-- <% } else { %> --%> 	
         </c:if> 
