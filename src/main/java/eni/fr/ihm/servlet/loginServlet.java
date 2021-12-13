@@ -62,7 +62,7 @@ public class loginServlet extends HttpServlet {
 				//session.setAttribute("identifiant", pseudo);
 				
 				// redirect l'utilisateur vers la page d'accueil
-				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+				RequestDispatcher rd=request.getRequestDispatcher("ServletRecherche");
 				rd.forward(request, response);
 			
 			} else {

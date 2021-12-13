@@ -25,6 +25,31 @@
         if(art!=null)
 		{System.out.println(art.toString());
         %>
+        <section>photos</section>
+        <section>
+        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/1.jpg" class="imgArticleFirst"/>
+        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/2.jpg" class="imgArticleOthers"/>
+        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/3.jpg" class="imgArticleOthers"/>
+        	<h2> <%=art.getNomArticle() %> </h2>
+        	<h3><%=art.getMiseAPrix() %></h3>
+        	<p>description:</p>
+        	<p><%=art.getDescription() %></p>
+        	<p>categorie:</p>
+        	<p><%=art.getNoCategorie().getLibelle() %></p>
+        	<p>fin de l'enchere:</p>
+        	<p><%=art.getDateFinEncheres() %></p>
+        	<p> par : <a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=<%=art.getNoUtilisateur().getNoUtilisateur() %>"><%=art.getNoUtilisateur().getPseudo() %></a></p>
+        	<p>retrait:</p>
+        	<p>retraits.Rue</p>
+        	<p>retraits.code_postal + " " + retraits.ville</p>
+        	<form action="">
+        	<label for="encherir">Ma proposition :</label>
+        	<input type="number" id="encherir" name="encherir"
+       			min="100"  step="10" placeholder="100">
+       			<input type="submit" value="echerir">
+        	</form>
+        </section>
+		<%} %>
 	<div id="separator"></div>
 
 	<h2> <%=art.getNomArticle() %> </h2>
@@ -113,7 +138,7 @@
 		</div>	
 
 	</section>
-    <%} %>  	    
+    <%-- <%} %>   --%>	    
       	
         	    	
         	

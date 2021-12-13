@@ -81,53 +81,67 @@
         		<div>
         			<input type="radio" id="achat" name="article" value="achat" checked>
         			<label for ="achat">Achat</label>
+        			
+        			<div>
+        			
+        				<input type="checkbox"  id="enchereOuverte" name="achat" class="achat" value="enchereOuverte" checked>
+        				<label for ="enchereOuverte">enchères ouvertes</label>
+        				<input type="checkbox"  id="enchereEnCours" name="achat" class="achat" value="enchereEnCours">
+        				<label for ="enchereEnCours">mes enchères en cours</label>
+        				<input type="checkbox"  id="enchereRemportee" name="achat" class="achat" value="enchereRemportee">
+        				<label for ="enchereRemportee">mes enchères remportées</label>
+        			
+        			</div>
+        			
         		</div>	
-        		<div>        			
-       				<input type="checkbox" id="enchereOuverte" name="enchereOuverte" value="enchereOuverte" checked>
-       				<label for ="enchereOuverte">enchères ouvertes</label>
-       				<input type="checkbox" id="enchereEnCours" name="enchereEnCours" value="enchereEnCours">
-       				<label for ="enchereEnCours">mes enchères en cours</label>
-       				<input type="checkbox" id="enchereRemportee" name="enchereRemportee" value="enchereRemportee">
-       				<label for ="enchereRemportee">mes enchères remportées</label>
-        		</div>
         		<div>        			
         			<input type="radio" id="ventes" name="article" value="ventes">
         			<label for ="ventes">Mes ventes</label>
-        		</div>
-        		<div>	
-       				<input type="checkbox" id="venteEnCours" name="venteEnCours" value="venteEnCours" checked>
-       				<label for ="venteEnCours">mes ventes en cours</label>
-       				<input type="checkbox" id="venteNonDebutee" name="venteNonDebutee" value="venteNonDebutee">
-       				<label for ="venteNonDebutee">ventes non débutées</label>
-       				<input type="checkbox" id="venteTerminee" name="venteTerminee" value="venteTerminee">
-       				<label for ="venteTerminee">ventes terminées</label>        			
-        		</div>       	
+        			
+        			<div>
+        			
+        				<input type="checkbox"  id="venteEnCours" name="ventes" class="ventes" value="venteEnCours" checked>
+        				<label for ="venteEnCours">mes ventes en cours</label>
+        				<input type="checkbox"  id="venteNonDebutee" name="ventes" class="ventes" value="venteNonDebutee">
+        				<label for ="venteNonDebutee">ventes non débutées</label>
+        				<input type="checkbox"  id="venteTerminee" name="ventes" class="ventes" value="venteTerminee">
+        				<label for ="venteTerminee">ventes terminées</label>
+        			
+        			</div>
+        			
+        		</div>      	
         	</c:if>
         
         </section>
         
+
+            <!-- boucle -->
         <section class="section">
-            /*boucle*/
             <%
             ArrayList<ArticleVendu> articlesVendus = (ArrayList<ArticleVendu>)request.getAttribute("listeArticles");
 	if(articlesVendus!=null)
 		{
 	for(ArticleVendu art: articlesVendus){ 
 	%>
-			<a href="<%=request.getContextPath()%>/ServletFicheProduit?noArticle=<%=art.getNoArticle() %>"></a>
+			<a href="<%=request.getContextPath()%>/ServletFicheProduit?noArticle=<%=art.getNoArticle() %>">
+				<div class="articleIndex">
+	                
+			
 			<div class="articleIndex">
             	<div class="left">
-                	<img src="img/pic.jpg" class="imgArticleIndex"/>
+          			<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/1.jpg" class="imgArticleIndex"/>
                 </div>
                 <div class="right">
+
 	                <h3 class="titreArticleIndex"><%=art.getNomArticle() %></h3>
 	                <p class="prix"><%=art.getMiseAPrix() %></p>
 	                <p class="vendeur">Par   <a href="" class="vendeurLine"> <%=art.getNoUtilisateur().getNom() %></a></p>
-	                <p class="adresse"></p><%=art.getNoUtilisateur().getCodePostal() %>
+	                <p class="adresse"><%=art.getNoUtilisateur().getCodePostal() %>
 	                    <%=art.getNoUtilisateur().getVille() %></p>          
                 </div>
              </div> 
-            
+             </div>
+            </a>
 	<%		}
 		} 
 	%>
@@ -135,4 +149,34 @@
         </section>
        
 </body>
+<script type="text/javascript">
+	var ventes = document.getElementById("ventes");
+    var achat = document.getElementById("achat");
+function checkboxDesactiver(){
+        
+        	if(achat.checked){
+        		document.getElementById("venteEnCours").disabled = true;
+        		document.getElementById("venteNonDebutee").disabled = true;
+        		document.getElementById("venteTerminee").disabled = true; 
+				}else{
+					document.getElementById("venteEnCours").disabled = false;
+	        		document.getElementById("venteNonDebutee").disabled = false;
+	        		document.getElementById("venteTerminee").disabled = false;	
+				}
+        	if(ventes.checked){
+        		document.getElementById("enchereOuverte").disabled = true;
+        		document.getElementById("enchereEnCours").disabled = true;
+        		document.getElementById("enchereRemportee").disabled = true; 
+				}else{
+					document.getElementById("enchereOuverte").disabled = false;
+	        		document.getElementById("enchereEnCours").disabled = false;
+	        		document.getElementById("enchereRemportee").disabled = false;	
+				}
+        		
+				
+        }	
+window.onload = checkboxDesactiver;
+ventes.onclick = checkboxDesactiver;
+achat.onclick = checkboxDesactiver;
+</script>
 </html>
