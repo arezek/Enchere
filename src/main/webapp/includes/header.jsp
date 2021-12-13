@@ -13,7 +13,7 @@
         <c:if test="${not empty sessionScope.utilisateurLogged  }"> 
         <p> Bonjour ${sessionScope.utilisateurLogged.getPseudo()} </p>
         	<a href="" class="headerlinks">Enchères</a>
-          	<a href="" class="headerlinks">Vendre un article</a>
+          	<a href="<%=request.getContextPath()%>/ServletVente?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Vendre un article</a>
           	<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Mon Profil</a>
           	<a href="" class="headerlinks">Déconnexion</a>
                 	<%-- <% } else { %> --%> 	
