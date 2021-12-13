@@ -18,7 +18,7 @@ import eni.fr.bo.Utilisateur;
 
 public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
-	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description , date_debut_encheres, date_fin_encheres, prix_initial, etat_vente,no_utilisateur,no_categorie ) VALUES(?,?,?,?,?,?,?,2)";
+	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description , date_debut_encheres, date_fin_encheres, prix_initial, etat_vente,no_utilisateur,no_categorie ) VALUES(?,?,?,?,?,?,?,?)";
 	private static final String SEARCH = "SELECT no_article, nom_article,description,date_debut_encheres,date_fin_encheres, prix_initial,etat_vente, ARTICLES_VENDUS.no_utilisateur,ARTICLES_VENDUS.no_categorie, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur, libelle FROM ARTICLES_VENDUS  INNER JOIN UTILISATEURS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur inner join CATEGORIES on CATEGORIES.no_categorie=ARTICLES_VENDUS.no_categorie WHERE nom_article like ? AND ARTICLES_VENDUS.no_categorie =?";
 	private static final String SEARCHNOCATEGORIE = "SELECT no_article, nom_article,description,date_debut_encheres,date_fin_encheres, prix_initial,etat_vente, ARTICLES_VENDUS.no_utilisateur,ARTICLES_VENDUS.no_categorie, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur, libelle FROM ARTICLES_VENDUS  INNER JOIN UTILISATEURS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur inner join CATEGORIES on CATEGORIES.no_categorie=ARTICLES_VENDUS.no_categorie WHERE nom_article like ?";
 	private static final String SELECTBYID = "SELECT no_article, nom_article,description,date_debut_encheres,date_fin_encheres, prix_initial,etat_vente, ARTICLES_VENDUS.no_utilisateur,ARTICLES_VENDUS.no_categorie, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur, libelle FROM ARTICLES_VENDUS  INNER JOIN UTILISATEURS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur inner join CATEGORIES on CATEGORIES.no_categorie=ARTICLES_VENDUS.no_categorie WHERE ARTICLES_VENDUS.no_article =?";
@@ -46,11 +46,15 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			pstmt.setDate(i++, java.sql.Date.valueOf(articleVendu.getDateFinEncheres()));
 			pstmt.setInt(i++, articleVendu.getMiseAPrix());
 			pstmt.setString(i++, articleVendu.getEtatVente());
+			
+			pstmt.setInt(i++, articleVendu.getNoUtilisateur().getNoUtilisateur());
+			pstmt.setInt(i++, articleVendu.getNoCategorie().getNoCategorie());
 
 			pstmt.executeUpdate(); 
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
 				articleVendu.setNoArticle(rs.getInt(1));
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

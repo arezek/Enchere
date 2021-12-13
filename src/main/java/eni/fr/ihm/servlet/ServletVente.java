@@ -21,8 +21,6 @@ import eni.fr.dal.ArticleVenduDAOJdbcImpl;
 import eni.fr.dal.DALException;
 import eni.fr.dal.UtilisateurDAO;
 import eni.fr.dal.UtilisateurDAOJdbcImpl;
-import fr.eni.javaee.suividesrepas.BusinessException;
-import fr.eni.javaee.suividesrepas.bll.RepasManager;
 
 /**
  * @author ZABAKA FATIMA ZAHRA
@@ -46,12 +44,13 @@ public class ServletVente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
-		session.getAttribute("utilisateurLogged");
+		Utilisateur utilisateurLogged = (Utilisateur) session.getAttribute("utilisateurLogged");
+		
 		//commentaire
 		String nomArticle;
 		String description;
 	//	Utilisateur noutilisateur=null;
-		Categorie noCategorie = null;
+		Categorie noCategorie = new Categorie();
 		//photo
 		int miseAPrix;
 		LocalDate dateDebutEncheres;
@@ -66,10 +65,14 @@ public class ServletVente extends HttpServlet {
 			dateDebutEncheres= LocalDate.parse(request.getParameter("debutenchere"));
 			dateFinEncheres=LocalDate.parse(request.getParameter("finenchere"));
 			miseAPrix= Integer.parseInt(request.getParameter("miseaprix"));
+			
 			int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
 			noCategorie.setNoCategorie(no_categorie);
 			//int no_utilisateur = Integer.parseInt(request.getParameter("no_utilisateur"));
-			int noutilisateur=(int) session.getAttribute("utilisateurLogged");
+			
+			
+		
+			
 			//noutilisateur.setNoUtilisateur(no_utilisateur);
 			
 			//(Categorie)<Categorie> categorie =Class.forName(request.getParameter("categories")) ;
@@ -79,13 +82,14 @@ public class ServletVente extends HttpServlet {
 			ArticleVenduDAO articleVenduManager = new ArticleVenduDAOJdbcImpl();
 			
 			if(nomArticle != null && description != null && miseAPrix != 0 && dateDebutEncheres != null && 
-					dateFinEncheres != null && noCategorie != null )
+					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null)
 			
 			{
 //				Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
 //						 codePostal, ville, motDePasse, credit, administrateur);
 //				
 				ArticleVendu art =new ArticleVendu(nomArticle,description,dateDebutEncheres,dateFinEncheres,miseAPrix,noCategorie);
+				art.setNoUtilisateur(utilisateurLogged);
 				try {
 					articleVenduManager.insert(art);
 				} catch (DALException e) {

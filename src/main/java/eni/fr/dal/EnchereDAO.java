@@ -1,5 +1,7 @@
 package eni.fr.dal;
 
+import java.util.List;
+
 import eni.fr.bo.Enchere;
 
 /**
@@ -9,10 +11,10 @@ import eni.fr.bo.Enchere;
 public interface EnchereDAO {
 	
 	//Sélectionner une Enchere par son Utilisateur
-	public Enchere selectById(int noUtilisateur) throws DALException;
+	public Enchere selectById(int noUtilisateur, int noArticle) throws DALException;
 				
 	//Sélectionner tous les Encheres 
-	public Enchere selectAll() throws DALException;
+	public List<Enchere> selectAll() throws DALException;
 				
 	//Modifier les attributs d'une Enchere connu en BD
 	public void update(Enchere enchere) throws DALException;
@@ -21,7 +23,7 @@ public interface EnchereDAO {
 	public void insert(Enchere enchere) throws DALException;
 				
 	//Supprimer une Enchere
-	public void delete(int id) throws DALException;
+	public void delete(int noArticle, int noUtilisateur) throws DALException;
 
 
 }
