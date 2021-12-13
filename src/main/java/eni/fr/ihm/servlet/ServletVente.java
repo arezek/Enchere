@@ -48,7 +48,8 @@ public class ServletVente extends HttpServlet {
 		//commentaire
 		String nomArticle;
 		String description;
-		String noCategorie;
+//		String noCategorie;
+		Categorie noCategorie;
 		//photo
 		int miseAPrix;
 		LocalDate dateDebutEncheres;
@@ -63,8 +64,8 @@ public class ServletVente extends HttpServlet {
 			miseAPrix= Integer.parseInt(request.getParameter("miseaprix"));
 			dateDebutEncheres= LocalDate.parse(request.getParameter("debutenchere"));
 			dateFinEncheres=LocalDate.parse(request.getParameter("finenchere"));
-			int no_categorie = Integer. parseInt(request. getParameter("no_categorie"));
-			Class<?> categorie =Class.forName(request.getParameter("categories")) ;
+//			int no_categorie = Integer. parseInt(request. getParameter("no_categorie"));
+			(Categorie)<Categorie> categorie =Class.forName(request.getParameter("categories")) ;
 //			String rue= request.getParameter("rue");
 //			String codepostal= request.getParameter("codepostal");
 //			String ville= request.getParameter("ville");

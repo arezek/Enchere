@@ -21,7 +21,8 @@
 	<div id="separator"></div>
 	<div class="bid">
 		<section class="leftBid">		
-			<a href="" id="imgLink"><img src="/img/pic.jpg" id="imgArticleVente" alt="Photo Article"></a>       
+			<a href="" id="imgLink"><img src="/img/pic.jpg" id="imgArticleVente" alt="Photo Article"></a>  
+			     
 		</section>
 		
 		<section class="rightBid">		
@@ -59,7 +60,14 @@
 					</div>
 
 					<div class="buyForm">
-						<label for="photo">Photo de l'article     </label><button> Charger</button>
+				<%-- 	<c:if test="${ !empty fichier }"><p><c:out value="Le fichier ${ fichier } (${ description }) a été uploadé !" /></p --%>></c:if>
+						<form method="post" action="" enctype="multipart/form-data">        
+ 							<p>
+								<label for="photo">Photo de l'article  </label>
+								<input type="file" name="photo" id="imgLink" />
+							</p>
+							<input type="submit" value="Charger" />
+						</form>						
 					</div>
 
 					<div class="buyForm">
