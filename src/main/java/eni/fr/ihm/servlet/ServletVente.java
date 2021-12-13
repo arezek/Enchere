@@ -45,11 +45,13 @@ public class ServletVente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session=request.getSession();
+		session.getAttribute("utilisateurLogged");
 		//commentaire
 		String nomArticle;
 		String description;
-//		String noCategorie;
-		Categorie noCategorie;
+	//	Utilisateur noutilisateur=null;
+		Categorie noCategorie = null;
 		//photo
 		int miseAPrix;
 		LocalDate dateDebutEncheres;
@@ -61,10 +63,15 @@ public class ServletVente extends HttpServlet {
 		try {
 			nomArticle= request.getParameter("article");
 			description= request.getParameter("description");
-			miseAPrix= Integer.parseInt(request.getParameter("miseaprix"));
 			dateDebutEncheres= LocalDate.parse(request.getParameter("debutenchere"));
 			dateFinEncheres=LocalDate.parse(request.getParameter("finenchere"));
-//			int no_categorie = Integer. parseInt(request. getParameter("no_categorie"));
+			miseAPrix= Integer.parseInt(request.getParameter("miseaprix"));
+			int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
+			noCategorie.setNoCategorie(no_categorie);
+			//int no_utilisateur = Integer.parseInt(request.getParameter("no_utilisateur"));
+			int noutilisateur=(int) session.getAttribute("utilisateurLogged");
+			//noutilisateur.setNoUtilisateur(no_utilisateur);
+			
 			//(Categorie)<Categorie> categorie =Class.forName(request.getParameter("categories")) ;
 //			String rue= request.getParameter("rue");
 //			String codepostal= request.getParameter("codepostal");
@@ -79,8 +86,13 @@ public class ServletVente extends HttpServlet {
 //						 codePostal, ville, motDePasse, credit, administrateur);
 //				
 				ArticleVendu art =new ArticleVendu(nomArticle,description,dateDebutEncheres,dateFinEncheres,miseAPrix,noCategorie);
-						
-	
+				try {
+					articleVenduManager.insert(art);
+				} catch (DALException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println(art.getNomArticle()+" "+art.getDescription()+" "+art.getDateDebutEncheres()+" "+art.getDateFinEncheres()+" "+art.miseAPrix+" ");
 			}
 			
 			

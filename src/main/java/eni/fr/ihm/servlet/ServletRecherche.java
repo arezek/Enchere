@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import eni.fr.bo.ArticleVendu;
 import eni.fr.dal.ArticleVenduDAO;
@@ -35,7 +35,8 @@ public class ServletRecherche extends HttpServlet {
 		String rechercherNom;
 		String rechercherCategories;
 		
-			
+		HttpSession session=request.getSession();
+		session.getAttribute("utilisateurLogged");
 			try {
 				
 				rechercherNom = request.getParameter("rechercherNom");
