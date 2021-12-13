@@ -152,7 +152,7 @@ public void insert(Retrait retrait) throws DALException {
 			pstmt.executeUpdate(); 
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
-				//retrait.setNoArticle(rs.getInt(1));
+				retrait.getNoArticle().setNoArticle(rs.getInt(1));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
