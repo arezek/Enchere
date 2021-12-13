@@ -7,7 +7,7 @@ package eni.fr.bo;
 public class Retrait {
 	public int idRetrait;
 	public String rue;
-	public String code_postal;
+	public String codePostal;
 	public String ville;
 	public ArticleVendu noArticle;
 	
@@ -15,21 +15,28 @@ public class Retrait {
 		
 	}
 
-	public Retrait(String rue, String code_postal, String ville, ArticleVendu noArticle) {
+	public Retrait(String rue, String codePostal, String ville, ArticleVendu noArticle) {
 		super();
 		this.rue = rue;
-		this.code_postal = code_postal;
+		this.codePostal = codePostal;
 		this.ville = ville;
 		this.noArticle = noArticle;
 	}
 
-	public Retrait(int idRetrait, String rue, String code_postal, String ville, ArticleVendu noArticle) {
+	public Retrait(int idRetrait, String rue, String codePostal, String ville, ArticleVendu noArticle) {
 		super();
 		this.idRetrait = idRetrait;
 		this.rue = rue;
-		this.code_postal = code_postal;
+		this.codePostal = codePostal;
 		this.ville = ville;
 		this.noArticle = noArticle;
+	}
+
+	public Retrait(String rue, String codePostal, String ville) {
+		super();
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
 	}
 
 	public int getIdRetrait() {
@@ -48,12 +55,12 @@ public class Retrait {
 		this.rue = rue;
 	}
 
-	public String getCode_postal() {
-		return code_postal;
+	public String getCodePostal() {
+		return codePostal;
 	}
 
-	public void setCode_postal(String code_postal) {
-		this.code_postal = code_postal;
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
 
 	public String getVille() {
@@ -74,7 +81,7 @@ public class Retrait {
 
 	@Override
 	public String toString() {
-		return "Retrait [idRetrait=" + idRetrait + ", rue=" + rue + ", code_postal=" + code_postal + ", ville=" + ville
+		return "Retrait [idRetrait=" + idRetrait + ", rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville
 				+ ", noArticle=" + noArticle + "]";
 	}
 	

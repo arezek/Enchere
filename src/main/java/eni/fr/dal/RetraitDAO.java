@@ -1,5 +1,7 @@
 package eni.fr.dal;
 
+import java.util.List;
+
 import eni.fr.bo.Retrait;
 
 /**
@@ -9,10 +11,10 @@ import eni.fr.bo.Retrait;
 public interface RetraitDAO {
 	
 			//Sélectionner un Retrait par son idRetrait
-			public Retrait selectById(int idRetrait) throws DALException;
+			public Retrait selectById(int noArticle) throws DALException;
 			
 			//Sélectionner tous les Retraits 
-			public Retrait selectAll() throws DALException;
+			public List<Retrait> selectAll() throws DALException;
 			
 			//Modifier les attributs d'un Retrait connu en BD
 			public void update(Retrait Retrait) throws DALException;
@@ -21,7 +23,7 @@ public interface RetraitDAO {
 			public void insert(Retrait Retrait) throws DALException;
 			
 			//Supprimer une Retrait
-			public void delete(int idRetrait) throws DALException;
+			public void delete(int noArticle) throws DALException;
 	
 	
 }
