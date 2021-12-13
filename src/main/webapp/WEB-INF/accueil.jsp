@@ -9,8 +9,8 @@
 <!--@author GAVOILLE Fabien FUCHS Eugénie ALLIOUCHE KERBOUA Abdelrezak ZABAKA Fatima-Zahra  -->
 
 
-<c:set scope="session" var="utilisateurLogged" value="${sessionScope['utilisateurLogged'] }"/>
-
+<%--  <c:set scope="session" var="utilisateurLogged" value="${sessionScope['utilisateurLogged'] }"/>
+--%>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -30,7 +30,9 @@
         <% Utilisateur utilisateurLogged = (Utilisateur)session.getAttribute("utilisateurLogged"); 
                 	/* boolean isConnected = (boolean)session.getAttribute("isConnected");
                 	if (isConnected == true){ */ %>
+                	
         <c:if test="${not empty utilisateurLogged  }"> 
+        <p> Bonjour ${sessionScope.utilisateurLogged.getPseudo()} </p>
         	<a href="" class="headerlinks">Enchères</a>
           	<a href="" class="headerlinks">Vendre un article</a>
           	<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=<%=utilisateurLogged.getNoUtilisateur() %>" class="headerlinks">Mon Profil</a>
@@ -48,6 +50,7 @@
 
             
 	</header>
+	
           
         <div id="separator"></div>
         
@@ -75,7 +78,7 @@
         </section>
         
         <section>
-        
+
         	<c:if test="${not empty utilisateurLogged }">
         	
         		<div>
@@ -94,9 +97,12 @@
         			</div>
         			
         		</div>	
-        		<div>        			
+        		<div>   
+        			
+					     			
         			<input type="radio" id="ventes" name="article" value="ventes">
         			<label for ="ventes">Mes ventes</label>
+        			
         			
         			<div>
         			
