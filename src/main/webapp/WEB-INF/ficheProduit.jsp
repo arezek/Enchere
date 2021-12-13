@@ -15,51 +15,34 @@
     <title>Fiche Produit</title>
 </head>
 <body>
+
 	<header>
 		<div id="headerbloc">               
 			<a href="login" class="headerlinks">Connexion<img src="/img/connexion.png" id="cnxIcon"/></a>
 			<a href="signUp" class="headerlinks">S'inscrire<img src="/img/inscription.png" id="signInIcon"/></a>			
 		</div>
 	</header>
+
 	<% ArticleVendu art= (ArticleVendu)request.getAttribute("articleVendu");
         if(art!=null)
 		{System.out.println(art.toString());
         %>
-        <section>photos</section>
-        <section>
-        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/1.jpg" class="imgArticleFirst"/>
-        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/2.jpg" class="imgArticleOthers"/>
-        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/3.jpg" class="imgArticleOthers"/>
-        	<h2> <%=art.getNomArticle() %> </h2>
-        	<h3><%=art.getMiseAPrix() %></h3>
-        	<p>description:</p>
-        	<p><%=art.getDescription() %></p>
-        	<p>categorie:</p>
-        	<p><%=art.getNoCategorie().getLibelle() %></p>
-        	<p>fin de l'enchere:</p>
-        	<p><%=art.getDateFinEncheres() %></p>
-        	<p> par : <a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=<%=art.getNoUtilisateur().getNoUtilisateur() %>"><%=art.getNoUtilisateur().getPseudo() %></a></p>
-        	<p>retrait:</p>
-        	<p>retraits.Rue</p>
-        	<p>retraits.code_postal + " " + retraits.ville</p>
-        	<form action="">
-        	<label for="encherir">Ma proposition :</label>
-        	<input type="number" id="encherir" name="encherir"
-       			min="100"  step="10" placeholder="100">
-       			<input type="submit" value="echerir">
-        	</form>
-        </section>
-		<%} %>
+        
+	
 	<div id="separator"></div>
-
-	<h2> <%=art.getNomArticle() %> </h2>
+	
 	<section class="product">
 		
-		<div class="photo">			
-			<img src="img/pic.jpg" alt="">			
+		<div class="photo">		
+			<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/1.jpg" class="imgArticleFirst"/>
+        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/2.jpg" class="imgArticleOthers"/>
+        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/3.jpg" class="imgArticleOthers"/>						
 		</div>
 
-		<div class="fiche">			
+		<div class="fiche">
+			 <div class="detail">
+				<h2> <%=art.getNomArticle() %> </h2>
+			</div> 
 			<div class="essai">
 				<div class="firstColumn">
 					<h4>Description</h4>
@@ -73,9 +56,8 @@
 					<h4>Categorie</h4>
 				</div>
 				<div class="detail">
-					<select name="rechercherCategories" id="catArticle">                    
-                        <%=art.getNoCategorie().getLibelle() %>                   
-                     </select>
+					<p><%=art.getNoCategorie().getLibelle() %></p>
+				
 				</div>
 			</div>
 			<div class="essai">
@@ -91,7 +73,7 @@
 					<h4>Mise à Prix</h4>
 				</div>
 				<div class="detail">
-					<p><%=art.getMiseAPrix() %></p>
+					<h3><%=art.getMiseAPrix() %></h3>
 				</div>
 			</div>
 			<div class="essai">
@@ -118,16 +100,16 @@
 			</div>
 			<div class="essai">
 				<div class="firstColumn">
-					<h3> Vendeur</h3>
+					<h3> Par</h3>
 				</div>
 				<div class="detail">
-					<p> <a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=<%=art.getNoUtilisateur().getNoUtilisateur() %>"><%=art.getNoUtilisateur().getPseudo() %></a></p>
+					<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=<%=art.getNoUtilisateur().getNoUtilisateur() %>"><%=art.getNoUtilisateur().getPseudo() %></a>
 				</div>
 				
 			</div>			
 			
 			<div class="detail">
-				<form action="" method="post">
+				<form action="" method="">
 					<label for="encherir">Ma proposition :</label>
 					<input type="number" id="encherir" name="encherir"
 						min="100"  step="10" placeholder="100">
@@ -138,10 +120,8 @@
 		</div>	
 
 	</section>
-    <%-- <%} %>   --%>	    
-      	
-        	    	
-        	
+	<%} %>  
+		
         	
        
         
