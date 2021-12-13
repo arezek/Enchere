@@ -4,13 +4,13 @@
     	<div id="headerbloc">
         	<img src="img/eni_enchere_logo.png" id="logo"/>
         </div>    
-        ${sessionScope.utilisateurLogged}
+        <%-- ${sessionScope.utilisateurLogged} --%>
         <%-- <% 
         Utilisateur utilisateurLogged = (Utilisateur)session.getAttribute("utilisateurLogged"); 
                 	/* boolean isConnected = (boolean)session.getAttribute("isConnected");
                 	if (isConnected == true){ */ %> --%>
                 	
-        <c:if test="${not empty utilisateurLogged  }"> 
+        <c:if test="${not empty sessionScope.utilisateurLogged  }"> 
         <p> Bonjour ${sessionScope.utilisateurLogged.getPseudo()} </p>
         	<a href="" class="headerlinks">Enchères</a>
           	<a href="" class="headerlinks">Vendre un article</a>
@@ -20,7 +20,7 @@
         </c:if> 
                 
         <div>  
-			<c:if test="${empty utilisateurLogged  }"> 
+			<c:if test="${empty sessionScope.utilisateurLogged  }"> 
 			<a href="login" class="headerlinks">Connexion<img src="img/connexion.png" id="cnxIcon"/></a>
 			<a href="signUp" class="headerlinks">S'inscrire<img src="img/inscription.png" id="signInIcon"/></a>
 			</c:if> 
