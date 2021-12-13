@@ -15,41 +15,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/query.css">
+    <%@ include file="/includes/head.jsp" %>
     <title>Accueil</title>
 </head>
 <body>
-	<header>
-    	<div id="headerbloc">
-        	<img src="img/eni_enchere_logo.png" id="logo"/>
-        </div>    
-        <% Utilisateur utilisateurLogged = (Utilisateur)session.getAttribute("utilisateurLogged"); 
-                	/* boolean isConnected = (boolean)session.getAttribute("isConnected");
-                	if (isConnected == true){ */ %>
-                	
-        <c:if test="${not empty utilisateurLogged  }"> 
-        <p> Bonjour ${sessionScope.utilisateurLogged.getPseudo()} </p>
-        	<a href="" class="headerlinks">Enchères</a>
-          	<a href="" class="headerlinks">Vendre un article</a>
-          	<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=<%=utilisateurLogged.getNoUtilisateur() %>" class="headerlinks">Mon Profil</a>
-          	<a href="" class="headerlinks">Déconnexion</a>
-                	<%-- <% } else { %> --%> 	
-        </c:if> 
-                
-        <div>  
-			<c:if test="${empty utilisateurLogged  }"> 
-			<a href="login" class="headerlinks">Connexion<img src="img/connexion.png" id="cnxIcon"/></a>
-			<a href="signUp" class="headerlinks">S'inscrire<img src="img/inscription.png" id="signInIcon"/></a>
-			</c:if> 
-		</div>             
-			<%-- 	<%} %> --%>
-
-            
-	</header>
+	<%@ include file="/includes/header.jsp" %>
 	
           
         <div id="separator"></div>
