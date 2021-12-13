@@ -52,8 +52,7 @@
 					</div>
 
 					<div class="buyForm">
-						<select name="categories" id="categories">     
-							<option value="5" selected="selected" disabled="disabled">Toutes</option>
+						<select name="no_categorie" id="categories">     
 							<option value="1">Informatique</option>
 							<option value="2">Ameublement</option>
 							<option value="3">Vetement</option>
@@ -112,11 +111,11 @@
 					</div>
 
 					<div class="buyForm">
-						<label for="codepostal">Code Postal</label>
+						<label for="codePostal">Code Postal</label>
 					</div>
 
 					<div class="buyForm">
-						<input type="text" id="codepostal" name="codepostal" value="">
+						<input type="text" id="codePostal" name="codePostal" value="">
 					</div>					
 
 					<div class="buyForm">

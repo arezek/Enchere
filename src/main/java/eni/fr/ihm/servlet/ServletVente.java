@@ -15,10 +15,13 @@ import javax.servlet.http.HttpSession;
 
 import eni.fr.bo.ArticleVendu;
 import eni.fr.bo.Categorie;
+import eni.fr.bo.Retrait;
 import eni.fr.bo.Utilisateur;
 import eni.fr.dal.ArticleVenduDAO;
 import eni.fr.dal.ArticleVenduDAOJdbcImpl;
 import eni.fr.dal.DALException;
+import eni.fr.dal.RetraitDAO;
+import eni.fr.dal.RetraitDAOJdbcImpl;
 import eni.fr.dal.UtilisateurDAO;
 import eni.fr.dal.UtilisateurDAOJdbcImpl;
 
@@ -69,20 +72,14 @@ public class ServletVente extends HttpServlet {
 			int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
 			noCategorie.setNoCategorie(no_categorie);
 			//int no_utilisateur = Integer.parseInt(request.getParameter("no_utilisateur"));
-			
-			
-		
-			
-			//noutilisateur.setNoUtilisateur(no_utilisateur);
-			
-			//(Categorie)<Categorie> categorie =Class.forName(request.getParameter("categories")) ;
-//			String rue= request.getParameter("rue");
-//			String codepostal= request.getParameter("codepostal");
-//			String ville= request.getParameter("ville");
+			String rue= request.getParameter("rue");
+			String codePostal= request.getParameter("codePostal");
+			String ville= request.getParameter("ville");
 			ArticleVenduDAO articleVenduManager = new ArticleVenduDAOJdbcImpl();
+			RetraitDAO retraitManager=new RetraitDAOJdbcImpl();
 			
 			if(nomArticle != null && description != null && miseAPrix != 0 && dateDebutEncheres != null && 
-					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null)
+					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue != null && codepostal != null && ville != null )
 			
 			{
 //				Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
@@ -90,15 +87,35 @@ public class ServletVente extends HttpServlet {
 //				
 				ArticleVendu art =new ArticleVendu(nomArticle,description,dateDebutEncheres,dateFinEncheres,miseAPrix,noCategorie);
 				art.setNoUtilisateur(utilisateurLogged);
+				
+				Retrait retraitArticle=new Retrait(rue,codePostal,ville);
 				try {
 					articleVenduManager.insert(art);
+					retraitManager.insert(retraitArticle);
 				} catch (DALException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				System.out.println(art.getNomArticle()+" "+art.getDescription()+" "+art.getDateDebutEncheres()+" "+art.getDateFinEncheres()+" "+art.miseAPrix+" ");
+				
+			}else if (nomArticle != null && description != null && miseAPrix != 0 && dateDebutEncheres != null && 
+					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue==null && codePostal==null && ville==null) {
+				ArticleVendu art =new ArticleVendu(nomArticle,description,dateDebutEncheres,dateFinEncheres,miseAPrix,noCategorie);
+				art.setNoUtilisateur(utilisateurLogged);
+				utilisateurLogged.getRue();
+				
+				Retrait retraitArticle=new Retrait(rue,codePostal,ville);
+				try {
+					articleVenduManager.insert(art);
+					retraitManager.insert(retraitArticle);
+				} catch (DALException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println(art.getNomArticle()+" "+art.getDescription()+" "+art.getDateDebutEncheres()+" "+art.getDateFinEncheres()+" "+art.miseAPrix+" ");
+				
+				
 			}
-			
 			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
