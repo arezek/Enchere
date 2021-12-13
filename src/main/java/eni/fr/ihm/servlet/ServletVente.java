@@ -79,7 +79,7 @@ public class ServletVente extends HttpServlet {
 			RetraitDAO retraitManager=new RetraitDAOJdbcImpl();
 			
 			if(nomArticle != null && description != null && miseAPrix != 0 && dateDebutEncheres != null && 
-					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue != null && codepostal != null && ville != null )
+					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue != null && codePostal != null && ville != null )
 			
 			{
 //				Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
@@ -88,10 +88,14 @@ public class ServletVente extends HttpServlet {
 				ArticleVendu art =new ArticleVendu(nomArticle,description,dateDebutEncheres,dateFinEncheres,miseAPrix,noCategorie);
 				art.setNoUtilisateur(utilisateurLogged);
 				
-				Retrait retraitArticle=new Retrait(rue,codePostal,ville);
+				
 				try {
-					articleVenduManager.insert(art);
-					retraitManager.insert(retraitArticle);
+					int Narticle =articleVenduManager.insert(art);
+					Retrait retraitArticle=new Retrait(rue,codePostal,ville);
+					System.out.println(Narticle);
+					retraitArticle.getNoArticle().setNoArticle(Narticle);
+				//	System.out.println(retraitArticle.getNoArticle().getNoArticle());
+//					retraitManager.insert(retraitArticle);
 				} catch (DALException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -102,7 +106,9 @@ public class ServletVente extends HttpServlet {
 					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue==null && codePostal==null && ville==null) {
 				ArticleVendu art =new ArticleVendu(nomArticle,description,dateDebutEncheres,dateFinEncheres,miseAPrix,noCategorie);
 				art.setNoUtilisateur(utilisateurLogged);
-				utilisateurLogged.getRue();
+				rue=utilisateurLogged.getRue();
+				codePostal=utilisateurLogged.getCodePostal();
+				ville=utilisateurLogged.getVille();
 				
 				Retrait retraitArticle=new Retrait(rue,codePostal,ville);
 				try {

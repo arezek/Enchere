@@ -24,7 +24,7 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 	private static final String SELECTALL = "SELECT r.no_article, nom_article,description,date_debut_encheres,date_fin_encheres, prix_initial,etat_vente, r.rue, r.code_postal, r.ville, a.no_utilisateur, a.no_categorie, pseudo, nom, prenom, email, telephone, u.rue, u.code_postal, u.ville, mot_de_passe, credit, administrateur, libelle FROM RETRAITS r INNER JOIN ARTICLES_VENDUS a on r.no_article=a.no_article INNER JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur INNER JOIN CATEGORIES c ON a.no_categorie=c.no_categorie";
 	private static final String DELETE = "DELETE FROM RETRAITS WHERE no_article = ?";
 	private static final String UPDATE = "UPDATE RETRAITS SET rue= ?, code_postal = ?, ville = ? WHERE no_article = ?";
-	int i;
+	int i=1;
 
 public Retrait selectById(int noArticle) throws DALException {
 

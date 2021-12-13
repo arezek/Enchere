@@ -28,7 +28,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	int i = 1;
 
 	@Override
-	public void insert(ArticleVendu articleVendu) throws DALException {
+	public int insert(ArticleVendu articleVendu) throws DALException {
 
 //		if(ArticleVendu==null)
 //			{
@@ -36,7 +36,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 //				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
 //				throw businessException;
 //			}
-
+			int returnNumArticle=0;
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);) {
 
@@ -53,8 +53,9 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			pstmt.executeUpdate(); 
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
-				articleVendu.setNoArticle(rs.getInt(1));
 				
+				 articleVendu.setNoArticle(rs.getInt(1));
+				 returnNumArticle =articleVendu.getNoArticle();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,6 +70,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 //				}
 //				throw businessException;
 		}
+		return returnNumArticle;
 
 	}
 
