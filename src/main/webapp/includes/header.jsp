@@ -4,7 +4,8 @@
     	<div id="headerbloc">
         	<img src="img/eni_enchere_logo.png" id="logo"/>
         </div>    
-        <% Utilisateur utilisateurLogged = (Utilisateur)session.getAttribute("utilisateurLogged"); 
+        <% 
+        Utilisateur utilisateurLogged = (Utilisateur)session.getAttribute("utilisateurLogged"); 
                 	/* boolean isConnected = (boolean)session.getAttribute("isConnected");
                 	if (isConnected == true){ */ %>
                 	
