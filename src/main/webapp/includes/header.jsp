@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <header>
     	<div id="headerbloc">
-        	<img src="img/eni_enchere_logo.png" id="logo"/>
+        	<a href="<%=request.getContextPath()%>/ServletRecherche"><img src="img/eni_enchere_logo.png" id="logo"/></a>
         </div>    
         <%-- ${sessionScope.utilisateurLogged} --%>
         <%-- <% 
