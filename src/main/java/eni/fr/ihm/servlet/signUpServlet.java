@@ -49,7 +49,8 @@ public class signUpServlet extends HttpServlet {
 		String ville;
 		String motDePasse;
 		String motDePasseConfirme;
-		int credit = 100;
+		String motDePasseActuel;
+		int credit;
 		boolean administrateur = false;
 			
 			try {
@@ -61,32 +62,71 @@ public class signUpServlet extends HttpServlet {
 				rue= request.getParameter("rue");
 				codePostal= request.getParameter("cp");
 				ville= request.getParameter("ville");
+				motDePasseActuel = request.getParameter("mdpa");
 				motDePasse = request.getParameter("mdp");
 				motDePasseConfirme = request.getParameter("mdpc");
-				UtilisateurDAO utilisateurD=new UtilisateurDAOJdbcImpl();
 				
-				if(pseudo != null && nom != null && prenom != null && email != null && 
-						telephone != null && rue != null && codePostal != null && ville != null
-						&& motDePasse != null && motDePasseConfirme != null && motDePasse.equals(motDePasseConfirme))
+				HttpSession session=request.getSession();
+				session.getAttribute("utilisateurLogged");
 				
-				{
+				if (session == null) {
 					
-					Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
-						 codePostal, ville, motDePasse, credit, administrateur);
+					System.out.println("une session a été créée");
 					
-					HttpSession session = request.getSession();
-					session.setAttribute("utilisateur", utilisateur);
+					int creditDeDepart = 100;
+					UtilisateurDAO utilisateurD=new UtilisateurDAOJdbcImpl();
 					
-					try {
-						utilisateurD.insert(utilisateur);
-					} catch (DALException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					if(pseudo != null && nom != null && prenom != null && email != null && 
+							telephone != null && rue != null && codePostal != null && ville != null
+							&& motDePasse != null && motDePasseConfirme != null && motDePasse.equals(motDePasseConfirme))
+					
+					{
+						
+						Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
+							 codePostal, ville, motDePasse, creditDeDepart, administrateur);
+						
+						HttpSession sessionACreer = request.getSession();
+						session.setAttribute("utilisateur", utilisateur);
+						
+						try {
+							utilisateurD.insert(utilisateur);
+						} catch (DALException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						System.out.println(utilisateur.getNom()+" "+utilisateur.getRue()+" "+utilisateur.getPrenom()+" "+utilisateur.getEmail()+" "+utilisateur.getTelephone()+" ");
+						
 					}
-				
+				} else {
 					
-				
-					System.out.println(utilisateur.getNom()+" "+utilisateur.getRue()+" "+utilisateur.getPrenom()+" "+utilisateur.getEmail()+" "+utilisateur.getTelephone()+" ");
+					System.out.println("une session est en cours, on essaie de faire un update");
+					
+					UtilisateurDAO utilisateurD=new UtilisateurDAOJdbcImpl();
+					Utilisateur utilisateur = new Utilisateur();
+					credit = utilisateur.getCredit();
+					
+//					if (motDePasseConfirme != null && motDePasseActuel.equals(utilisateur.getMotDePasse()) &&
+//							motDePasse.equals(motDePasseConfirme))
+		
+					if (pseudo == null || nom == null || prenom == null || email == null || telephone == null
+							|| rue == null || codePostal == null || ville == null || motDePasseActuel == null ||
+							motDePasseActuel != null && motDePasse.equals(motDePasseConfirme))
+						
+						
+						
+						utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
+							 codePostal, ville, motDePasse, credit, administrateur);
+					
+						
+						try {
+							utilisateurD.update(utilisateur);
+						} catch (DALException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						System.out.println(utilisateur.getNom()+" "+utilisateur.getRue()+" "+utilisateur.getPrenom()+" "+utilisateur.getEmail()+" "+utilisateur.getTelephone()+" ");
 					
 				}
 				
@@ -95,7 +135,7 @@ public class signUpServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("/ServletRecherche");
 			rd.forward(request, response);
 	}
 
