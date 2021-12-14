@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -60,7 +61,7 @@
 						<label for="photo">Photo de l'article  </label>
 						<input type="file" name="photo" id="imgLink" />
 							
-						<input type="submit" value="Charger" />											
+						<!-- <input type="submit" value="Charger" /> -->											
 					</div>
 
 					<div class="buyForm">

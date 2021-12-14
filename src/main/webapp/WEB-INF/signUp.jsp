@@ -134,7 +134,7 @@
     <input type="submit" class="signUpButton" value="Créer">
   </div>
   <div class="signUp">
-    <a href="<%=request.getContextPath()%>/accueilServlet"  ><button id="signUpButton">Annuler</button></a>
+    <a href="<%=request.getContextPath()%>/accueilServlet"  ><input id="signUpButton" type="submit" value="Annuler"></a>
   </div>
   </c:if>
 

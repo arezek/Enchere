@@ -1,3 +1,4 @@
+
 /* JQUERY
 
 @media (max-width: 650px) {
@@ -33,6 +34,18 @@ a {
     text-decoration: none;
     font-weight: 600;
 }
+input [type = "submit"] {
+	border-radius: 8px;
+    width: 120px;
+    height: 35px;    
+    background-color: #73d3c0 ;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;            
+    opacity: 0.8;
+    border : none;
+}
+	
 body {
     margin : 0px;
     background-color: #fafafa;
@@ -82,20 +95,23 @@ header {
 0deg, rgba(122,122,122,0) 0%, rgba(130,226,212,1) 100%);
 }
 /* LIGNE DE RECHERCHE */
-#searchBar {
-	 /* width : 70%;
-	 margin : auto; */ 
+#sectionSearch {
+	width: 100%;
+	max-width: 1024px; 
+	margin : auto; 
+	
 }
-form {    
-    display: flex;
-    /* align-content : flex-start; */
-    justify-content: center;
-    flex-flow: row wrap;  
-    margin-bottom: 30px;       
+
+#trois {
+	display : flex;
+	justify-content: center;
+    flex-flow: row wrap; 
 }
-#searchIcon {
-	width: 20px;    
+.searchBar{	
+    margin: 40px;      
+    margin-bottom: 30px;   
 }
+
 #searchInput {    
     width: 300px;
     margin-right: 40px;       
@@ -117,10 +133,24 @@ form {
     opacity: 0.8;
     border : none;
 }
-#catList {    
+#catLContent {    
     color: #111111;
     margin-right: 30px;  
     padding-top: 10px;     
+}
+#checkContent {
+	display : flex;
+	padding-left : 96px;
+	justify-content: start;
+    flex-flow: column;
+	color : #111111;
+	font-weight : 400;	
+	padding-top : 10px;
+	grid-column: 1 / 2;
+ 	grid-row: 2 / 3;
+}
+#searchIcon {
+	width: 20px;    
 }
 #catLabel {
 	margin-right : 15px;
@@ -131,23 +161,14 @@ form {
     
 }
 
-/***** Filtre connecté ******/
-
-#filtres div {
-	color : #111111;
-	font-weight : 400;	
-	padding-top : 10px;
-}
-
-
 /* ARTICLES */
 
 .vendeur {
     margin-right: 15px;
     
 }
-.section {
-    max-width: 1800px;
+.sectionArticles {
+    max-width: 1100px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-gap: 50px;
@@ -155,28 +176,50 @@ form {
 }
 /* UN ARTICLE */
 .articleIndex {      
-    
+    height : 200px;   
     display: flex;
     flex-direction: row;  
-    background-color: #a3e29b ;    
-    /* grid-template-columns: 100px 50px 100px;
-    grid-template-rows: 80px auto 80px; */
-   /* column-gap: 40px;
-    row-gap: 40px; */
+    background-color: #a3e29b ;   
+    padding: 30px; 
+    -webkit-border-top-left-radius: 15px;
+	-webkit-border-bottom-right-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-bottomright: 15px;
+	border-top-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+    
 }
 .right {      
-   max-width: auto ; 
+   max-width: auto ;
+   padding-left : 30px; 
+   color : white;
 }
 .imgArticleIndex {
-    margin: 10px;
-    min-width: 80%;
-    min-height: 80%;     
+    
+    min-width: 80px;
+    min-height: 80px; 
+    border : 2px solid white;    
 }
 .left {
    display: flex;
-   max-width: 50%;   
+   max-width: 50%; 
+   height : 200px;  
+   width: 200px; 
+    
 }
-
+.titreArticleIndex {
+	font-size: 30px;
+	margin : 0;	
+}
+.prix {
+	font-size: 20px;
+}
+.adresse {
+	font-size: 14px;
+}
+.vendeur {
+	text-decoration: underline;
+}
 /***********************************************LOGIN *************/
 .titleLogin {
     text-align: center;      
@@ -234,16 +277,9 @@ input {
     font-size: 25px;
     
 }
-h1,h2,h3 {
-    color: #73d3c0 ;  
-    text-align: center;  /*pour la page nouvelle vente*/
 
-}
 
-p {
-    color: #404040;
-    font-weight: 900;
-}
+
 #edtiProfilButton {    
     border-radius: 8px;
     width: 250px;

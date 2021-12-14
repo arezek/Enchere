@@ -24,13 +24,14 @@
           
         <div id="separator"></div>
         
-        <section id="searchBar">
-            <form action="<%=request.getContextPath()%>/ServletRecherche" method="get">
-            	<div class="searchContent">
-                	<label for="rechercherNom"><img src="img/search.png" id="searchIcon"/></label>
-                	<input type="text" placeholder="rechercher" name="rechercherNom" id="searchInput" >
+        <section id ="sectionSearch">            
+         <form class ="searchBar" action="<%=request.getContextPath()%>/ServletRecherche" method="get">
+            <div id ="trois">
+           		<div class="searchContent">
+               		<label for="rechercherNom"><img src="img/search.png" id="searchIcon"/></label>
+               		<input type="text" placeholder="rechercher" name="rechercherNom" id="searchInput" >
 		        </div>
-                <div id="catList">
+                <div id="catLContent">
                     <label for="rechercherCategories" id="catLabel">Catégorie : </label>
                     <select name="rechercherCategories" id="categories">                    
                         <option value="5">Toutes</option>
@@ -43,50 +44,45 @@
                 <div>
                     <input type="submit" value="Rechercher" id="searchButton" >
                 </div>
-                <c:if test="${not empty utilisateurLogged }">
+            	
+            </div>
+            	
+            <c:if test="${not empty utilisateurLogged }">
         
-
-        	
-        	
-        		<div id = "filtres">
-        		
+			<div id = "checkContent">       			
         			
-        			
-        			<div>
-        				<input type="radio" id="achat" name="article" value="achat" checked>
-        				<label for ="achat">Enchères</label><br>
-        				<input type="checkbox"  id="enchereOuverte" name="achat" class="achat" value="enchereOuverte" checked>
-        				<label for ="enchereOuverte">Ouvertes</label>
-        				<input type="checkbox"  id="enchereEnCours" name="achat" class="achat" value="enchereEnCours">
-        				<label for ="enchereEnCours">En cours</label>
-        				<input type="checkbox"  id="enchereRemportee" name="achat" class="achat" value="enchereRemportee">
-        				<label for ="enchereRemportee">Remportées</label>
-        			
-        			</div>
-        			
-        			
-        					
-        			<div>
-        				<input type="radio" id="ventes" name="article" value="ventes">
-        				<label for ="ventes">Mes ventes</label><br>
-        				
-        				<input type="checkbox"  id="venteEnCours" name="ventes" class="ventes" value="venteEnCours" checked>
-        				<label for ="venteEnCours">En cours</label>
-        				<input type="checkbox"  id="venteNonDebutee" name="ventes" class="ventes" value="venteNonDebutee">
-        				<label for ="venteNonDebutee">Non débutées</label>
-        				<input type="checkbox"  id="venteTerminee" name="ventes" class="ventes" value="venteTerminee">
-        				<label for ="venteTerminee">Terminées</label>
-        			
-        			</div>       			
-        		</div>           
-        		
-        </c:if>                 
-            </form>
+        		<div>
+       				<input type="radio" id="achat" name="article" value="achat" checked>
+       				<label for ="achat">Enchères</label><br>
+       				<input type="checkbox"  id="enchereOuverte" name="achat" class="achat" value="enchereOuverte" checked>
+       				<label for ="enchereOuverte">Ouvertes</label>
+       				<input type="checkbox"  id="enchereEnCours" name="achat" class="achat" value="enchereEnCours">
+       				<label for ="enchereEnCours">En cours</label>
+       				<input type="checkbox"  id="enchereRemportee" name="achat" class="achat" value="enchereRemportee">
+       				<label for ="enchereRemportee">Remportées</label>        			
+        		</div> 					
+        		<div>
+       				<input type="radio" id="ventes" name="article" value="ventes">
+       				<label for ="ventes">Mes ventes</label><br>
+       				
+       				<input type="checkbox"  id="venteEnCours" name="ventes" class="ventes" value="venteEnCours" checked>
+       				<label for ="venteEnCours">En cours</label>
+       				<input type="checkbox"  id="venteNonDebutee" name="ventes" class="ventes" value="venteNonDebutee">
+       				<label for ="venteNonDebutee">Non débutées</label>
+       				<input type="checkbox"  id="venteTerminee" name="ventes" class="ventes" value="venteTerminee">
+       				<label for ="venteTerminee">Terminées</label>        			
+        		</div>       			
+        	</div>          
+            </c:if>                 
+         </form>
+        
+        
+            
         
         
 	</section>
             <!-- boucle -->
-        <section class="section">
+        <section class="sectionArticles">
             <%
             ArrayList<ArticleVendu> articlesVendus = (ArrayList<ArticleVendu>)request.getAttribute("listeArticles");
 	if(articlesVendus!=null)
@@ -105,7 +101,7 @@
 
 	                <h3 class="titreArticleIndex"><%=art.getNomArticle() %></h3>
 	                <p class="prix"><%=art.getMiseAPrix() %></p>
-	                <p class="vendeur">Par   <%=art.getNoUtilisateur().getNom() %></p>
+	                <p >Par <span class="vendeur"> <%=art.getNoUtilisateur().getNom() %></span>  </p>
 	                <p class="adresse"><%=art.getNoUtilisateur().getCodePostal() %>
 	                    <%=art.getNoUtilisateur().getVille() %></p>          
                 </div>
