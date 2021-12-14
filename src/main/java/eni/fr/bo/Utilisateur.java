@@ -156,6 +156,7 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="

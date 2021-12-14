@@ -219,7 +219,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		
 	}
 
-	
 
 	@Override
 	public void delete(int noUtilisateur) throws DALException {

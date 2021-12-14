@@ -88,8 +88,8 @@ public abstract class CodesResultatBLL {
 	public static final int UTILISATEUR_ADMINISTRATEUR_ERREUR=20018;
 	
 	// UTILISATEUR MODIFICATION
-	
-	
+
+
 	
 	
 	
