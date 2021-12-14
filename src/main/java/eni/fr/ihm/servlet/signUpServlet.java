@@ -109,7 +109,7 @@ public class signUpServlet extends HttpServlet {
 					String champs;
 					String valeur = null;
 		
-					if (pseudo != null) {
+					if (!pseudo.equals("")) {
 							
 						champs = "pseudo";
 						valeur = request.getParameter("pseudo");
@@ -122,7 +122,7 @@ public class signUpServlet extends HttpServlet {
 						
 					}
 						
-					if (nom != null) {
+					if (!nom.equals("")) {
 							
 						champs = "nom";
 						valeur = request.getParameter("nom");
@@ -135,7 +135,7 @@ public class signUpServlet extends HttpServlet {
 						
 					}
 					
-					if (prenom != null) {
+					if (!prenom.equals("")) {
 						
 						champs = "prenom";
 						valeur = request.getParameter("prenom");
@@ -148,7 +148,7 @@ public class signUpServlet extends HttpServlet {
 						
 					}
 					
-					if (email != null) {
+					if (!email.equals("")) {
 						
 						champs = "email";
 						valeur = request.getParameter("email");
@@ -161,7 +161,7 @@ public class signUpServlet extends HttpServlet {
 						
 					}
 					
-					if (telephone != null) {
+					if (!telephone.equals("")) {
 						
 						champs = "telephone";
 						valeur = request.getParameter("telephone");
@@ -174,11 +174,12 @@ public class signUpServlet extends HttpServlet {
 						
 					}
 					
-					if (rue != null) {
+					if (!rue.equals("")) {
 						
 						champs = "rue";
 						valeur = rue;
-
+						System.out.println(valeur);
+						System.out.println(utilisateurRecup.getNoUtilisateur());
 						try {
 							utilisateurD.update(champs, valeur, utilisateurRecup);
 						} catch (DALException e) {
@@ -187,7 +188,7 @@ public class signUpServlet extends HttpServlet {
 						
 					}
 					
-					if (codePostal != null) {
+					if (!codePostal.equals("")) {
 						
 						champs = "codePostal";
 						valeur = request.getParameter("cp");
@@ -200,7 +201,7 @@ public class signUpServlet extends HttpServlet {
 						
 					}
 					
-					if (ville != null) {
+					if (!ville.equals("")) {
 						
 						champs = "ville";
 						valeur = request.getParameter("ville");
@@ -213,7 +214,7 @@ public class signUpServlet extends HttpServlet {
 						
 					}
 					
-					if (motDePasseActuel != null && motDePasse != null && motDePasseConfirme != null && motDePasse.equals(motDePasseConfirme)
+					if (!motDePasseActuel.equals("") && !motDePasse.equals("") && !motDePasseConfirme.equals("") && motDePasse.equals(motDePasseConfirme)
 							&& motDePasseActuel.equals(utilisateurRecup.getMotDePasse())) {
 						
 						champs = "mot_de_passe";
@@ -227,8 +228,7 @@ public class signUpServlet extends HttpServlet {
 						
 					}
 					
-					System.out.println(valeur);
-					System.out.println(utilisateurRecup);
+					
 					
 				}
 			

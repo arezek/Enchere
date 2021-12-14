@@ -20,7 +20,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String SELECTBYPSEUDO = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS  WHERE pseudo=?";
 	private static final String SELECTALL = "SELECT no_article, nom_article,description,date_debut_encheres,date_fin_encheres, prix_initial,etat_vente, ARTICLES_VENDUS.no_utilisateur,ARTICLES_VENDUS.no_categorie, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur, libelle FROM UTILISATEURS  INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur inner join CATEGORIES on CATEGORIES.no_categorie=ARTICLES_VENDUS.no_categorie";
 	private static final String DELETE = "delete from UTILISATEURS where no_utilisateur=?";
-	private static final String UPDATE = "UPDATE UTILISATEURS SET ? = ? WHERE no_utilisateur = ?";
+//	private static final String UPDATE = "UPDATE UTILISATEURS SET ? = ? WHERE no_utilisateur = ?";
 	int i = 1;
 	
 	@Override
@@ -190,15 +190,40 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	@Override
 	public void update(String champs, String valeur, Utilisateur utilisateur) throws DALException {
+		String UPDATE = null;
+		if(champs.equals("pseudo")) {
+			UPDATE = "UPDATE UTILISATEURS SET pseudo = ? WHERE no_utilisateur = ?";
+		}
+		else if(champs.equals("nom")) {
+			UPDATE = "UPDATE UTILISATEURS SET nom = ? WHERE no_utilisateur = ?";
+		}
+		else if(champs.equals("prenom")) {
+			UPDATE = "UPDATE UTILISATEURS SET prenom = ? WHERE no_utilisateur = ?";
+		}
+		else if(champs.equals("email")) {
+			UPDATE = "UPDATE UTILISATEURS SET email = ? WHERE no_utilisateur = ?";
+		}
+		else if(champs.equals("telephone")) {
+			UPDATE = "UPDATE UTILISATEURS SET telephone = ? WHERE no_utilisateur = ?";
+		}
+		else if(champs.equals("rue")) {
+			UPDATE = "UPDATE UTILISATEURS SET rue = ? WHERE no_utilisateur = ?";
+		}
+		else if(champs.equals("codePostal")) {
+			UPDATE = "UPDATE UTILISATEURS SET codePostal = ? WHERE no_utilisateur = ?";
+		}
+		else if(champs.equals("mot_de_passe")) {
+			UPDATE = "UPDATE UTILISATEURS SET mot_de_passe = ? WHERE no_utilisateur = ?";
+		}
 		  try(Connection con = ConnectionProvider.getConnection();
 			        PreparedStatement Pstmt = con.prepareStatement(UPDATE,PreparedStatement.RETURN_GENERATED_KEYS);
 			                ) 
 			        {
 			        
-			        	Pstmt.setString(1,champs);
-						Pstmt.setString(2, valeur);
-						Pstmt.setInt(3, utilisateur.getNoUtilisateur());
-			          
+//			        	Pstmt.setString(1,champs);
+						Pstmt.setString(1, valeur);
+						Pstmt.setInt(2, utilisateur.getNoUtilisateur());
+			          System.out.println(Pstmt.toString());
 			            Pstmt.executeUpdate();
 			            
 			        } catch (SQLException e) {
