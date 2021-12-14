@@ -89,7 +89,24 @@ public abstract class CodesResultatBLL {
 	
 	// UTILISATEUR MODIFICATION
 
-
+	// RETRAIT INSERTION
+	
+	/**
+	 * Echec quand la rue de retrait n'est pas rentrée
+	 */
+	public static final int RETRAIT_RUE_ERREUR=20019;
+	/**
+	 * Echec quand le code postal de retrait n'est pas rentré
+	 */
+	public static final int RETRAIT_CODE_POSTAL_ERREUR=20020;
+	/**
+	 * Echec quand la ville de retrait n'est pas rentrée
+	 */
+	public static final int RETRAIT_VILLE_ERREUR=20021;
+	/**
+	 * Echec quand le numéro d'article correspond à ce point de retrait n'est pas rentré
+	 */
+	public static final int RETRAIT_NO_ARTICLE_ERREUR=20022;
 	
 	
 	
