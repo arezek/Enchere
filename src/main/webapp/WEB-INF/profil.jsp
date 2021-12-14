@@ -18,9 +18,10 @@
 
 
     <h1 class="titleProfil">Profil</h1>  
-    <div id="separator"></div> 
-    <h2 class="titleVendor" >Profil Vendeur</h2>
-    <h3 class="titleMyprofil">Mon profil</h3>
+    <div id="separator"></div>
+   
+   
+    <h3 class="titleMyprofil">Profil</h3>
 
 
     <p>Pseudo: <%=utilisateur.getPseudo() %></p>
@@ -33,12 +34,13 @@
     <p>Ville : <%=utilisateur.getVille() %></p>
     <%} %>
     
-    <form method="post" action="<%=request.getContextPath()%>/profilServlet">
-    
-     
-   <input type="submit" id="edtiProfilButton" value="Modifier">
-   
-</form> 
+    <c:if test="${not empty sessionScope.utilisateurLogged  }">
+    <form method="get" action="<%=request.getContextPath()%>/signUpServlet">
+        
+	 <input type="submit" id="edtiProfilButton" value="Modifier">
+  	
+	</form> 
+ 	</c:if>
     
 </body>
 </html>
