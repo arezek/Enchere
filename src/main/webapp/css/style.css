@@ -13,7 +13,7 @@ img:hover {
 
 }
 a:visited {
-    color: green;
+    color : #555555;
 }   
   
 button:hover, .loginButton:hover, .signUpButton:hover{
@@ -29,11 +29,12 @@ button:hover, .loginButton:hover, .signUpButton:hover{
     
 }
 a {
-    color: #73d3c0;
+    color : #999999;
     text-decoration: none;
+    font-weight: 600;
 }
 body {
-    margin : 40px;
+    margin : 0px;
     background-color: #fafafa;
 }   
 
@@ -42,13 +43,26 @@ body {
 	width: 200px;
     margin-left: 100px;
 }
+#brand {
+	padding-top : 13px;
+}
+.connected, .notConnected {
+	padding-top : 17px;
+	color : #73d368;
+}
 header {
     height: 50px;
 }
-#headerbloc {
-    margin-top: 20px;
+
+.bonjour {
+	float : right;
+	margin-left : 15px;
+	margin-top : 2px;
+	color : #73d368;
+}
+#headerbloc {    
     display: flex;
-    justify-content: space-around;       
+    justify-content: space-around;           
 }
 
 .headerlinks {
@@ -79,14 +93,13 @@ form {
 	width: 20px;    
 }
 #searchInput {    
-    width: 400px;
+    width: 300px;
     margin-right: 40px;
-    margin-bottom: 30px;
-    font-size: 25px;
-    color: grey; 
+    margin-bottom: 30px;    
+    color: #111111;     
     border: none;
     background-color: #fafafa;
-    border-bottom: 2px solid grey; 
+    border-bottom: 5px solid grey; 
 }
 #searchButton {
     border-radius: 8px;
@@ -101,13 +114,16 @@ form {
     opacity: 0.8;
 }
 #catList {    
-    font-size: 25px; 
-    margin-right: 30px;    
+    color: #111111;
+    margin-right: 30px;       
 }
-#categories {
-    font-size: 25px; 
-    border-radius: 8px;
-    margin-bottom: 30px;
+#catLabel {
+	margin-right : 15px;
+	font-weight: 700;
+}
+#categories {         
+    width : 150px; 
+    
 }
 
 /* ARTICLES */
@@ -174,9 +190,7 @@ form {
     text-align: center;
 } 
 input {
-    color: gray;
-    font-size: 30px;
-    border-radius: 10px;
+    color: gray;       
     font-weight: 900;
 }
 

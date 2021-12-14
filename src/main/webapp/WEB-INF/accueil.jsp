@@ -31,7 +31,7 @@
                 	<input type="text" placeholder="rechercher" name="rechercherNom" id="searchInput" >
 		        </div>
                 <div id="catList">
-                    <label for="rechercherCategories" id="catLabel">Catégorie  </label>
+                    <label for="rechercherCategories" id="catLabel">Catégorie : </label>
                     <select name="rechercherCategories" id="categories">                    
                         <option value="5">Toutes</option>
                         <option value="1">Informatique</option>
