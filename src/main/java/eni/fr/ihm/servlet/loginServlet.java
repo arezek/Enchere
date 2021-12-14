@@ -30,20 +30,27 @@ public class loginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		Cookie[] cookies=request.getCookies();
-//		if (cookies!=null) {
-//			for (Cookie cookie:cookies) {
-//				if (cookie.getName().equals("identifiant") ) {
-//					request.setAttribute("identifiant", cookie.getValue());
-//					request.setAttribute("mdp", cookie.getValue());
-//					System.out.println(cookie.getValue());
-//				}
-//			}
-//	
-//		}
-		
-		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/login.jsp");
-		rd.forward(request, response);		
+		RequestDispatcher rd = null;
+
+		boolean cookiePresent = false;
+
+		// On vérifie la présence du cookie de connexion
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("connexion") && cookie.getValue().equals("ok")) {
+					cookiePresent = true;
+				}
+			}
+		}
+
+		// On redirige en fonction de la présence du cookie
+		if (cookiePresent) {
+			rd = request.getRequestDispatcher("WEB-INF/accueil.jsp");
+		} else {
+			rd = request.getRequestDispatcher("WEB-INF/login.jsp");
+		}
+		rd.forward(request, response);	
 
 	}
 
@@ -51,21 +58,28 @@ public class loginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		RequestDispatcher rd = null;
+
 		// récupérer les identifiants et les stocker dans la variable de session
 		String pseudo = request.getParameter("identifiant");
 		String motDePasse = request.getParameter("mdp");
-		//String souvenirDeMoi=request.getParameter("souvenirDeMoi");
-//		Cookie cookie2 = new Cookie("identifiant",pseudo);
-//		Cookie cookie1 = new Cookie("mdp",motDePasse);
-//		
-//		cookie1.setMaxAge(60*60*10); 
-//		cookie2.setMaxAge(60*60*10); 
-//
-//
-//		response.addCookie( cookie1 );
-//		response.addCookie( cookie2 );
 		
+		
+		if (pseudo.equals("identifiant") && motDePasse.equals("mdp")) {
+			if (request.getParameter("souvenirDeMoi") != null) {
+				if (request.getParameter("souvenirDeMoi").equals("ok")) {
+					Cookie cookie = new Cookie("connexion", "ok");
+					cookie.setMaxAge(7 * 24 * 60 * 60);
+					response.addCookie(cookie);
+				}
+			}
+
+			rd = request.getRequestDispatcher("WEB-INF/accueil.jsp");
+		} else {
+
+			rd = request.getRequestDispatcher("WEB-INF/login.jsp");
+		}
+
 		
 		UtilisateurDAO utilisateurValidation = new UtilisateurDAOJdbcImpl();
 	
@@ -89,7 +103,7 @@ public class loginServlet extends HttpServlet {
 				//session.setAttribute("identifiant", pseudo);
 				
 				// redirect l'utilisateur vers la page d'accueil
-				RequestDispatcher rd=request.getRequestDispatcher("ServletRecherche");
+				rd=request.getRequestDispatcher("ServletRecherche");
 				rd.forward(request, response);
 			
 			} else {
@@ -98,7 +112,7 @@ public class loginServlet extends HttpServlet {
 				
 				session.setAttribute("hasErrors", true);
 				session.setAttribute("isConnected", false);
-				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/login.jsp");
+				rd=request.getRequestDispatcher("/WEB-INF/login.jsp");
 				rd.forward(request, response);
 				
 			}
