@@ -67,7 +67,7 @@ public class signUpServlet extends HttpServlet {
 				motDePasseConfirme = request.getParameter("mdpc");
 				
 				HttpSession session=request.getSession();
-				session.getAttribute("utilisateurLogged");
+				Utilisateur utilisateurRecup = (Utilisateur) session.getAttribute("utilisateurLogged");
 				
 				if (session == null) {
 					
@@ -103,34 +103,135 @@ public class signUpServlet extends HttpServlet {
 					System.out.println("une session est en cours, on essaie de faire un update");
 					
 					UtilisateurDAO utilisateurD=new UtilisateurDAOJdbcImpl();
-					Utilisateur utilisateur = new Utilisateur();
-					credit = utilisateur.getCredit();
 					
-//					if (motDePasseConfirme != null && motDePasseActuel.equals(utilisateur.getMotDePasse()) &&
-//							motDePasse.equals(motDePasseConfirme))
+					credit = utilisateurRecup.getCredit();
+					utilisateurRecup.getNoUtilisateur();
+					String champs;
+					String valeur = null;
 		
-					if (pseudo == null || nom == null || prenom == null || email == null || telephone == null
-							|| rue == null || codePostal == null || ville == null || motDePasseActuel == null ||
-							motDePasseActuel != null && motDePasse.equals(motDePasseConfirme))
-						
-						
-						
-						utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
-							 codePostal, ville, motDePasse, credit, administrateur);
-					
-						
+					if (pseudo != null) {
+							
+						champs = "pseudo";
+						valeur = request.getParameter("pseudo");
+
 						try {
-							utilisateurD.update(utilisateur);
+							utilisateurD.update(champs, valeur, utilisateurRecup);
 						} catch (DALException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						
-						System.out.println(utilisateur.getNom()+" "+utilisateur.getRue()+" "+utilisateur.getPrenom()+" "+utilisateur.getEmail()+" "+utilisateur.getTelephone()+" ");
+					}
+						
+					if (nom != null) {
+							
+						champs = "nom";
+						valeur = request.getParameter("nom");
+
+						try {
+							utilisateurD.update(champs, valeur, utilisateurRecup);
+						} catch (DALException e) {
+							e.printStackTrace();
+						}
+						
+					}
+					
+					if (prenom != null) {
+						
+						champs = "prenom";
+						valeur = request.getParameter("prenom");
+
+						try {
+							utilisateurD.update(champs, valeur, utilisateurRecup);
+						} catch (DALException e) {
+							e.printStackTrace();
+						}
+						
+					}
+					
+					if (email != null) {
+						
+						champs = "email";
+						valeur = request.getParameter("email");
+
+						try {
+							utilisateurD.update(champs, valeur, utilisateurRecup);
+						} catch (DALException e) {
+							e.printStackTrace();
+						}
+						
+					}
+					
+					if (telephone != null) {
+						
+						champs = "telephone";
+						valeur = request.getParameter("telephone");
+
+						try {
+							utilisateurD.update(champs, valeur, utilisateurRecup);
+						} catch (DALException e) {
+							e.printStackTrace();
+						}
+						
+					}
+					
+					if (rue != null) {
+						
+						champs = "rue";
+						valeur = rue;
+
+						try {
+							utilisateurD.update(champs, valeur, utilisateurRecup);
+						} catch (DALException e) {
+							e.printStackTrace();
+						}
+						
+					}
+					
+					if (codePostal != null) {
+						
+						champs = "codePostal";
+						valeur = request.getParameter("cp");
+
+						try {
+							utilisateurD.update(champs, valeur, utilisateurRecup);
+						} catch (DALException e) {
+							e.printStackTrace();
+						}
+						
+					}
+					
+					if (ville != null) {
+						
+						champs = "ville";
+						valeur = request.getParameter("ville");
+
+						try {
+							utilisateurD.update(champs, valeur, utilisateurRecup);
+						} catch (DALException e) {
+							e.printStackTrace();
+						}
+						
+					}
+					
+					if (motDePasseActuel != null && motDePasse != null && motDePasseConfirme != null && motDePasse.equals(motDePasseConfirme)
+							&& motDePasseActuel.equals(utilisateurRecup.getMotDePasse())) {
+						
+						champs = "mot_de_passe";
+						valeur = request.getParameter("mdp");
+
+						try {
+							utilisateurD.update(champs, valeur, utilisateurRecup);
+						} catch (DALException e) {
+							e.printStackTrace();
+						}
+						
+					}
+					
+					System.out.println(valeur);
+					System.out.println(utilisateurRecup);
 					
 				}
-				
-				
+			
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}

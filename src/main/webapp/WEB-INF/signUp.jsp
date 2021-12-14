@@ -13,7 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/query.css">
-    <title>Inscription</title>
+	<c:if test="${empty sessionScope.utilisateurLogged }"><title>Inscription</title></c:if>
+    <c:if test="${not empty sessionScope.utilisateurLogged }"><title>Modification</title></c:if>
 </head>
 <body class="signUp">
 

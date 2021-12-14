@@ -20,7 +20,7 @@ public interface UtilisateurDAO {
 	public List<Utilisateur> selectAll() throws DALException;
 				
 	//Modifier les attributs d'un utilisateur connu en BD
-	public void update(Utilisateur utilisateur) throws DALException;
+	public void update(String champs, String valeur, Utilisateur utilisateur) throws DALException;
 				
 	//Insérer un nouvel utilisateur
 	public void insert(Utilisateur utilisateur) throws DALException;
