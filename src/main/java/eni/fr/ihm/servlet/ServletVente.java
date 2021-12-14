@@ -90,12 +90,12 @@ public class ServletVente extends HttpServlet {
 				
 				
 				try {
-					int Narticle =articleVenduManager.insert(art);
-					Retrait retraitArticle=new Retrait(rue,codePostal,ville);
+					ArticleVendu Narticle =articleVenduManager.insert(art);
+					Retrait retraitArticle=new Retrait(rue,codePostal,ville,Narticle);
 					System.out.println(Narticle);
-					retraitArticle.getNoArticle().setNoArticle(Narticle);
+					//retraitArticle.getNoArticle().setNoArticle(Narticle);
 				//	System.out.println(retraitArticle.getNoArticle().getNoArticle());
-//					retraitManager.insert(retraitArticle);
+					retraitManager.insert(retraitArticle);
 				} catch (DALException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
