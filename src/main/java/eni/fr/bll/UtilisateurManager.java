@@ -1,6 +1,8 @@
 package eni.fr.bll;
 
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import eni.fr.BusinessException;
 import eni.fr.bo.Utilisateur;
@@ -18,6 +20,7 @@ private UtilisateurDAO utilisateurDAO;
 		
 	}
 
+	// lors d'un insert
 	public Utilisateur ajouter(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) throws BusinessException {
 		
@@ -61,9 +64,15 @@ private UtilisateurDAO utilisateurDAO;
 		return utilisateur;
 	}
 	
+	// lors d'un update
+
+	
 	private void validerPseudo (Utilisateur utilisateur, BusinessException businessException) {
 		
-		if(utilisateur.getPseudo() == null) {
+		String pseudo = utilisateur.getPseudo();
+		int taillePseudo = pseudo.length();
+		
+		if(pseudo == null || taillePseudo > 30) {
 			
 			businessException.ajouterErreur(CodesResultatBLL.UTILISATEUR_PSEUDO_ERREUR);
 			
@@ -73,7 +82,10 @@ private UtilisateurDAO utilisateurDAO;
 	
 	private void validerNom (Utilisateur utilisateur, BusinessException businessException) {
 		
-		if(utilisateur.getNom() == null) {
+		String nom = utilisateur.getNom();
+		int tailleNom = nom.length();
+		
+		if(nom == null || tailleNom > 30) {
 			
 			businessException.ajouterErreur(CodesResultatBLL.UTILISATEUR_NOM_ERREUR);
 			
@@ -83,7 +95,10 @@ private UtilisateurDAO utilisateurDAO;
 	
 	private void validerPrenom (Utilisateur utilisateur, BusinessException businessException) {
 		
-		if(utilisateur.getPrenom() == null) {
+		String prenom = utilisateur.getPrenom();
+		int taillePrenom = prenom.length();
+		
+		if(prenom == null || taillePrenom > 30) {
 			
 			businessException.ajouterErreur(CodesResultatBLL.UTILISATEUR_PRENOM_ERREUR);
 			
@@ -93,7 +108,13 @@ private UtilisateurDAO utilisateurDAO;
 	
 	private void validerEmail (Utilisateur utilisateur, BusinessException businessException) {
 		
-		if(utilisateur.getEmail() == null) {
+		String email = utilisateur.getEmail();
+		int tailleEmail = email.length();
+		String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(email);
+		
+		if(email == null || !matcher.matches() || tailleEmail > 20) {			
 			
 			businessException.ajouterErreur(CodesResultatBLL.UTILISATEUR_EMAIL_ERREUR);
 			
@@ -103,7 +124,13 @@ private UtilisateurDAO utilisateurDAO;
 	
 	private void validerTelephone (Utilisateur utilisateur, BusinessException businessException) {
 		
-		if(utilisateur.getTelephone() == null) {
+		String telephone = utilisateur.getTelephone();
+		int tailleTelephone = telephone.length();
+		String regex = "^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(telephone);
+		
+		if(telephone == null || !matcher.matches() || tailleTelephone > 15) {
 			
 			businessException.ajouterErreur(CodesResultatBLL.UTILISATEUR_TELEPHONE_ERREUR);
 			
@@ -113,7 +140,10 @@ private UtilisateurDAO utilisateurDAO;
 	
 	private void validerRue (Utilisateur utilisateur, BusinessException businessException) {
 		
-		if(utilisateur.getRue() == null) {
+		String rue = utilisateur.getRue();
+		int tailleRue = rue.length();
+		
+		if(rue == null || tailleRue > 30) {
 			
 			businessException.ajouterErreur(CodesResultatBLL.UTILISATEUR_RUE_ERREUR);
 			
@@ -122,25 +152,34 @@ private UtilisateurDAO utilisateurDAO;
 	}
 	private void validerCodePostal (Utilisateur utilisateur, BusinessException businessException) {
 	
-	if(utilisateur.getCodePostal() == null) {
+		String codePostal = utilisateur.getCodePostal();
+		int tailleCodePostal = codePostal.length();
 		
-		businessException.ajouterErreur(CodesResultatBLL.UTILISATEUR_CODE_POSTAL_ERREUR);
+		if(codePostal == null || tailleCodePostal > 10) {
 		
-	}
+			businessException.ajouterErreur(CodesResultatBLL.UTILISATEUR_CODE_POSTAL_ERREUR);
+		
+		}
 	
 	}
 	private void validerVille (Utilisateur utilisateur, BusinessException businessException) {
 	
-	if(utilisateur.getVille() == null) {
+		String ville = utilisateur.getVille();
+		int tailleVille = ville.length();
 		
-		businessException.ajouterErreur(CodesResultatBLL.UTILISATEUR_VILLE_ERREUR);
+		if(ville == null || tailleVille > 30) {
 		
-	}
+			businessException.ajouterErreur(CodesResultatBLL.UTILISATEUR_VILLE_ERREUR);
+		
+		}
 	
 	}
 	private void validerMotDePasse (Utilisateur utilisateur, BusinessException businessException) {
 		
-		if(utilisateur.getMotDePasse() == null) {
+		String motDePasse = utilisateur.getMotDePasse();
+		int tailleMotDePasse = motDePasse.length();
+		
+		if(utilisateur.getMotDePasse() == null || tailleMotDePasse > 30) {
 			
 			businessException.ajouterErreur(CodesResultatBLL.UTILISATEUR_MOT_DE_PASSE_ERREUR);
 			
@@ -149,7 +188,7 @@ private UtilisateurDAO utilisateurDAO;
 		}
 	private void validerCredit (Utilisateur utilisateur, BusinessException businessException) {
 		
-		if(utilisateur.getCredit() == 0) {
+		if(utilisateur.getCredit() <= 0) {
 			
 			businessException.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREDIT_ERREUR);
 			

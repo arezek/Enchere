@@ -20,6 +20,7 @@ public class ArticleVenduManager {
 		
 	}
 	
+	// lors d'un insert
 	public ArticleVendu ajouter(String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, int miseAPrix, String etatVente, Utilisateur noUtilisateur, Categorie noCategorie) throws BusinessException {
 		
@@ -59,6 +60,8 @@ public class ArticleVenduManager {
 		
 		return articleVendu;
 	}
+	
+	// lors d'un update
 	
 	private void validerNomArticle (ArticleVendu articleVendu, BusinessException businessException) {
 		
@@ -140,6 +143,6 @@ public class ArticleVenduManager {
 	}
 	
 	}
-
+	
 }
 
