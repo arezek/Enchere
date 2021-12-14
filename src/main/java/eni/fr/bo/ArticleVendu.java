@@ -112,6 +112,7 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
+		
 	}
 
 	public int getNoArticle() {

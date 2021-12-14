@@ -35,8 +35,4 @@ public abstract class CodesResultatBLL {
 	 */
 	public static final int ARTICLE_VENDU_NO_CATEGORIE_ERREUR=20007;
 
-	
-	
-	
-	
 }
