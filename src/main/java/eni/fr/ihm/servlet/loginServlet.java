@@ -21,6 +21,7 @@ import eni.fr.dal.UtilisateurDAOJdbcImpl;
 /**
  * Servlet implementation class profilServlet
  * @author Fabien M. Gavoille et Eugénie Fuchs
+ * @author cookie par Zabaka fatima Zahra
  */
 @WebServlet("/loginServlet")
 public class loginServlet extends HttpServlet {
@@ -33,23 +34,25 @@ public class loginServlet extends HttpServlet {
 		RequestDispatcher rd = null;
 
 		boolean cookiePresent = false;
+		
 
 		// On vérifie la présence du cookie de connexion
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("connexion") && cookie.getValue().equals("ok")) {
-					cookiePresent = true;
-				}
+				if (cookie.getName().equals("id"))
+					request.setAttribute("identifiant", cookie.getValue());
+				if (cookie.getName().equals("mdp"))
+					request.setAttribute("mdp", cookie.getValue());
+				
 			}
 		}
-
-		// On redirige en fonction de la présence du cookie
 		if (cookiePresent) {
-			rd = request.getRequestDispatcher("WEB-INF/accueil.jsp");
+			rd = request.getRequestDispatcher("/ServletRecherche");
 		} else {
 			rd = request.getRequestDispatcher("WEB-INF/login.jsp");
 		}
+		
 		rd.forward(request, response);	
 
 	}
@@ -74,9 +77,10 @@ public class loginServlet extends HttpServlet {
 				}
 			}
 
-			rd = request.getRequestDispatcher("WEB-INF/accueil.jsp");
+			rd = request.getRequestDispatcher("/ServletRecherche");
 		} else {
 
+			
 			rd = request.getRequestDispatcher("WEB-INF/login.jsp");
 		}
 
