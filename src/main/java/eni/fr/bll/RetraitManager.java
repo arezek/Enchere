@@ -21,11 +21,11 @@ public class RetraitManager {
 		
 	}
 	
-	public Retrait ajouter(String rue, String codePostal, String ville) throws BusinessException {
+	public Retrait ajouter(String rue, String codePostal, String ville, ArticleVendu article) throws BusinessException {
 		
 		BusinessException exception = new BusinessException();
 		
-		Retrait retrait = new Retrait(rue, codePostal, ville);
+		Retrait retrait = new Retrait(rue, codePostal, ville, article);
 		
 		this.validerRue(retrait, exception);
 		this.validerCodePostal(retrait, exception);

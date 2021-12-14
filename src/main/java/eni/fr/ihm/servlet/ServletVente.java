@@ -96,7 +96,7 @@ public class ServletVente extends HttpServlet {
 					
 					
 					
-					Retrait retraitArticle= retraitManager.ajouter(rue, codePostal, ville);
+					Retrait retraitArticle= retraitManager.ajouter(rue, codePostal, ville, Narticle);
 					
 				} catch (BusinessException e) {
 					// TODO Auto-generated catch block
@@ -115,7 +115,7 @@ public class ServletVente extends HttpServlet {
 				Retrait retraitArticle=new Retrait(rue,codePostal,ville);
 				try {
 					articleVenduManager.ajouter(nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, utilisateurLogged, noCategorie);
-					retraitManager.ajouter(rue, codePostal, ville);
+					retraitManager.ajouter(rue, codePostal, ville, art);
 				} catch (BusinessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
