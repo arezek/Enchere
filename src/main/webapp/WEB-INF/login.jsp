@@ -24,14 +24,14 @@
     </div>
 
     <div class="form">
-      <input type="text" id="identifiant" name="identifiant" value="${identifiant}"><br>
+      <input type="text" id="identifiant" name="identifiant" <%-- value="${identifiant}" --%>><br>
     </div>
 
     <div class="form">
       <label for="nom">Mot de passe </label><br>
     </div>
     <div class="form">
-        <input type="password" id="mdp" name="mdp" value="${mdp}"><br>
+        <input type="password" id="mdp" name="mdp" <%-- value="${mdp}" --%>><br>
     </div>      
    
     <div class="form">
