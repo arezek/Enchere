@@ -75,47 +75,52 @@ header {
 }
 /* SEPARATION */
 #separator{
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 	height: 10px;
     width: 100%;
     background: linear-gradient(
 0deg, rgba(122,122,122,0) 0%, rgba(130,226,212,1) 100%);
 }
 /* LIGNE DE RECHERCHE */
-form {
-    margin: 40px;
+#searchBar {
+	 /* width : 70%;
+	 margin : auto; */ 
+}
+form {    
     display: flex;
+    /* align-content : flex-start; */
     justify-content: center;
-    flex-flow: row wrap;   
-     
+    flex-flow: row wrap;  
+    margin-bottom: 30px;       
 }
 #searchIcon {
 	width: 20px;    
 }
 #searchInput {    
     width: 300px;
-    margin-right: 40px;
-    margin-bottom: 30px;    
+    margin-right: 40px;       
     color: #111111;     
     border: none;
+    font-size : 16px;
     background-color: #fafafa;
     border-bottom: 5px solid grey; 
 }
+
 #searchButton {
     border-radius: 8px;
-    width: 250px;
-    height: 50px;    
+    width: 120px;
+    height: 35px;    
     background-color: #73d3c0 ;
-    font-size: 25px;
+    font-size: 16px;
     color: white;
-    font-weight: 700;
-    margin-top: -10px;
-    margin-bottom: 30px;    
+    font-weight: 700;            
     opacity: 0.8;
+    border : none;
 }
 #catList {    
     color: #111111;
-    margin-right: 30px;       
+    margin-right: 30px;  
+    padding-top: 10px;     
 }
 #catLabel {
 	margin-right : 15px;
@@ -126,7 +131,17 @@ form {
     
 }
 
+/***** Filtre connecté ******/
+
+#filtres div {
+	color : #111111;
+	font-weight : 400;	
+	padding-top : 10px;
+}
+
+
 /* ARTICLES */
+
 .vendeur {
     margin-right: 15px;
     
