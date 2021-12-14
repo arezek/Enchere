@@ -21,16 +21,15 @@ public class RetraitManager {
 		
 	}
 	
-	public Retrait ajouter(String rue, String codePostal, String ville, ArticleVendu noArticle) throws BusinessException {
+	public Retrait ajouter(String rue, String codePostal, String ville) throws BusinessException {
 		
 		BusinessException exception = new BusinessException();
 		
-		Retrait retrait = new Retrait(rue, codePostal, ville, noArticle);
+		Retrait retrait = new Retrait(rue, codePostal, ville);
 		
 		this.validerRue(retrait, exception);
 		this.validerCodePostal(retrait, exception);
 		this.validerVille(retrait, exception);
-		this.validerNoArticle(retrait, exception);
 
 		if(!exception.hasErreurs()) {
 			
@@ -92,16 +91,6 @@ public class RetraitManager {
 		
 		}
 	
-	}
-	
-	private void validerNoArticle (Retrait retrait, BusinessException businessException) {
-		
-		if (retrait.getNoArticle() == null) {
-			
-			businessException.ajouterErreur(CodesResultatBLL.RETRAIT_NO_ARTICLE_ERREUR);
-			
-		}
-		
 	}
 	
 }

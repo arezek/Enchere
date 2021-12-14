@@ -103,14 +103,13 @@ public class ArticleVendu {
 	
 
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			int miseAPrix, String etatVente, Utilisateur noUtilisateur, Categorie noCategorie) {
+			int miseAPrix, Utilisateur noUtilisateur, Categorie noCategorie) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
-		this.etatVente = etatVente;
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 		

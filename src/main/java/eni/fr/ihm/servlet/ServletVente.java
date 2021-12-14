@@ -1,9 +1,7 @@
 package eni.fr.ihm.servlet;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,17 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import eni.fr.BusinessException;
+import eni.fr.bll.ArticleVenduManager;
+import eni.fr.bll.RetraitManager;
 import eni.fr.bo.ArticleVendu;
 import eni.fr.bo.Categorie;
 import eni.fr.bo.Retrait;
 import eni.fr.bo.Utilisateur;
-import eni.fr.dal.ArticleVenduDAO;
 import eni.fr.dal.ArticleVenduDAOJdbcImpl;
 import eni.fr.dal.DALException;
-import eni.fr.dal.RetraitDAO;
 import eni.fr.dal.RetraitDAOJdbcImpl;
-import eni.fr.dal.UtilisateurDAO;
-import eni.fr.dal.UtilisateurDAOJdbcImpl;
 
 /**
  * @author ZABAKA FATIMA ZAHRA
@@ -40,7 +37,8 @@ public class ServletVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/Vente.jsp");
-		rd.forward(request, response);	}
+		rd.forward(request, response);	
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -75,8 +73,8 @@ public class ServletVente extends HttpServlet {
 			String rue= request.getParameter("rue");
 			String codePostal= request.getParameter("codePostal");
 			String ville= request.getParameter("ville");
-			ArticleVenduDAO articleVenduManager = new ArticleVenduDAOJdbcImpl();
-			RetraitDAO retraitManager=new RetraitDAOJdbcImpl();
+			ArticleVenduManager articleVenduManager = new ArticleVenduManager();
+			RetraitManager retraitManager=new RetraitManager();
 			
 			if(nomArticle != null && description != null && miseAPrix != 0 && dateDebutEncheres != null && 
 					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue != null && codePostal != null && ville != null )
@@ -90,13 +88,17 @@ public class ServletVente extends HttpServlet {
 				
 				
 				try {
-					ArticleVendu Narticle =articleVenduManager.insert(art);
-					Retrait retraitArticle=new Retrait(rue,codePostal,ville,Narticle);
+					ArticleVendu Narticle =articleVenduManager.ajouter(nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, utilisateurLogged, noCategorie);
+					
 					System.out.println(Narticle);
 					//retraitArticle.getNoArticle().setNoArticle(Narticle);
 				//	System.out.println(retraitArticle.getNoArticle().getNoArticle());
-					retraitManager.insert(retraitArticle);
-				} catch (DALException e) {
+					
+					
+					
+					Retrait retraitArticle= retraitManager.ajouter(rue, codePostal, ville);
+					
+				} catch (BusinessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -112,24 +114,23 @@ public class ServletVente extends HttpServlet {
 				
 				Retrait retraitArticle=new Retrait(rue,codePostal,ville);
 				try {
-					articleVenduManager.insert(art);
-					retraitManager.insert(retraitArticle);
-				} catch (DALException e) {
+					articleVenduManager.ajouter(nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, utilisateurLogged, noCategorie);
+					retraitManager.ajouter(rue, codePostal, ville);
+				} catch (BusinessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				System.out.println(art.getNomArticle()+" "+art.getDescription()+" "+art.getDateDebutEncheres()+" "+art.getDateFinEncheres()+" "+art.miseAPrix+" ");
-				
 				
 			}
 			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
+	
+		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/Vente.jsp");
+		rd.forward(request, response);	
 		
-		
-		
-		doGet(request, response);
 	}
 
 }

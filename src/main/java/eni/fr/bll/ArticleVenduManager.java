@@ -22,19 +22,18 @@ public class ArticleVenduManager {
 	
 	// lors d'un insert
 	public ArticleVendu ajouter(String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, String etatVente, Utilisateur noUtilisateur, Categorie noCategorie) throws BusinessException {
+			LocalDate dateFinEncheres, int miseAPrix, Utilisateur noUtilisateur, Categorie noCategorie) throws BusinessException {
 		
 		BusinessException exception = new BusinessException();
 		
 		ArticleVendu articleVendu = new ArticleVendu(nomArticle, description, dateDebutEncheres,
-				dateFinEncheres, miseAPrix, etatVente, noUtilisateur, noCategorie);
+				dateFinEncheres, miseAPrix, noUtilisateur, noCategorie);
 		
 		this.validerNomArticle(articleVendu, exception);
 		this.validerDescription(articleVendu, exception);
 		this.validerDateDebutEncheres(articleVendu, exception);
 		this.validerDateFinEncheres(articleVendu, exception);
 		this.validerMiseAPrix(articleVendu, exception);
-		this.validerEtatVente(articleVendu, exception);
 		this.validerNoUtilisateur(articleVendu, exception);
 		this.validerNoCategorie(articleVendu, exception);
 		
@@ -114,17 +113,6 @@ public class ArticleVenduManager {
 		
 	}
 	
-	private void validerEtatVente (ArticleVendu articleVendu, BusinessException businessException) {
-		
-		String etatVenteFinished = "termine";
-		
-		if(articleVendu.getEtatVente() == etatVenteFinished) {
-			
-			businessException.ajouterErreur(CodesResultatBLL.ARTICLE_VENDU_ETAT_VENTE_ERREUR);
-	
-		}
-		
-	}
 	private void validerNoUtilisateur (ArticleVendu articleVendu, BusinessException businessException) {
 	
 	if(articleVendu.getNoUtilisateur() == null) {
@@ -143,6 +131,7 @@ public class ArticleVenduManager {
 	}
 	
 	}
+	
 	
 }
 
