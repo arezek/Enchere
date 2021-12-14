@@ -1,5 +1,7 @@
 package eni.fr.dal;
 
+import java.util.List;
+
 import eni.fr.bo.Utilisateur;
 
 /**
@@ -8,22 +10,22 @@ import eni.fr.bo.Utilisateur;
 
 public interface UtilisateurDAO {
 
-	//Sélectionner un Categorie par son noCategorie
+	//Sélectionner un utilisateur par son noUtilisateur
 	public Utilisateur selectById(int noUtilisateur) throws DALException;
 	
-	//Sélectionner un Categorie par son noCategorie
+	//Sélectionner un utilisateur par son pseudo
 	public Utilisateur selectByPseudo(String pseudo) throws DALException;
 				
-	//Sélectionner tous les Categories 
-	public Utilisateur selectAll() throws DALException;
+	//Sélectionner tous les utilisateurs
+	public List<Utilisateur> selectAll() throws DALException;
 				
-	//Modifier les attributs d'un Categorie connu en BD
+	//Modifier les attributs d'un utilisateur connu en BD
 	public void update(Utilisateur utilisateur) throws DALException;
 				
-	//Insérer une nouvelle Categorie
+	//Insérer un nouvel utilisateur
 	public void insert(Utilisateur utilisateur) throws DALException;
 				
-	//Supprimer une Categorie
-	public void delete(int id) throws DALException;
+	//Supprimer un utilisateur
+	public void delete(int noUtilisateur) throws DALException;
 	
 }

@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import eni.fr.bo.ArticleVendu;
 import eni.fr.bo.Categorie;
@@ -16,9 +19,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String INSERT="INSERT INTO Utilisateurs(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,100,0);";
 	private static final String SELECTBYID = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS  WHERE no_utilisateur =?";
 	private static final String SELECTBYPSEUDO = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS  WHERE pseudo=?";
+	private static final String SELECTALL = "SELECT no_article, nom_article,description,date_debut_encheres,date_fin_encheres, prix_initial,etat_vente, ARTICLES_VENDUS.no_utilisateur,ARTICLES_VENDUS.no_categorie, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur, libelle FROM UTILISATEURS  INNER JOIN ARTICLES_VENDUS ON UTILISATEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur inner join CATEGORIES on CATEGORIES.no_categorie=ARTICLES_VENDUS.no_categorie";
+	private static final String DELETE = "delete from UTILISATEURS where no_utilisateur=?";
+	private static final String UPDATE = "UPDATE UTILISATEURS SET pseudo = ?, nom= ?, prenom= ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?, administrateur = ?  WHERE no_utilisateur = ?";
+	int i = 1;
 	
 	@Override
 	public void insert(Utilisateur utilisateur) /*throws BusinessException*/ {
+		
 //		if(utilisateur==null)
 //		{
 //			BusinessException businessException = new BusinessException();
@@ -132,29 +140,96 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 		} catch (SQLException e) {
 			
-			throw new DALException("erreur de requete de recherche d'articles", e);
+			throw new DALException("erreur de requete de recherche d'utilisateur par son pseudo", e);
 		}
 
 		return utilisateur;
 	}
 
 	@Override
-	public Utilisateur selectAll() throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Utilisateur> selectAll() throws DALException {
+		List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
+		try (Connection con = ConnectionProvider.getConnection();
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(SELECTALL);) {
+			Utilisateur utilisateur= null;
+			while (rs.next()) {
+				
+				ArticleVendu article = new ArticleVendu(rs.getInt("no_article"),
+						rs.getString("nom_article"),
+						rs.getDate("date_fin_encheres").toLocalDate(),
+						rs.getInt("prix_initial"),
+						rs.getString("etat_vente"));
+				
+				Categorie categorie = new Categorie(rs.getString("libelle"));
+				
+				utilisateur = new Utilisateur(rs.getInt("no_utilisateur"),
+						rs.getString("pseudo"),
+						rs.getString("nom"),
+						rs.getString("prenom"),
+						rs.getString("email"),
+						rs.getString("telephone"),
+						rs.getString("rue"),
+						rs.getString("code_postal"),
+						rs.getString("ville"),
+						rs.getString("mot_de_passe"),
+						rs.getInt("credit"),
+						rs.getBoolean("administrateur"));
+				
+				article.setNoUtilisateur(utilisateur);
+				article.setNoCategorie(categorie);
+				
+				utilisateurs.add(utilisateur);
+				
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("erreur de requete select ALL", e);
+		}
+		return utilisateurs;
 	}
 
 	@Override
 	public void update(Utilisateur utilisateur) throws DALException {
-		// TODO Auto-generated method stub
+		  try(Connection con = ConnectionProvider.getConnection();
+			        PreparedStatement Pstmt = con.prepareStatement(UPDATE,PreparedStatement.RETURN_GENERATED_KEYS);
+			                ) 
+			        {
+			        
+			        	Pstmt.setString(i++,utilisateur.getPseudo());
+						Pstmt.setString(i++, utilisateur.getNom());
+						Pstmt.setString(i++, utilisateur.getPrenom());
+						Pstmt.setString(i++, utilisateur.getEmail());
+						Pstmt.setString(i++, utilisateur.getTelephone());
+						Pstmt.setString(i++, utilisateur.getRue());
+						Pstmt.setString(i++, utilisateur.getCodePostal());
+						Pstmt.setString(i++, utilisateur.getVille());
+						Pstmt.setString(i++, utilisateur.getMotDePasse());
+						
+						Pstmt.setInt(i++, utilisateur.getCredit());
+						Pstmt.setBoolean(i++, utilisateur.getAdministrateur());
+			          
+			            Pstmt.executeUpdate();
+			            
+			        } catch (SQLException e) {
+			        	
+			            throw new DALException("erreur de requete update",e);
+			            
+			        }
 		
 	}
 
 	
 
 	@Override
-	public void delete(int id) throws DALException {
-		// TODO Auto-generated method stub
+	public void delete(int noUtilisateur) throws DALException {
+		try (Connection con = ConnectionProvider.getConnection();
+                PreparedStatement Pstmt = con.prepareStatement(DELETE)){
+                Pstmt.setInt(1, noUtilisateur);
+                Pstmt.executeUpdate();
+        }catch (SQLException e) {
+        throw new DALException("erreur de requete Delete",e);
+    }
 		
 	}
 
