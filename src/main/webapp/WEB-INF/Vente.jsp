@@ -55,7 +55,7 @@
 						</select>	
 					</div>
 
-				<div class="buyForm">
+				<%-- <div class="buyForm">
 					<c:if test="${ !empty photo }"><p><c:out value="L'image ${ photo }  a été uploadé !" /></p></c:if>
 						<form method="post" action="Servletvente" enctype="multipart/form-data">        
  							<p>
@@ -64,7 +64,7 @@
 							</p>
 							<input type="submit" value="Charger" />
 						</form>						
-					</div>
+					</div> --%>
 
 					<div class="buyForm">
 						<label for="miseaprix">Mise à prix</label>
