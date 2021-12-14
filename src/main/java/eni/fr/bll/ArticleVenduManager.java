@@ -118,7 +118,7 @@ public class ArticleVenduManager {
 		if(articleVendu.getEtatVente() == etatVenteFinished) {
 			
 			businessException.ajouterErreur(CodesResultatBLL.ARTICLE_VENDU_ETAT_VENTE_ERREUR);
-			
+	
 		}
 		
 	}

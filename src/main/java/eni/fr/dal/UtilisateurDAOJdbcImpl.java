@@ -13,7 +13,6 @@ import eni.fr.bo.Categorie;
 import eni.fr.bo.Utilisateur;
 
 
-
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	private static final String INSERT="INSERT INTO Utilisateurs(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,100,0);";

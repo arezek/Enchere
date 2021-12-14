@@ -111,6 +111,7 @@ public class Utilisateur {
 	public String getRue() {
 		return rue;
 	}
+	
 
 	public void setRue(String rue) {
 		this.rue = rue;

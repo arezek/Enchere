@@ -15,7 +15,7 @@ public interface UtilisateurDAO {
 	
 	//Sélectionner un utilisateur par son pseudo
 	public Utilisateur selectByPseudo(String pseudo) throws DALException;
-				
+			
 	//Sélectionner tous les utilisateurs
 	public List<Utilisateur> selectAll() throws DALException;
 				

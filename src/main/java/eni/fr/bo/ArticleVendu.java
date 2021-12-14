@@ -19,6 +19,7 @@ public class ArticleVendu {
 	public Utilisateur noUtilisateur;
 	public Categorie noCategorie;
 	
+	
 	/**
 	 * @param noArticle
 	 * @param nomArticle
