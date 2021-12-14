@@ -15,7 +15,7 @@
         	<a href="" class="headerlinks">Enchères</a>
           	<a href="<%=request.getContextPath()%>/ServletVente?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Vendre un article</a>
           	<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Mon Profil</a>
-          	<a href="" class="headerlinks">Déconnexion</a>
+          	<a href="<%=request.getContextPath()%>/Deconnexion?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Déconnexion</a>
                 	<%-- <% } else { %> --%> 	
         </c:if> 
                 
