@@ -23,17 +23,15 @@ import javax.servlet.http.Part;
 @WebServlet("/UplaodImagetest")
 public class UplaodImagetest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final int TAILLE_TAMPON = 10240; //définir un tampon pour la copie
-	public static final String CHEMIN_FICHIERS = "/img/fichiers/ArticlesPhotos"; // A changer  
-	public String uploadPath;
-	 public static final String IMAGES_FOLDER = "/img";
+		
+	public static final String IMAGES_FOLDER = "C://Users/vmware/Documents/JavaProject/ENI-Encheres/src/main/webapp/img/ArticlesPhotos/";
 	 @Override
-	    public void init() throws ServletException {
-	        uploadPath = getServletContext().getRealPath( IMAGES_FOLDER );
-	        File uploadDir = new File( uploadPath );
-	        if ( ! uploadDir.exists() ) uploadDir.mkdir();
-	    }
-   
+//	    public void init() throws ServletException {
+//	        uploadPath = getServletContext().getRealPath( IMAGES_FOLDER );
+//	        File uploadDir = new File( uploadPath );
+//	        if ( ! uploadDir.exists() ) uploadDir.mkdir();
+//	    }
+//   //	    if(fileName.equalsIgnoreCase("A.png")) fileName="B.png";
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -41,71 +39,17 @@ public class UplaodImagetest extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// On récupère le champ du fichier
-//        Part part = request.getPart("fichier");
-//            
-//        // On vérifie qu'on a bien reçu un fichier
-//        String nomFichier = getNomFichier(part);
-//
-//        // Si on a bien un fichier
-//        if (nomFichier != null && !nomFichier.isEmpty()) {
-//            String nomChamp = part.getName();
-//            // Corrige un bug du fonctionnement d'Internet Explorer
-//             nomFichier = nomFichier.substring(nomFichier.lastIndexOf('/') + 1)
-//                    .substring(nomFichier.lastIndexOf('/') + 1);
-//
-//            // On écrit définitivement le fichier sur le disque
-//            ecrireFichier(part, nomFichier, CHEMIN_FICHIERS);
-//
-//            request.setAttribute(nomChamp, nomFichier);
-//        }
-//
-//        this.getServletContext().getRequestDispatcher("/WEB-INF/JSPtestImage.jsp").forward(request, response);
-//    }
-//
-//    private void ecrireFichier( Part part, String nomFichier, String chemin ) throws IOException {
-//        BufferedInputStream entree = null;
-//        BufferedOutputStream sortie = null;
-//        try {
-//            entree = new BufferedInputStream(part.getInputStream(), TAILLE_TAMPON);
-//            sortie = new BufferedOutputStream(new FileOutputStream(new File(chemin + nomFichier)), TAILLE_TAMPON);
-//
-//            byte[] tampon = new byte[TAILLE_TAMPON];
-//            int longueur;
-//            while ((longueur = entree.read(tampon)) > 0) {
-//                sortie.write(tampon, 0, longueur);
-//            }
-//        } finally {
-//            try {
-//                sortie.close();
-//            } catch (IOException ignore) {
-//            }
-//            try {
-//                entree.close();
-//            } catch (IOException ignore) {
-//            }
-//        }
-//    }
-//    
-//    private static String getNomFichier( Part part ) {
-//        for ( String contentDisposition : part.getHeader( "content-disposition" ).split( ";" ) ) {
-//            if ( contentDisposition.trim().startsWith( "filename" ) ) {
-//                return contentDisposition.substring( contentDisposition.indexOf( '=' ) + 1 ).trim().replace( "\"", "" );
-//            }
-//        }
-//        return null;	
-		
-		Part filePart = request.getPart("file");
-	    String fileName = filePart.getSubmittedFileName();
-	    for (Part part : request.getParts()) {
-	      part.write("/img" + fileName);
-	    }	    
-	  
-		    
-	    response.getWriter().print("Photo chargée avec succès");
-	    
 	
-	    
+		
+		Part filePart = request.getPart("photo");
+	    String fileName = filePart.getSubmittedFileName();
+		
+	    fileName = fileName.substring(fileName.lastIndexOf(File.separatorChar)+1);		
+		
+	    filePart.write(IMAGES_FOLDER + fileName);
+		
+    	  		    
+	    response.getWriter().print("Photo chargée avec succès");    
 	    
 	  }
 		
