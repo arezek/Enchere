@@ -45,12 +45,15 @@
     	<servlet-name>signUp</servlet-name>
     	<url-pattern>/signUp</url-pattern>
   </servlet-mapping>
-  
-     <!--   <multipart-config>
-            <location>/img/ArticlePhotos/</location> A adapter chez vous
-            <max-file-size>10485760</max-file-size> 10 Mo un seul fichier
-            <max-request-size>52428800</max-request-size> 5 x 10 Mo l'ensemble pour un envoie de formulaire
-            <file-size-threshold>1048576</file-size-threshold> 1 Mo taille minimum pour passer au fichier temps
-        </multipart-config> -->
+   <servlet>
+    	<servlet-name>ServletVente</servlet-name>    	
+    	<!-- <servlet-class>eni.fr.ihm.servlet.ServletVente</servlet-class>     -->
+      <multipart-config>
+            <location>/img/ArticlePhotos/</location> 
+            <max-file-size>10485760</max-file-size> 
+            <max-request-size>52428800</max-request-size> 
+            <file-size-threshold>1048576</file-size-threshold> 
+       </multipart-config> 
+    </servlet>   
      
 </web-app>

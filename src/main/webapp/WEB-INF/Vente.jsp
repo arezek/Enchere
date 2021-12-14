@@ -55,16 +55,16 @@
 						</select>	
 					</div>
 
-			<%-- 		<div class="buyForm">
-					<c:if test="${ !empty fichier }"><p><c:out value="Le fichier ${ fichier } (${ description }) a été uploadé !" /></p>
-						<form method="post" action="" enctype="multipart/form-data">        
+				<div class="buyForm">
+					<c:if test="${ !empty photo }"><p><c:out value="L'image ${ photo }  a été uploadé !" /></p></c:if>
+						<form method="post" action="Servletvente" enctype="multipart/form-data">        
  							<p>
 								<label for="photo">Photo de l'article  </label>
 								<input type="file" name="photo" id="imgLink" />
 							</p>
 							<input type="submit" value="Charger" />
 						</form>						
-					</div> --%>
+					</div>
 
 					<div class="buyForm">
 						<label for="miseaprix">Mise à prix</label>
