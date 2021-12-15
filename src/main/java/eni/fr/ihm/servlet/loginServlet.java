@@ -34,27 +34,24 @@ public class loginServlet extends HttpServlet {
 		RequestDispatcher rd = null;
 
 		boolean cookiePresent = false;
-		
 
 		// On vérifie la présence du cookie de connexion
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("id"))
-					request.setAttribute("identifiant", cookie.getValue());
-				if (cookie.getName().equals("mdp"))
-					request.setAttribute("mdp", cookie.getValue());
-				
+				if (cookie.getName().equals("connexion") && cookie.getValue().equals("ok")) {
+					cookiePresent = true;
+				}
 			}
 		}
+
+		// On redirige en fonction de la présence du cookie
 		if (cookiePresent) {
 			rd = request.getRequestDispatcher("/ServletRecherche");
 		} else {
-			rd = request.getRequestDispatcher("WEB-INF/login.jsp");
+			rd = request.getRequestDispatcher("WEB-INF/loginServlet");
 		}
-		
-		rd.forward(request, response);	
-
+		rd.forward(request, response);
 	}
 
 	/**
