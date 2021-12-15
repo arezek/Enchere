@@ -9,6 +9,7 @@ import eni.fr.bo.Enchere;
  * @author EUGENIE FUCHS 
  */
 
+
 public interface EnchereDAO {
 	
 	//Sélectionner une Enchere par son Utilisateur

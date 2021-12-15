@@ -18,6 +18,7 @@ import eni.fr.dal.CategorieDAO;
 * @author Eugénie FUCHS
 */
 
+
 public class CategorieDAOJdbcImpl implements CategorieDAO {
 
 	private static final String INSERT = "INSERT INTO CATEGORIES(libelle) VALUES (?)";

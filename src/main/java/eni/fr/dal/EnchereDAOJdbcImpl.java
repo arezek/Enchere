@@ -19,6 +19,7 @@ import eni.fr.bo.Utilisateur;
 * @author Eugénie FUCHS
 */
 
+
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	private static final String INSERT = "INSERT INTO ENCHERES(rue, code_postal, ville, no_article) VALUES (?, ?, ?, ?)";

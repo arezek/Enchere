@@ -10,6 +10,7 @@ import eni.fr.bo.Categorie;
  * @author ALLIOUCHE 
  */
 
+
 public interface CategorieDAO {
 		//Sélectionner un Categorie par son noCategorie (test)
 		public Categorie selectById(int noCategorie) throws DALException,BusinessException;
