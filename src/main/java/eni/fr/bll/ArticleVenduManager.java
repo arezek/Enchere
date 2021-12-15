@@ -84,7 +84,7 @@ public class ArticleVenduManager {
 				
 				int numCategorie = noCategorie.getNoCategorie();
 				
-				this.articleVenduDAO.search(nomArticle, numCategorie);
+				liste = this.articleVenduDAO.search(nomArticle, numCategorie);
 				System.out.println(nomArticle + " " + numCategorie);
 				
 			} catch (DALException e) {
