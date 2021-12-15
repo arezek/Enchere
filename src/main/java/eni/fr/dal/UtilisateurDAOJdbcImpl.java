@@ -24,7 +24,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String DELETE = "delete from UTILISATEURS where no_utilisateur=?";
 //	private static final String UPDATE = "UPDATE UTILISATEURS SET ? = ? WHERE no_utilisateur = ?";
 	int i = 1;
-	private static final String SELECTCOUNTBYPSEUDO = "SELECT COUNT(*) as compteur FROM utilisateur WHERE pseudo = ?";
+	private static final String SELECTCOUNTBYPSEUDO = "SELECT COUNT(*) as compteur FROM UTILISATEURS WHERE pseudo = ?";
 	
 	@Override 
 	public int selectCountByPseudo(String pseudo) throws BusinessException {
@@ -34,8 +34,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 		try (Connection con = ConnectionProvider.getConnection(); 
 			 PreparedStatement rqt = con.prepareStatement(SELECTCOUNTBYPSEUDO);)
-
 		{
+			
 			
 			rqt.setString(1, pseudo);
 			rs = rqt.executeQuery();
