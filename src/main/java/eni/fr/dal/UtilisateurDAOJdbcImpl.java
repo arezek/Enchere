@@ -253,8 +253,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		else if(champs.equals("codePostal")) {
 			UPDATE = "UPDATE UTILISATEURS SET codePostal = ? WHERE no_utilisateur = ?";
 		}
+		else if(champs.equals("ville")) {
+			UPDATE = "UPDATE UTILISATEURS SET ville = ? WHERE no_utilisateur = ?";
+		}
 		else if(champs.equals("mot_de_passe")) {
 			UPDATE = "UPDATE UTILISATEURS SET mot_de_passe = ? WHERE no_utilisateur = ?";
+		}
+		else if(champs.equals("credit")) {
+			UPDATE = "UPDATE UTILISATEURS SET credit = ? WHERE no_utilisateur = ?";
 		}
 		  try(Connection con = ConnectionProvider.getConnection();
 			        PreparedStatement Pstmt = con.prepareStatement(UPDATE,PreparedStatement.RETURN_GENERATED_KEYS);

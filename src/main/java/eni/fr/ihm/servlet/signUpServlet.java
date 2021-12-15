@@ -39,6 +39,7 @@ public class signUpServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String pseudo;
@@ -120,7 +121,7 @@ public class signUpServlet extends HttpServlet {
 
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
-							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
+							utilisateurD.modifier(champs, valeur, utilisateurRecup);
 						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
@@ -134,7 +135,7 @@ public class signUpServlet extends HttpServlet {
 
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
-							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
+							utilisateurD.modifier(champs, valeur, utilisateurRecup);
 						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
@@ -148,7 +149,7 @@ public class signUpServlet extends HttpServlet {
 
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
-							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
+							utilisateurD.modifier(champs, valeur, utilisateurRecup);
 						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
@@ -162,7 +163,7 @@ public class signUpServlet extends HttpServlet {
 
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
-							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
+							utilisateurD.modifier(champs, valeur, utilisateurRecup);
 						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
@@ -176,7 +177,7 @@ public class signUpServlet extends HttpServlet {
 
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
-							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
+							utilisateurD.modifier(champs, valeur, utilisateurRecup);
 						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
@@ -191,7 +192,7 @@ public class signUpServlet extends HttpServlet {
 						System.out.println(utilisateurRecup.getNoUtilisateur());
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
-							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
+							utilisateurD.modifier(champs, valeur, utilisateurRecup);
 						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
@@ -205,7 +206,7 @@ public class signUpServlet extends HttpServlet {
 
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
-							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
+							utilisateurD.modifier(champs, valeur, utilisateurRecup);
 						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
@@ -219,7 +220,7 @@ public class signUpServlet extends HttpServlet {
 
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
-							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
+							utilisateurD.modifier(champs, valeur, utilisateurRecup);
 						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
@@ -234,7 +235,7 @@ public class signUpServlet extends HttpServlet {
 
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
-							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
+							utilisateurD.modifier(champs, valeur, utilisateurRecup);
 						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
