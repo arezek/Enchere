@@ -85,7 +85,7 @@ public abstract class CodesResultatBLL {
 	/**
 	 * Echec quand l'utilisateur est noté admin par de manières douteuses (sécurité ?)
 	 */
-	public static final int UTILISATEUR_ADMINISTRATEUR_ERREUR=20018;
+	//public static final int UTILISATEUR_ADMINISTRATEUR_ERREUR=20018;
 	
 	// UTILISATEUR MODIFICATION
 

@@ -21,13 +21,12 @@ private UtilisateurDAO utilisateurDAO;
 	}
 
 	// lors d'un insert
-	public Utilisateur ajouter(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) throws BusinessException {
+	public Utilisateur ajouter(Utilisateur utilisateur) throws BusinessException, DALException {
 		
 		BusinessException exception = new BusinessException();
 		
-		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
-			 codePostal, ville, motDePasse, credit, administrateur);
+//		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
+//			 codePostal, ville, motDePasse, credit, administrateur);
 		
 		this.validerPseudo(utilisateur, exception);
 		this.validerNom(utilisateur, exception);
@@ -67,7 +66,7 @@ private UtilisateurDAO utilisateurDAO;
 	// lors d'un update
 	
 	public Utilisateur modifier(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) throws BusinessException {
+			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) throws BusinessException, DALException {
 		
 		BusinessException exception = new BusinessException();
 		
@@ -113,12 +112,14 @@ private UtilisateurDAO utilisateurDAO;
 	}
 
 	
-	private void validerPseudo (Utilisateur utilisateur, BusinessException businessException) {
+	private void validerPseudo (Utilisateur utilisateur, BusinessException businessException) throws DALException, BusinessException {
 		
 		String pseudo = utilisateur.getPseudo();
 		int taillePseudo = pseudo.length();
 		
-		if(pseudo == null || taillePseudo > 30) {
+		int compteur = this.utilisateurDAO.selectCountByPseudo(pseudo);
+		
+		if(pseudo == null || taillePseudo > 30 || compteur > 0) {
 			
 			businessException.ajouterErreur(CodesResultatBLL.UTILISATEUR_PSEUDO_ERREUR);
 			
@@ -156,7 +157,7 @@ private UtilisateurDAO utilisateurDAO;
 		
 		String email = utilisateur.getEmail();
 		int tailleEmail = email.length();
-		String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+		String regex = "^[a-z0-9+_.-]+@(.+)$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(email);
 		

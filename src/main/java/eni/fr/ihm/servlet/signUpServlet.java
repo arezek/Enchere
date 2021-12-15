@@ -89,8 +89,8 @@ public class signUpServlet extends HttpServlet {
 						sessionACreer.setAttribute("utilisateur", utilisateur);
 						
 						try {
-							utilisateurD.ajouter(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, creditDeDepart, administrateur);
-						} catch (BusinessException e) {
+							utilisateurD.ajouter(utilisateur);
+						} catch (BusinessException | DALException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
@@ -98,7 +98,9 @@ public class signUpServlet extends HttpServlet {
 						System.out.println(utilisateur.getNom()+" "+utilisateur.getRue()+" "+utilisateur.getPrenom()+" "+utilisateur.getEmail()+" "+utilisateur.getTelephone()+" ");
 						
 					}
+					
 				} else {
+					
 					session=request.getSession();
 					Utilisateur utilisateurRecup = (Utilisateur) session.getAttribute("utilisateurLogged");
 					
@@ -119,7 +121,7 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
-						} catch (BusinessException e) {
+						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
 						
@@ -133,7 +135,7 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
-						} catch (BusinessException e) {
+						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
 						
@@ -147,7 +149,7 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
-						} catch (BusinessException e) {
+						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
 						
@@ -161,7 +163,7 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
-						} catch (BusinessException e) {
+						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
 						
@@ -175,7 +177,7 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
-						} catch (BusinessException e) {
+						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
 						
@@ -190,7 +192,7 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
-						} catch (BusinessException e) {
+						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
 						
@@ -204,7 +206,7 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
-						} catch (BusinessException e) {
+						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
 						
@@ -218,7 +220,7 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
-						} catch (BusinessException e) {
+						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
 						
@@ -233,7 +235,7 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, credit, administrateur);
-						} catch (BusinessException e) {
+						} catch (BusinessException | DALException e) {
 							e.printStackTrace();
 						}
 						

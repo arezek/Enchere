@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import eni.fr.BusinessException;
 import eni.fr.bo.Utilisateur;
 import eni.fr.dal.DALException;
 import eni.fr.dal.UtilisateurDAO;
@@ -122,6 +123,9 @@ public class loginServlet extends HttpServlet {
 			
 			e.printStackTrace();
 			
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}

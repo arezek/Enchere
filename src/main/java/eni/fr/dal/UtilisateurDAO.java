@@ -10,6 +10,9 @@ import eni.fr.bo.Utilisateur;
  */
 
 public interface UtilisateurDAO {
+	
+	//Compter le nombre d'utilisateur dont le pseudo est XXX
+	public int selectCountByPseudo(String pseudo) throws DALException, BusinessException;
 
 	//Sélectionner un utilisateur par son noUtilisateur
 	public Utilisateur selectById(int noUtilisateur) throws DALException, BusinessException;

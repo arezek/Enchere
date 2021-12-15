@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import eni.fr.BusinessException;
 import eni.fr.bo.Utilisateur;
 import eni.fr.dal.DALException;
 import eni.fr.dal.UtilisateurDAO;
@@ -41,6 +41,9 @@ public class profilServlet extends HttpServlet {
 				request.setAttribute("utilisateur", utilisateur);
 				
 			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (DALException e) {

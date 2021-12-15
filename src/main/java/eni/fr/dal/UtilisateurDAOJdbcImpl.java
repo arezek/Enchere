@@ -24,6 +24,36 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String DELETE = "delete from UTILISATEURS where no_utilisateur=?";
 //	private static final String UPDATE = "UPDATE UTILISATEURS SET ? = ? WHERE no_utilisateur = ?";
 	int i = 1;
+	private static final String SELECTCOUNTBYPSEUDO = "SELECT COUNT(*) as compteur FROM utilisateur WHERE pseudo = ?";
+	
+	@Override 
+	public int selectCountByPseudo(String pseudo) throws BusinessException {
+		
+		int nombrePseudo;
+		ResultSet rs = null;
+
+		try (Connection con = ConnectionProvider.getConnection(); 
+			 PreparedStatement rqt = con.prepareStatement(SELECTCOUNTBYPSEUDO);)
+
+		{
+			
+			rqt.setString(1, pseudo);
+			rs = rqt.executeQuery();
+			rs.next();
+
+			nombrePseudo = rs.getInt("compteur");
+
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_Utilisateur_BY_PSEUDO_ECHEC);
+			throw businessException;
+		}
+
+		
+		return nombrePseudo;
+	}
 	
 	@Override
 	public void insert(Utilisateur utilisateur) throws BusinessException{
