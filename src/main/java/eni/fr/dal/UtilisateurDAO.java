@@ -14,6 +14,7 @@ public interface UtilisateurDAO {
 	//Sélectionner un utilisateur par son noUtilisateur
 	public Utilisateur selectById(int noUtilisateur) throws DALException, BusinessException;
 	
+	
 	//Sélectionner un utilisateur par son pseudo
 	public Utilisateur selectByPseudo(String pseudo) throws DALException, BusinessException;
 			

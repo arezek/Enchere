@@ -30,6 +30,7 @@ public abstract class CodesResultatDAL {
 	 */
 	public static final int UPDATE_UTILISATEUR_ECHEC=10004;
 	
+	
 	/**
 	 * Echec de la supression d'un utilisateur.
 	 */

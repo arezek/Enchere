@@ -231,6 +231,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			                ) 
 			        {
 			        
+			  
 //			        	Pstmt.setString(1,champs);
 						Pstmt.setString(1, valeur);
 						Pstmt.setInt(2, utilisateur.getNoUtilisateur());
