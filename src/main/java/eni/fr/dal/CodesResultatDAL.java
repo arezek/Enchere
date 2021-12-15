@@ -92,4 +92,33 @@ public abstract class CodesResultatDAL {
 	
 	
 	
+	
+	
+	
+	// Retrait INSERTION/MODIFICATION/SUPPRESSION
+	
+	/**
+	 * Echec de l'insertion des Informations de la Table Retrait a cause d'un champ null il faut remplir tous les cases.
+	 */
+	public static final int INSERT_RETRAIT_TOUS_LES_CHAMPS_ECHEC=10014;
+	
+	/**
+	 * Echec de la supression d'un Retrait.
+	 */
+	public static final int DELETE_RETRAIT_ECHEC=10015;
+	
+	/**
+	 * Echec de la modification d'un RETRAIT.
+	 */
+	public static final int UPDATE_RETRAIT_ECHEC=10016;
+	
+	/**
+	 * Echec de la lecture de tous les  Retraits.
+	 */
+	public static final int LECTURE_TOUS_RETRAIT_ECHEC=10017;
+	
+	/**
+	 * Echec de la lecture d'un Retrait par le numero d'article.
+	 */
+	public static final int LECTURE_RETRAIT_BY_ID_ECHEC=10018;
 }

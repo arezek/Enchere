@@ -29,7 +29,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	int i = 1;
 
 	@Override
-	public ArticleVendu insert(ArticleVendu articleVendu) throws DALException, BusinessException {
+	public ArticleVendu insert(ArticleVendu articleVendu) throws  BusinessException {
 
 		if(articleVendu==null)
 			{
@@ -76,7 +76,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	}
 
 	@Override
-	public ArticleVendu selectById(int noArticle) throws DALException, BusinessException {
+	public ArticleVendu selectById(int noArticle) throws  BusinessException {
 		ResultSet rs = null;
 		ArticleVendu art = new ArticleVendu();
 		try (Connection con = ConnectionProvider.getConnection(); 
@@ -116,7 +116,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			art.setNoCategorie(categorie);
 			System.out.println(art.getDescription());
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
@@ -129,7 +129,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	
 
 	@Override
-	public void update(ArticleVendu articleVendu) throws DALException, BusinessException {
+	public void update(ArticleVendu articleVendu) throws  BusinessException {
 	        try(Connection con = ConnectionProvider.getConnection();
 	        PreparedStatement Pstmt = con.prepareStatement(UPDATE,PreparedStatement.RETURN_GENERATED_KEYS);
 	                ) 
@@ -144,7 +144,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	          
 	            Pstmt.executeUpdate();
 	            
-	        } catch (SQLException e) {
+	        } catch (Exception e) {
 	        	
 	        	e.printStackTrace();
 				BusinessException businessException = new BusinessException();
@@ -155,12 +155,12 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	}
 	
 	@Override
-	public void delete(int noArticle) throws DALException, BusinessException {
+	public void delete(int noArticle) throws BusinessException {
 		try (Connection con = ConnectionProvider.getConnection();
                 PreparedStatement Pstmt = con.prepareStatement(DELETE)){
                 Pstmt.setInt(1, noArticle);
                 Pstmt.executeUpdate();
-        }catch (SQLException e) {
+        }catch (Exception e) {
         	e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.ajouterErreur(CodesResultatDAL.DELETE_ARTICLE_VENDU_ECHEC);
@@ -169,7 +169,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	}
 
 	@Override
-	public List<ArticleVendu> selectAll() throws DALException, BusinessException {
+	public List<ArticleVendu> selectAll() throws BusinessException {
 		List<ArticleVendu> articlesVendus = new ArrayList<ArticleVendu>();
 		try (Connection con = ConnectionProvider.getConnection();
 				Statement stmt = con.createStatement();
@@ -202,7 +202,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 				
 			}
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.ajouterErreur(CodesResultatDAL.LECTURE_TOUS_ARTICLE_VENDUS_ECHEC);
@@ -213,7 +213,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	}
 
 	@Override
-	public List<ArticleVendu> search(String nomArticle, int noCategorie) throws DALException, BusinessException {
+	public List<ArticleVendu> search(String nomArticle, int noCategorie) throws  BusinessException {
 
 		ResultSet rs = null;
 		List<ArticleVendu> liste = new ArrayList<ArticleVendu>();
@@ -248,9 +248,13 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 						
 
-				} catch (SQLException e) {
+				} catch (Exception e) {
 					
-					throw new DALException("erreur de requete de recherche d'articles", e);
+					
+					e.printStackTrace();
+					BusinessException businessException = new BusinessException();
+					businessException.ajouterErreur(CodesResultatDAL.LECTURE_ARTICLE_VENDU_BY_NOMARTICLE_NOCATEGORIE_ECHEC);
+					throw businessException;
 				}
 		}else {
 		try (Connection con = ConnectionProvider.getConnection(); 
@@ -283,7 +287,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 				
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();

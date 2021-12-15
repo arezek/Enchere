@@ -10,20 +10,20 @@ import eni.fr.bo.ArticleVendu;
  *
  */
 public interface ArticleVenduDAO {
-	public ArticleVendu selectById(int noArticle) throws DALException, BusinessException;
+	public ArticleVendu selectById(int noArticle) throws  BusinessException;
 	
 	//Sélectionner tous les Articles Vendus 
-	public List<ArticleVendu> selectAll() throws DALException, BusinessException;
+	public List<ArticleVendu> selectAll() throws BusinessException;
 	
 	//Modifier les attributs d'un Article Vendu 
-	public void update(ArticleVendu articleVendu) throws DALException, BusinessException;
+	public void update(ArticleVendu articleVendu) throws BusinessException;
 	
 	//Insérer une nouvelle article Vendue
-	public ArticleVendu insert(ArticleVendu articleVendu) throws DALException, BusinessException;
+	public ArticleVendu insert(ArticleVendu articleVendu) throws BusinessException;
 	
 	//Supprimer un article Vendu
-	public void delete(int noArticle) throws DALException, BusinessException;
+	public void delete(int noArticle) throws  BusinessException;
 	
 	//faire une recherche par nom d'article et catégorie
-	 public List<ArticleVendu> search(String nomArticle,int noCategorie )throws DALException, BusinessException;
+	 public List<ArticleVendu> search(String nomArticle,int noCategorie )throws BusinessException;
 }
