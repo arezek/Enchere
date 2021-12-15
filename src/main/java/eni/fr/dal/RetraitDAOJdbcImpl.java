@@ -29,7 +29,7 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 	private static final String UPDATE = "UPDATE RETRAITS SET rue= ?, code_postal = ?, ville = ? WHERE no_article = ?";
 	int i=1;
 
-public Retrait selectById(int noArticle) throws BusinessException {
+public Retrait selectById(int noArticle) throws DALException, BusinessException {
 
 ResultSet rs = null;
 		Retrait retrait = new Retrait();
@@ -67,7 +67,7 @@ ResultSet rs = null;
 
 }
 
-public List<Retrait> selectAll() throws BusinessException {
+public List<Retrait> selectAll() throws DALException,BusinessException {
 
 List<Retrait> retraits = new ArrayList<Retrait>();
 		try (Connection con = ConnectionProvider.getConnection();
@@ -119,7 +119,7 @@ List<Retrait> retraits = new ArrayList<Retrait>();
 
 }
 
-public void update(Retrait retrait) throws BusinessException {
+public void update(Retrait retrait) throws DALException,BusinessException {
 
  try(Connection con = ConnectionProvider.getConnection();
 	        PreparedStatement Pstmt = con.prepareStatement(UPDATE,PreparedStatement.RETURN_GENERATED_KEYS);
@@ -143,7 +143,7 @@ public void update(Retrait retrait) throws BusinessException {
 
 }
 
-public void insert(Retrait retrait) throws BusinessException {
+public void insert(Retrait retrait) throws DALException,BusinessException {
 
 		if(retrait==null)
 			{
@@ -181,7 +181,7 @@ public void insert(Retrait retrait) throws BusinessException {
 
 }
 
-public void delete(int noArticle) throws BusinessException {
+public void delete(int noArticle) throws DALException,BusinessException {
 
 try (Connection con = ConnectionProvider.getConnection();
                 PreparedStatement Pstmt = con.prepareStatement(DELETE)){

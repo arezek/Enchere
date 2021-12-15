@@ -27,7 +27,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String SELECTCOUNTBYPSEUDO = "SELECT COUNT(*) as compteur FROM UTILISATEURS WHERE pseudo = ?";
 	
 	@Override 
-	public int selectCountByPseudo(String pseudo) throws BusinessException {
+	public int selectCountByPseudo(String pseudo) throws DALException, BusinessException {
 		
 		int nombrePseudo;
 		ResultSet rs = null;
@@ -56,7 +56,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 	
 	@Override
-	public void insert(Utilisateur utilisateur) throws BusinessException{
+	public void insert(Utilisateur utilisateur) throws DALException,BusinessException{
 		
 		if(utilisateur==null)
 		{
@@ -104,7 +104,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateur selectById(int noArticle) throws BusinessException {
+	public Utilisateur selectById(int noArticle) throws DALException,BusinessException {
 		ResultSet rs = null;
 		Utilisateur utilisateur = new Utilisateur();
 		try (Connection con = ConnectionProvider.getConnection(); 
@@ -144,7 +144,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 	
 	@Override
-	public Utilisateur selectByPseudo(String pseudo) throws BusinessException {
+	public Utilisateur selectByPseudo(String pseudo) throws DALException,BusinessException {
 		ResultSet rs = null;
 		Utilisateur utilisateur = new Utilisateur();
 		try (Connection con = ConnectionProvider.getConnection(); 
@@ -184,7 +184,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public List<Utilisateur> selectAll() throws BusinessException {
+	public List<Utilisateur> selectAll() throws DALException,BusinessException {
 		List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
 		try (Connection con = ConnectionProvider.getConnection();
 				Statement stmt = con.createStatement();
@@ -230,7 +230,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public void update(String champs, String valeur, Utilisateur utilisateur) throws  BusinessException {
+	public void update(String champs, String valeur, Utilisateur utilisateur) throws DALException, BusinessException {
 		String UPDATE = null;
 		if(champs.equals("pseudo")) {
 			UPDATE = "UPDATE UTILISATEURS SET pseudo = ? WHERE no_utilisateur = ?";
@@ -281,7 +281,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 
 	@Override
-	public void delete(int noUtilisateur) throws  BusinessException {
+	public void delete(int noUtilisateur) throws  DALException,BusinessException {
 		try (Connection con = ConnectionProvider.getConnection();
                 PreparedStatement Pstmt = con.prepareStatement(DELETE)){
                 Pstmt.setInt(1, noUtilisateur);
