@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import eni.fr.BusinessException;
 import eni.fr.bo.ArticleVendu;
 import eni.fr.dal.ArticleVenduDAO;
 import eni.fr.dal.ArticleVenduDAOJdbcImpl;
@@ -62,6 +63,10 @@ public class ServletRecherche extends HttpServlet {
 				e.printStackTrace();
 			} catch (DALException e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			
+			} catch (BusinessException e) {
+
 				e.printStackTrace();
 			}
 			

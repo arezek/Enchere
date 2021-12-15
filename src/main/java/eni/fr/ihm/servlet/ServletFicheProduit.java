@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import eni.fr.bo.Utilisateur;
+import eni.fr.BusinessException;
 import eni.fr.bo.ArticleVendu;
 import eni.fr.dal.ArticleVenduDAO;
 import eni.fr.dal.ArticleVenduDAOJdbcImpl;
@@ -40,18 +41,24 @@ public class ServletFicheProduit extends HttpServlet {
 				
 				int numArticleInt =Integer.parseInt(numArticle);
 				ArticleVenduDAO articleVenduManager = new ArticleVenduDAOJdbcImpl();
+				
 				ArticleVendu articleVendu=(ArticleVendu)articleVenduManager.selectById(numArticleInt);
+				
 			System.out.println(articleVendu.getEtatVente());
 				request.setAttribute("articleVendu", articleVendu);
 				
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				
 			} catch (DALException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
 			
+			} catch (BusinessException e) {
+
+				e.printStackTrace();
+			}
 		
 //		catch(NumberFormatException e)
 //		{
