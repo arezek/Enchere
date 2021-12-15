@@ -4,6 +4,8 @@ package eni.fr.dal;
  */
 
 
+
+
 /**
  * Les codes disponibles sont entre 10000 et 19999
  */
@@ -55,6 +57,9 @@ public abstract class CodesResultatDAL {
 	 * Echec de la lecture d'un Utilisateur par son Numéro.
 	 */
 	public static final int LECTURE_Utilisateur_BY_ID_ECHEC=10007;
+	
+	
+	
 	
 	
 	
@@ -121,4 +126,68 @@ public abstract class CodesResultatDAL {
 	 * Echec de la lecture d'un Retrait par le numero d'article.
 	 */
 	public static final int LECTURE_RETRAIT_BY_ID_ECHEC=10018;
+	
+	
+	
+	
+	
+	// ENCHERE   INSERTION/MODIFICATION/SUPPRESSION
+	/**
+	 * Echec de l'insertion des Informations de la Table Enchère a cause d'un champ null il faut remplir tous les cases.
+	 */
+	public static final int INSERT_ENCHERE_TOUS_LES_CHAMPS_ECHEC=10019;
+	
+	/**
+	 * Echec de la supression d'un Enchère.
+	 */
+	public static final int DELETE_ENCHERE_ECHEC=10020;
+	
+	/**
+	 * Echec de la modification d'un Enchère.
+	 */
+	public static final int UPDATE_ENCHERE_ECHEC=10021;
+	
+	/**
+	 * Echec de la lecture de tous les  Enchères.
+	 */
+	public static final int LECTURE_TOUS_ENCHERES_ECHEC=10022;
+	
+	/**
+	 * Echec de la lecture d'un Enchère par le numero d'utilisateur et le numéro d'article.
+	 */
+	public static final int LECTURE_ENCHERE_BY_ID_UTILISATEUR_ARTICLE_ECHEC=10023;
+	
+	
+	
+	
+	
+	// ENCHERE   INSERTION/MODIFICATION/SUPPRESSION
+	
+	/**
+	 * Echec de l'insertion des Informations de la Table CATEGORIE a cause d'un champ null il faut remplir tous les cases.
+	 */
+	public static final int INSERT_CATEGORIE_TOUS_LES_CHAMPS_ECHEC=10024;
+	
+	/**
+	 * Echec de la supression d'une CATEGORIE.
+	 */
+	public static final int DELETE_CATEGORIE_ECHEC=10025;
+	
+	/**
+	 * Echec de la modification d'une CATEGORIE.
+	 */
+	public static final int UPDATE_CATEGORIE_ECHEC=10026;
+	
+	/**
+	 * Echec de la lecture de tous les  CATEGORIES.
+	 */
+	public static final int LECTURE_TOUS_CATEGORIES_ECHEC=10027;
+	
+	/**
+	 * Echec de la lecture d'une CATEGORIE par le numero d'utilisateur.
+	 */
+	public static final int LECTURE_ENCHERE_BY_ID_UTILISATEUR_ECHEC=10028;
+	
 }
+
+

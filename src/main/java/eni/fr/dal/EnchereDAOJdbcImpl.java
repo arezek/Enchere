@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import eni.fr.BusinessException;
 import eni.fr.bo.ArticleVendu;
 import eni.fr.bo.Categorie;
 import eni.fr.bo.Enchere;
@@ -27,7 +28,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String DELETE = "DELETE from ENCHERES where no_article=? and no_utilisateur =?";
 	int i;
 
-public Enchere selectById(int noUtilisateur, int noArticle) throws DALException {
+public Enchere selectById(int noUtilisateur, int noArticle) throws DALException,BusinessException {
 
 ResultSet rs = null;
 		Enchere enchere = new Enchere();
@@ -68,16 +69,20 @@ ResultSet rs = null;
 			enchere.setNoUtilisateur(utilisateur);
 			enchere.setNoArticle(art);
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			
-			throw new DALException("erreur de requete de recherche d'enchères par noArticle", e);
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_ENCHERE_BY_ID_UTILISATEUR_ARTICLE_ECHEC);
+			throw businessException;
+            
 		}
 
 		return enchere;
 
 }
 
-public List<Enchere> selectAll() throws DALException {
+public List<Enchere> selectAll() throws DALException, BusinessException {
 
 List<Enchere> encheres = new ArrayList<Enchere>();
 		try (Connection con = ConnectionProvider.getConnection();
@@ -118,14 +123,17 @@ List<Enchere> encheres = new ArrayList<Enchere>();
 				
 			}
 
-		} catch (SQLException e) {
-			throw new DALException("erreur de requete select ALL", e);
+		} catch (Exception e) {
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_TOUS_ENCHERES_ECHEC);
+			throw businessException;
 		}
 		return encheres;
 
 }
 
-public void update(Enchere enchere) throws DALException {
+public void update(Enchere enchere) throws DALException, BusinessException {
 
  try(Connection con = ConnectionProvider.getConnection();
 	        PreparedStatement Pstmt = con.prepareStatement(UPDATE,PreparedStatement.RETURN_GENERATED_KEYS);
@@ -137,22 +145,25 @@ public void update(Enchere enchere) throws DALException {
 	          
 	            Pstmt.executeUpdate();
 	            
-	        } catch (SQLException e) {
+	        } catch (Exception e) {
 	        	
-	            throw new DALException("erreur de requete update",e);
+	        	e.printStackTrace();
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.UPDATE_ENCHERE_ECHEC);
+				throw businessException;
 	            
 	        }
 
 }
 
-public void insert(Enchere enchere) throws DALException {
+public void insert(Enchere enchere) throws DALException, BusinessException {
 
-//		if(ArticleVendu==null)
-//			{
-//				BusinessException businessException = new BusinessException();
-//				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
-//				throw businessException;
-//			}
+		if(enchere==null)
+			{
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
+				throw businessException;
+			}
 
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);) {
@@ -170,29 +181,32 @@ public void insert(Enchere enchere) throws DALException {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-//				BusinessException businessException = new BusinessException();
-//				if(e.getMessage().contains("CK_ArticleVendu_note"))
-//				{
-//					businessException.ajouterErreur(CodesResultatDAL.INSERT_ArticleVendu_NOTE_ECHEC);
-//				}
-//				else
-//				{
-//					businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
-//				}
-//				throw businessException;
+				BusinessException businessException = new BusinessException();
+				if(e.getMessage().contains("CK_ArticleVendu_note"))
+				{
+					businessException.ajouterErreur(CodesResultatDAL.INSERT_ENCHERE_TOUS_LES_CHAMPS_ECHEC);
+				}
+				else
+				{
+					businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
+				}
+				throw businessException;
 		}
 
 }
 
-public void delete(int noArticle, int noUtilisateur) throws DALException {
+public void delete(int noArticle, int noUtilisateur) throws DALException, BusinessException {
 
 try (Connection con = ConnectionProvider.getConnection();
                 PreparedStatement Pstmt = con.prepareStatement(DELETE)){
                 Pstmt.setInt(1, noArticle);
 		Pstmt.setInt(1, noUtilisateur);
                 Pstmt.executeUpdate();
-        }catch (SQLException e) {
-        throw new DALException("erreur de requete Delete",e);
+        }catch (Exception e) {
+        	e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.DELETE_ENCHERE_ECHEC);
+			throw businessException;
     }
 
 }

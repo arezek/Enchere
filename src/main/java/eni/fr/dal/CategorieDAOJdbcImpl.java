@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import eni.fr.BusinessException;
 import eni.fr.bo.ArticleVendu;
 import eni.fr.bo.Categorie;
 import eni.fr.bo.Utilisateur;
@@ -27,7 +28,7 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 	int i;
 
 @Override
-public Categorie selectById(int noCategorie) throws DALException {
+public Categorie selectById(int noCategorie) throws DALException, BusinessException {
 
 ResultSet rs = null;
 		Categorie cat = new Categorie();
@@ -53,9 +54,11 @@ ResultSet rs = null;
 				
 			art.setNoCategorie(cat);
 
-		} catch (SQLException e) {
-			
-			throw new DALException("erreur de requete de recherche de catégories par noCategorie", e);
+		} catch (Exception e) {
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_ENCHERE_BY_ID_UTILISATEUR_ECHEC);
+			throw businessException;
 		}
 
 		return cat;
@@ -63,7 +66,7 @@ ResultSet rs = null;
 }
 
 @Override
-public List<Categorie> selectAll() throws DALException {
+public List<Categorie> selectAll() throws DALException, BusinessException {
 
 List<Categorie> categories= new ArrayList<Categorie>();
 		try (Connection con = ConnectionProvider.getConnection();
@@ -100,15 +103,18 @@ List<Categorie> categories= new ArrayList<Categorie>();
 				
 			}
 
-		} catch (SQLException e) {
-			throw new DALException("erreur de requete select ALL", e);
+		} catch (Exception e) {
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_TOUS_CATEGORIES_ECHEC);
+			throw businessException;
 		}
 		return categories;
 
 }
 
 @Override
-public void update(Categorie categorie) throws DALException {
+public void update(Categorie categorie) throws DALException, BusinessException {
 
  try(Connection con = ConnectionProvider.getConnection();
 	        PreparedStatement Pstmt = con.prepareStatement(UPDATE,PreparedStatement.RETURN_GENERATED_KEYS);
@@ -119,23 +125,26 @@ public void update(Categorie categorie) throws DALException {
 	          
 	            Pstmt.executeUpdate();
 	            
-	        } catch (SQLException e) {
+	        } catch (Exception e) {
 	        	
-	            throw new DALException("erreur de requete update",e);
+	        	e.printStackTrace();
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.UPDATE_CATEGORIE_ECHEC);
+				throw businessException;
 	            
 	        }
 
 }
 
 @Override
-public void insert(Categorie categorie) throws DALException {
+public void insert(Categorie categorie) throws DALException, BusinessException {
 
-//		if(ArticleVendu==null)
-//			{
-//				BusinessException businessException = new BusinessException();
-//				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
-//				throw businessException;
-//			}
+		if(categorie==null)
+			{
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
+				throw businessException;
+			}
 
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);) {
@@ -149,29 +158,32 @@ public void insert(Categorie categorie) throws DALException {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-//				BusinessException businessException = new BusinessException();
-//				if(e.getMessage().contains("CK_ArticleVendu_note"))
-//				{
-//					businessException.ajouterErreur(CodesResultatDAL.INSERT_ArticleVendu_NOTE_ECHEC);
-//				}
-//				else
-//				{
-//					businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
-//				}
-//				throw businessException;
+				BusinessException businessException = new BusinessException();
+				if(e.getMessage().contains("CK_ArticleVendu_note"))
+				{
+					businessException.ajouterErreur(CodesResultatDAL.INSERT_CATEGORIE_TOUS_LES_CHAMPS_ECHEC);
+				}
+				else
+				{
+					businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
+				}
+				throw businessException;
 		}
 
 }
 
 @Override
-public void delete(int noCategorie) throws DALException {
+public void delete(int noCategorie) throws DALException, BusinessException {
 
 try (Connection con = ConnectionProvider.getConnection();
                 PreparedStatement Pstmt = con.prepareStatement(DELETE)){
                 Pstmt.setInt(1, noCategorie);
                 Pstmt.executeUpdate();
-        }catch (SQLException e) {
-        throw new DALException("erreur de requete Delete",e);
+        }catch (Exception e) {
+        	e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.DELETE_CATEGORIE_ECHEC);
+			throw businessException;
     }
 
 	}
