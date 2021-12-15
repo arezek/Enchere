@@ -179,7 +179,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				article.setNoCategorie(categorie);
 				
 				utilisateurs.add(utilisateur);
-				
+			
 			}
 
 		} catch (SQLException e) {

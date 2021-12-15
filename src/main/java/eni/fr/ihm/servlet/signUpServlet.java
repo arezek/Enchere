@@ -94,7 +94,7 @@ public class signUpServlet extends HttpServlet {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						
+					
 						System.out.println(utilisateur.getNom()+" "+utilisateur.getRue()+" "+utilisateur.getPrenom()+" "+utilisateur.getEmail()+" "+utilisateur.getTelephone()+" ");
 						
 					}

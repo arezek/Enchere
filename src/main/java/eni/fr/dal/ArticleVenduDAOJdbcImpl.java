@@ -27,7 +27,6 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	private static final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article = 'article', description = 'nv article', date_debut_encheres = '2008-10-11', date_fin_encheres = '2008-10-11', prix_initial = 10, no_categorie = 2 FROM ARTICLES_VENDUS as a INNER JOIN CATEGORIES as c ON c.no_categorie = a.no_categorie WHERE no_article = 4";
 	int i = 1;
 
-	
 	@Override
 	public ArticleVendu insert(ArticleVendu articleVendu) throws DALException {
 
