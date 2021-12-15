@@ -1,6 +1,7 @@
 package eni.fr.dal;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +13,6 @@ import eni.fr.BusinessException;
 import eni.fr.bo.ArticleVendu;
 import eni.fr.bo.Categorie;
 import eni.fr.bo.Utilisateur;
-import fr.eni.javaee.suividesrepas.dal.CodesResultatDAL;
 
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
