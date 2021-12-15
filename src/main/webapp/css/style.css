@@ -318,19 +318,20 @@ header {
 
 /******************************************FicheProduit****************************************/
 .product {
-    max-width: 900px;
+    width: 900px;
+    height : 600px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-gap: 20px;
+    grid-gap: 10px;
     /* grid-auto-flow: column;  focer la mise en colonne*/
-    margin: 10px auto 20px auto; 
+    margin: 10px auto 20px auto;
+    
     place-items: center; 
 }
 .fiche {
-    max-width: 70%;
-    height : 500px;
-    width : 400px;
-    align-self: end;  
+    
+    width : 400px;    
+    height: 530px;    
 }
 .photo {
 	background-color : #a3e29b; 
@@ -361,19 +362,33 @@ header {
 .essai {
    display: flex;    
    width: 400px;
-}
-.detail {
-    margin-left: 30px;
-    width: 300px;    
+   padding-bottom : 15px;
+   
+   
 }
 .firstColumn {
     width: 140px;
-    color: #73d3c0;
+    color: #73d3c0; 
+    
+}
+.detail {
+    margin-left: 20px;
+    width: 200px;
 }
 #catArticle {
     font-size: 20px;
     margin-top: 15px;
 }
-.encherir {
-    margin-top: 15px;
+#encherir {
+	margin-left : 15px;
+	width: 120px;
+}
+#signUpButton {
+	margin-left : 15px;
+	margin-top : -4px;
+}
+
+.fiche h3, h4, p{
+	margin : 0px;
+    padding :0px;
 }
