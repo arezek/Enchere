@@ -59,7 +59,7 @@ public class ServletVente extends HttpServlet {
 		//rue
 		//codepostal
 		//ville
-		
+	
 		try {
 			nomArticle= request.getParameter("article");
 			description= request.getParameter("description");
