@@ -36,6 +36,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			 PreparedStatement rqt = con.prepareStatement(SELECTCOUNTBYPSEUDO);)
 		{
 			
+			
 			rqt.setString(1, pseudo);
 			rs = rqt.executeQuery();
 			rs.next();
