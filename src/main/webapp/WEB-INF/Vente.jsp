@@ -57,7 +57,7 @@
 					</div>
 
 					<div class="buyForm">
-					<c:if test="${ !empty photo }"><p><c:out value="L'image ${ photo }  a été uploadé !" /></p></c:if>
+					<%-- <c:if test="${ !empty photo }"><p><c:out value="L'image ${ photo }  a été uploadé !" /></p></c:if> --%>
 						<label for="photo">Photo de l'article  </label>
 						<input type="file" name="photo" id="imgLink" />
 							
