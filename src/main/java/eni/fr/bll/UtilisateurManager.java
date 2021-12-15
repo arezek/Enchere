@@ -77,7 +77,6 @@ private UtilisateurDAO utilisateurDAO;
 		String champs = null;
 		String valeur = null;
 		
-		
 		this.validerPseudo(utilisateur, exception);
 		this.validerNom(utilisateur, exception);
 		this.validerPrenom(utilisateur, exception);

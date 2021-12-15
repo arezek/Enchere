@@ -81,7 +81,7 @@ public class signUpServlet extends HttpServlet {
 							&& motDePasse != null && motDePasseConfirme != null && motDePasse.equals(motDePasseConfirme))
 					
 					{
-						
+					
 						Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
 							 codePostal, ville, motDePasse, creditDeDepart, administrateur);
 						

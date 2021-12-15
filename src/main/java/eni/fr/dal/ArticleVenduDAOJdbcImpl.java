@@ -55,7 +55,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			if (rs.next()) {
 				
 				articleVendu.setNoArticle(rs.getInt(1));
-				
+			
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

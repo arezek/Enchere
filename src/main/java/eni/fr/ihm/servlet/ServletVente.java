@@ -85,7 +85,7 @@ public class ServletVente extends HttpServlet {
 //				
 				//ArticleVendu art =new ArticleVendu(nomArticle,description,dateDebutEncheres,dateFinEncheres,miseAPrix,noCategorie);
 				//art.setNoUtilisateur(utilisateurLogged);
-				
+			
 
 				try {
 					ArticleVendu Narticle =articleVenduManager.ajouter(nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, utilisateurLogged, noCategorie);
