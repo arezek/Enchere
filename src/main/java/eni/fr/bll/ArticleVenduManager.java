@@ -1,6 +1,8 @@
 package eni.fr.bll;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import eni.fr.BusinessException;
 import eni.fr.bo.ArticleVendu;
@@ -59,6 +61,47 @@ public class ArticleVenduManager {
 		}
 		
 		return articleVendu;
+	}
+	
+	public List<ArticleVendu> rechercher(String nomArticle, Categorie noCategorie) throws BusinessException {
+		
+		List<ArticleVendu> liste = new ArrayList<ArticleVendu>();
+		BusinessException exception = new BusinessException();
+		
+		ArticleVendu articleVendu = new ArticleVendu();
+		
+		this.validerNomArticle(articleVendu, exception);
+		this.validerDescription(articleVendu, exception);
+		this.validerDateDebutEncheres(articleVendu, exception);
+		this.validerDateFinEncheres(articleVendu, exception);
+		this.validerMiseAPrix(articleVendu, exception);
+		this.validerNoUtilisateur(articleVendu, exception);
+		this.validerNoCategorie(articleVendu, exception);
+		
+		if(!exception.hasErreurs()) {
+			
+			try {
+				
+				int numCategorie = noCategorie.getNoCategorie();
+				
+				this.articleVenduDAO.search(nomArticle, numCategorie);
+				System.out.println(nomArticle + " " + numCategorie);
+				
+			} catch (DALException e) {
+				
+				e.printStackTrace();
+				
+			}
+			
+		}
+		
+		if (exception.hasErreurs()) {
+			
+			throw exception;
+			
+		}
+		
+		return liste;
 	}
 	
 	// lors d'un update
