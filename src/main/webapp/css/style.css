@@ -328,13 +328,35 @@ header {
 }
 .fiche {
     max-width: 70%;
+    height : 500px;
+    width : 400px;
     align-self: end;  
 }
 .photo {
-    margin-top: 100px;
-    max-width: 80%;
-    align-self: start;
+	background-color : #a3e29b; 
+    height: 530px;
+    width: 450px; 
+    text-align: center; 
+    -webkit-border-top-left-radius: 15px;
+	-webkit-border-bottom-right-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-bottomright: 15px;
+	border-top-left-radius: 15px;
+	border-bottom-right-radius: 15px; 
 
+}
+.imgGroup {
+	margin-top : 60px;
+}
+.imgArticleFirst {	
+	height: 280px;
+	width: 343px;
+	border : 2px solid white; 
+}
+.imgArticleOthers {
+	height: 140px;
+	width: 170px;	
+	
 }
 .essai {
    display: flex;    
@@ -345,8 +367,8 @@ header {
     width: 300px;    
 }
 .firstColumn {
-    width: 120px;
-    color: #a3e29b;
+    width: 140px;
+    color: #73d3c0;
 }
 #catArticle {
     font-size: 20px;

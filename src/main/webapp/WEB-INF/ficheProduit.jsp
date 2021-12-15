@@ -24,10 +24,14 @@
 	
 	<section class="product">
 		
-		<div class="photo">		
+		<div class="photo">	
+			<div class="imgGroup">
 			<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/1.jpg" class="imgArticleFirst"/>
         	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/2.jpg" class="imgArticleOthers"/>
-        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/3.jpg" class="imgArticleOthers"/>						
+        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/3.jpg" class="imgArticleOthers"/>	
+			
+			</div>	
+								
 		</div>
 
 		<div class="fiche">
