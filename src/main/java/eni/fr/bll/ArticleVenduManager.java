@@ -48,7 +48,7 @@ public class ArticleVenduManager {
 				
 			} catch (DALException e) {
 				
-				e.printStackTrace();
+				e.printStackTrace(); 
 				
 			}
 			

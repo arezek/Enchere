@@ -31,7 +31,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	@Override
 	public ArticleVendu insert(ArticleVendu articleVendu) throws DALException, BusinessException {
 
-		if(articleVendu==null)
+		if(articleVendu==null) 
 			{
 				BusinessException businessException = new BusinessException();
 				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);

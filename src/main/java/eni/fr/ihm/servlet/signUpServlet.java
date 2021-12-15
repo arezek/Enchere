@@ -98,6 +98,7 @@ public class signUpServlet extends HttpServlet {
 					
 						System.out.println(utilisateur.getNom()+" "+utilisateur.getRue()+" "+utilisateur.getPrenom()+" "+utilisateur.getEmail()+" "+utilisateur.getTelephone()+" ");
 						
+						
 					}
 					
 				} else {
