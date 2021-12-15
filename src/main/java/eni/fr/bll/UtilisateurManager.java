@@ -65,50 +65,129 @@ private UtilisateurDAO utilisateurDAO;
 	
 	// lors d'un update
 	
-	public Utilisateur modifier(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) throws BusinessException, DALException {
+	public Utilisateur modifier(String champs,String valeur, Utilisateur utilisateurRecup) throws BusinessException, DALException {
 		
 		BusinessException exception = new BusinessException();
 		
-		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
-			 codePostal, ville, motDePasse, credit, administrateur);
-		
-		String champs = null;
-		String valeur = null;
-		
-		this.validerPseudo(utilisateur, exception);
-		this.validerNom(utilisateur, exception);
-		this.validerPrenom(utilisateur, exception);
-		this.validerEmail(utilisateur, exception);
-		this.validerTelephone(utilisateur, exception);
-		this.validerRue(utilisateur, exception);
-		this.validerCodePostal(utilisateur, exception);
-		this.validerVille(utilisateur, exception);
-		this.validerMotDePasse(utilisateur, exception);
-		this.validerCredit(utilisateur, exception);
-		//this.validerAdministrateur(utilisateur, exception);
-		
-		if(!exception.hasErreurs()) {
+		if(champs.equals("pseudo")) {
+			int taillePseudo = valeur.length();
 			
-			try {
+			int compteur = this.utilisateurDAO.selectCountByPseudo(valeur);
+			
+			if(valeur == null || taillePseudo > 30 || compteur > 0) {
+				exception.ajouterErreur(CodesResultatBLL.UTILISATEUR_PSEUDO_ERREUR);
 				
-				this.utilisateurDAO.update(champs, valeur, utilisateur);
-				
-			} catch (DALException e) {
-				
-				e.printStackTrace();
-				
+			}else {
+				this.utilisateurDAO.update(champs, valeur, utilisateurRecup);
 			}
+		}
+		else if(champs.equals("nom")) {
+			int tailleNom = valeur.length();
 			
+			if(valeur == null || tailleNom > 30) {
+				
+				exception.ajouterErreur(CodesResultatBLL.UTILISATEUR_NOM_ERREUR);
+				
+			}else {
+				this.utilisateurDAO.update(champs, valeur, utilisateurRecup);
+			}
+		}
+		else if(champs.equals("prenom")) {
+			int taillePrenom = valeur.length();
+			
+			if(valeur == null || taillePrenom > 30) {
+				
+				exception.ajouterErreur(CodesResultatBLL.UTILISATEUR_PRENOM_ERREUR);
+			}else {
+				this.utilisateurDAO.update(champs, valeur, utilisateurRecup);
+			}	
+		}
+		else if(champs.equals("email")) {
+			int tailleEmail = valeur.length();
+			String regex = "^[a-z0-9+_.-]+@(.+)$";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(valeur);
+			
+			if(valeur == null || !matcher.matches() || tailleEmail > 20) {			
+				
+				exception.ajouterErreur(CodesResultatBLL.UTILISATEUR_EMAIL_ERREUR);
+				
+			}else {
+				this.utilisateurDAO.update(champs, valeur, utilisateurRecup);
+			}
+		}
+		else if(champs.equals("telephone")) {
+			int tailleTelephone = valeur.length();
+			String regex = "^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(valeur);
+			
+			if(valeur == null || !matcher.matches() || tailleTelephone > 15) {
+				
+				exception.ajouterErreur(CodesResultatBLL.UTILISATEUR_TELEPHONE_ERREUR);
+				
+			}else {
+				this.utilisateurDAO.update(champs, valeur, utilisateurRecup);
+			}
+		}
+		else if(champs.equals("rue")) {
+			int tailleRue = valeur.length();
+			
+			if(valeur == null || tailleRue > 30) {
+				
+				exception.ajouterErreur(CodesResultatBLL.UTILISATEUR_RUE_ERREUR);
+				
+			}else {
+				this.utilisateurDAO.update(champs, valeur, utilisateurRecup);
+			}
+		}
+		else if(champs.equals("codePostal")) {
+			int tailleCodePostal = valeur.length();
+			
+			if(valeur == null || tailleCodePostal > 10) {
+			
+				exception.ajouterErreur(CodesResultatBLL.UTILISATEUR_CODE_POSTAL_ERREUR);
+			
+			}else {
+				this.utilisateurDAO.update(champs, valeur, utilisateurRecup);
+			}
+		}
+		else if(champs.equals("ville")) {
+			int tailleVille = valeur.length();
+			
+			if(valeur == null || tailleVille > 30) {
+			
+				exception.ajouterErreur(CodesResultatBLL.UTILISATEUR_VILLE_ERREUR);
+			
+			}else {
+				this.utilisateurDAO.update(champs, valeur, utilisateurRecup);
+			}
+		}
+		else if(champs.equals("mot_de_passe")) {
+			int tailleMotDePasse = valeur.length();
+			
+			if(valeur == null || tailleMotDePasse > 30) {
+				
+				exception.ajouterErreur(CodesResultatBLL.UTILISATEUR_MOT_DE_PASSE_ERREUR);
+				
+			}else {
+				this.utilisateurDAO.update(champs, valeur, utilisateurRecup);
+			}
+		}
+		else if(champs.equals("credit")) {
+			if(Integer.parseInt(valeur) <= 0) {
+				
+				exception.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREDIT_ERREUR);
+				
+			}else {
+				this.utilisateurDAO.update(champs, valeur, utilisateurRecup);
+			}
 		}
 		
-		if (exception.hasErreurs()) {
-			
-			throw exception;
-			
-		}
 		
-		return utilisateur;
+		
+		
+		return utilisateurRecup;
 	}
 
 	
