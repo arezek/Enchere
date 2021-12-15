@@ -25,7 +25,7 @@
 </c:if>
 
 <c:if test="${not empty sessionScope.utilisateurLogged }">
-<h1>Modification</h1>
+
 <div id="separator"></div>
 <h2>Modifier mon compte</h2>
 </c:if>
@@ -110,10 +110,10 @@
   <p>Crédit <%=utilisateur.getCredit() %></p>
   <%} %>
   <div class="signUp">
-    <input type="submit" class="updateButton" value="Enregistrer">
+    <input type="submit" value="Enregistrer">
   </div>
   <div class="signUp">
-    <input type="submit" class="deleteButton" value="Supprimer mon compte">
+    <input type="submit" id="deleteButton" value="Supprimer mon compte">
   </div>
   </c:if>
   
@@ -137,7 +137,7 @@
     <a href="<%=request.getContextPath()%>/accueilServlet"  ><input id="signUpButton" type="submit" value="Annuler"></a>
   </div>
   </c:if>
-
+</div>
 </form> 
     
 </body>

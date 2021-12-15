@@ -12,13 +12,14 @@
     <title>Connexion</title>
 </head>
 <body>
-<h1 class="titleLogin">Connexion</h1>
+
 
 <div id="separator"></div>
-
-
+  
+	<div class="formLogin"> 
+	<h1 class="titleLogin">Connexion</h1>
   <form method="post" action="<%=request.getContextPath()%>/loginServlet">
-  <div class="formLogin">  
+   
     <div class="form">
       <label for="pseudo">Identifiant  </label><br>
     </div>
@@ -44,7 +45,7 @@
     <div class="form">
       <a href="" class="passLogin">Mot de passe oublié</a>
     </div>
-  </div> 
+   
   </form>         
    
   <form method="post" action="<%=request.getContextPath()%>/signUpServlet">
@@ -52,7 +53,7 @@
     <input type="submit" class ="loginButton"  value="Créer un compte">
      
   </form>
- 
+ </div>
   
 </body>
 </html>

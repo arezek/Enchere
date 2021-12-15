@@ -34,9 +34,9 @@ a {
     text-decoration: none;
     font-weight: 600;
 }
-input [type = "submit"] {
+input[type = submit] {
 	border-radius: 8px;
-    width: 120px;
+    width: 140px;
     height: 35px;    
     background-color: #73d3c0 ;
     font-size: 16px;
@@ -44,6 +44,10 @@ input [type = "submit"] {
     font-weight: 700;            
     opacity: 0.8;
     border : none;
+}
+input {
+    color: gray;       
+    font-weight: 900;
 }
 	
 body {
@@ -122,17 +126,7 @@ header {
     border-bottom: 5px solid grey; 
 }
 
-#searchButton {
-    border-radius: 8px;
-    width: 120px;
-    height: 35px;    
-    background-color: #73d3c0 ;
-    font-size: 16px;
-    color: white;
-    font-weight: 700;            
-    opacity: 0.8;
-    border : none;
-}
+
 #catLContent {    
     color: #111111;
     margin-right: 30px;  
@@ -221,20 +215,11 @@ header {
 	text-decoration: underline;
 }
 /***********************************************LOGIN *************/
-.titleLogin {
-    text-align: center;      
+.titleLogin {          
     font-size: 60px;
     color: #73d3c0 ;    
 }
-
-#separator{
-	height: 10px;
-    width: 100%;
-    background: linear-gradient(
-0deg, rgba(122,122,122,0) 0%, rgba(130,226,212,1) 100%);
-}
-
-.formLoginm {
+.formLogin {
     font-size: 30px;
     font-weight: 700;
     color: #a3e29b ; 
@@ -244,29 +229,11 @@ header {
 .form  {
     margin-top: 10px;
     font-size: 30px;
-    font-weight: 700;
-    text-align: center;
+    font-weight: 700;    
 } 
-input {
-    color: gray;       
-    font-weight: 900;
-}
 
-.loginButton {
-    margin-top: 40px;
-    border-radius: 8px;
-    width: 250px;
-    height: 50px;    
-    background-color: #73d3c0 ;
-    font-size: 20px;
-    color: white;
-    font-weight: 700;   
-    text-align: center;
-    opacity: 0.8;
-}
 .passLogin {
-    font-size: 15px;
-    text-decoration: none;
+    font-size: 15px;    
     color: black;
     font-weight: 300;
 }
@@ -274,22 +241,9 @@ input {
 /********************************************* Profil*****************************************/
 .profil {
     text-align: center;
-    font-size: 25px;
-    
+    font-size: 25px;    
 }
 
-
-
-#edtiProfilButton {    
-    border-radius: 8px;
-    width: 250px;
-    height: 50px;    
-    background-color: #73d3c0 ;
-    font-size: 25px;
-    color: white;
-    font-weight: 700; 
-    opacity: 0.8;
-}
 /************************************************************ SignUp*******************************************/
 .signUpForm  {
     font-size: 30px;
@@ -300,27 +254,8 @@ input {
 .signUp {
     text-align: center;
 }
-.signUpButton {
-    margin-top: 40px;
-    border-radius: 8px;
-    width: 250px;
-    height: 50px;    
-    background-color: #73d3c0 ;
-    font-size: 25px;
-    color: white;
-    font-weight: 700;   
-    opacity: 0.8;
-}
-#signUpButton {
-    margin-top: 40px;
-    border-radius: 8px;
-    width: 100px;
-    height: 40px;    
-    background-color: #73d3c0 ;
-    font-size: 15px;
-    color: white;
-    font-weight: 700;  
-    opacity: 0.8; 
+#deleteButton {
+	width: 250px;
 }
 
 /**********************************Nouvelle Vente**********************************************************/

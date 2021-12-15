@@ -9,15 +9,13 @@
      <%@ include file="/includes/head.jsp" %>
     <title>Page de profil</title>
 </head>
-<body>
+<body class="profil">
 <%@ include file="/includes/header.jsp" %>
 <% Utilisateur utilisateur= (Utilisateur)request.getAttribute("utilisateur");
     if(utilisateur!=null)
     {System.out.println(utilisateur.toString());
 %>
-
-
-    <h1 class="titleProfil">Profil</h1>  
+     
     <div id="separator"></div>
    
    
