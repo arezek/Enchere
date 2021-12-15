@@ -26,16 +26,15 @@
 		
 		<div class="photo">	
 			<div class="imgGroup">
-			<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/1.jpg" class="imgArticleFirst"/>
-        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/2.jpg" class="imgArticleOthers"/>
-        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/3.jpg" class="imgArticleOthers"/>	
-			
+				<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/1.jpg" class="imgArticleFirst"/>
+	        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/2.jpg" class="imgArticleOthers"/>
+	        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/3.jpg" class="imgArticleOthers"/>	
 			</div>	
 								
 		</div>
 
 		<div class="fiche">
-			 <div class="detail">
+			<div class="detail">
 				<h2> <%=art.getNomArticle() %> </h2>
 			</div> 
 			<div class="essai">
@@ -91,7 +90,7 @@
 				<div class="firstColumn"></div>
 				<div class="detail">
 					<p>retraits.code_postal + " " + retraits.ville</p>
-					</div>
+				</div>
 			</div>
 			<div class="essai">
 				<div class="firstColumn">
@@ -102,15 +101,25 @@
 				</div>
 				
 			</div>			
-			
-			<div class="detail">
-				<form action="" method="">
+			<div class="essai">
+				<div class="firstColumn">
 					<label for="encherir">Ma proposition :</label>
+				</div>
+				<div class="detail">
+					<!-- div à laisser vide !!  -->
+				</div>
+			
+			</div>
+			<div class="essai">
+				<div class="firstColumn">
 					<input type="number" id="encherir" name="encherir"
 						min="100"  step="10" placeholder="100">
-						<input type="submit" id="signUpButton" value="Enchérir">
-					</form>
-			</div>
+				</div>
+				<div class="detail">
+					<input type="submit" id="signUpButton" value="Enchérir">
+				</div>
+			
+			</div>			
 				
 		</div>	
 
