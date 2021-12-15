@@ -1,6 +1,7 @@
 package eni.fr.dal;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import eni.fr.BusinessException;
 import eni.fr.bo.ArticleVendu;
 import eni.fr.bo.Categorie;
 import eni.fr.bo.Utilisateur;
@@ -24,14 +26,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	int i = 1;
 	
 	@Override
-	public void insert(Utilisateur utilisateur) /*throws BusinessException*/ {
+	public void insert(Utilisateur utilisateur) throws BusinessException{
 		
-//		if(utilisateur==null)
-//		{
-//			BusinessException businessException = new BusinessException();
-//			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
-//			throw businessException;
-//		}
+		if(utilisateur==null)
+		{
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
+			throw businessException;
+		}
 		
 		try(Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);	
@@ -58,21 +60,21 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		catch(Exception e)
 		{
 			e.printStackTrace();
-//			BusinessException businessException = new BusinessException();
-//			if(e.getMessage().contains("CK_Utilisateur_note"))
-//			{
-//				businessException.ajouterErreur(CodesResultatDAL.INSERT_Utilisateur_NOTE_ECHEC);
-//			}
-//			else
-//			{
-//				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
-//			}
-//			throw businessException;
+			BusinessException businessException = new BusinessException();
+			if(e.getMessage().contains("CK_Utilisateur_note"))
+			{
+				businessException.ajouterErreur(CodesResultatDAL.INSERT_TOUS_LES_CHAMPS_ECHEC);
+			}
+			else
+			{
+				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
+			}
+			throw businessException;
 		}	
 	}
 
 	@Override
-	public Utilisateur selectById(int noArticle) throws DALException {
+	public Utilisateur selectById(int noArticle) throws DALException, BusinessException {
 		ResultSet rs = null;
 		Utilisateur utilisateur = new Utilisateur();
 		try (Connection con = ConnectionProvider.getConnection(); 
@@ -102,14 +104,17 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 		} catch (SQLException e) {
 			
-			throw new DALException("erreur de requete de recherche d'articles", e);
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_Utilisateur_BY_ID_ECHEC);
+			throw businessException;
 		}
 
 		return utilisateur;
 	}
 	
 	@Override
-	public Utilisateur selectByPseudo(String pseudo) throws DALException {
+	public Utilisateur selectByPseudo(String pseudo) throws DALException, BusinessException {
 		ResultSet rs = null;
 		Utilisateur utilisateur = new Utilisateur();
 		try (Connection con = ConnectionProvider.getConnection(); 
@@ -139,14 +144,17 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 		} catch (SQLException e) {
 			
-			throw new DALException("erreur de requete de recherche d'utilisateur par son pseudo", e);
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_Utilisateur_BY_PSEUDO_ECHEC);
+			throw businessException;
 		}
 
 		return utilisateur;
 	}
 
 	@Override
-	public List<Utilisateur> selectAll() throws DALException {
+	public List<Utilisateur> selectAll() throws DALException, BusinessException {
 		List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
 		try (Connection con = ConnectionProvider.getConnection();
 				Statement stmt = con.createStatement();
@@ -183,13 +191,16 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("erreur de requete select ALL", e);
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_TOUS_Utilisateurs_ECHEC);
+			throw businessException;
 		}
 		return utilisateurs;
 	}
 
 	@Override
-	public void update(String champs, String valeur, Utilisateur utilisateur) throws DALException {
+	public void update(String champs, String valeur, Utilisateur utilisateur) throws DALException, BusinessException {
 		String UPDATE = null;
 		if(champs.equals("pseudo")) {
 			UPDATE = "UPDATE UTILISATEURS SET pseudo = ? WHERE no_utilisateur = ?";
@@ -220,6 +231,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			                ) 
 			        {
 			        
+			  
 //			        	Pstmt.setString(1,champs);
 						Pstmt.setString(1, valeur);
 						Pstmt.setInt(2, utilisateur.getNoUtilisateur());
@@ -228,7 +240,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			            
 			        } catch (SQLException e) {
 			        	
-			            throw new DALException("erreur de requete update",e);
+			        	e.printStackTrace();
+						BusinessException businessException = new BusinessException();
+						businessException.ajouterErreur(CodesResultatDAL.UPDATE_UTILISATEUR_ECHEC);
+						throw businessException;
 			            
 			        }
 		
@@ -236,13 +251,17 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 
 	@Override
-	public void delete(int noUtilisateur) throws DALException {
+	public void delete(int noUtilisateur) throws DALException, BusinessException {
 		try (Connection con = ConnectionProvider.getConnection();
                 PreparedStatement Pstmt = con.prepareStatement(DELETE)){
                 Pstmt.setInt(1, noUtilisateur);
                 Pstmt.executeUpdate();
         }catch (SQLException e) {
-        throw new DALException("erreur de requete Delete",e);
+        	e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.DELETE_UTILISATEUR_ECHEC);
+			throw businessException;
+            
     }
 		
 	}
