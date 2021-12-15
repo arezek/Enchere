@@ -42,6 +42,7 @@ public class ArticleVenduManager {
 			try {
 				
 				this.articleVenduDAO.insert(articleVendu);
+				System.out.println(articleVendu);
 				
 			} catch (DALException e) {
 				

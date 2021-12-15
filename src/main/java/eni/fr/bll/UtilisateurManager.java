@@ -65,6 +65,52 @@ private UtilisateurDAO utilisateurDAO;
 	}
 	
 	// lors d'un update
+	
+	public Utilisateur modifier(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) throws BusinessException {
+		
+		BusinessException exception = new BusinessException();
+		
+		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
+			 codePostal, ville, motDePasse, credit, administrateur);
+		
+		String champs = null;
+		String valeur = null;
+		
+		this.validerPseudo(utilisateur, exception);
+		this.validerNom(utilisateur, exception);
+		this.validerPrenom(utilisateur, exception);
+		this.validerEmail(utilisateur, exception);
+		this.validerTelephone(utilisateur, exception);
+		this.validerRue(utilisateur, exception);
+		this.validerCodePostal(utilisateur, exception);
+		this.validerVille(utilisateur, exception);
+		this.validerMotDePasse(utilisateur, exception);
+		this.validerCredit(utilisateur, exception);
+		//this.validerAdministrateur(utilisateur, exception);
+		
+		if(!exception.hasErreurs()) {
+			
+			try {
+				
+				this.utilisateurDAO.update(champs, valeur, utilisateur);
+				
+			} catch (DALException e) {
+				
+				e.printStackTrace();
+				
+			}
+			
+		}
+		
+		if (exception.hasErreurs()) {
+			
+			throw exception;
+			
+		}
+		
+		return utilisateur;
+	}
 
 	
 	private void validerPseudo (Utilisateur utilisateur, BusinessException businessException) {

@@ -83,8 +83,8 @@ public class ServletVente extends HttpServlet {
 //				Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
 //						 codePostal, ville, motDePasse, credit, administrateur);
 //				
-				ArticleVendu art =new ArticleVendu(nomArticle,description,dateDebutEncheres,dateFinEncheres,miseAPrix,noCategorie);
-				art.setNoUtilisateur(utilisateurLogged);
+				//ArticleVendu art =new ArticleVendu(nomArticle,description,dateDebutEncheres,dateFinEncheres,miseAPrix,noCategorie);
+				//art.setNoUtilisateur(utilisateurLogged);
 				
 				
 				try {
@@ -102,7 +102,7 @@ public class ServletVente extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println(art.getNomArticle()+" "+art.getDescription()+" "+art.getDateDebutEncheres()+" "+art.getDateFinEncheres()+" "+art.miseAPrix+" ");
+				//System.out.println(art.getNomArticle()+" "+art.getDescription()+" "+art.getDateDebutEncheres()+" "+art.getDateFinEncheres()+" "+art.miseAPrix+" ");
 				
 			}else if (nomArticle != null && description != null && miseAPrix != 0 && dateDebutEncheres != null && 
 					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue==null && codePostal==null && ville==null) {

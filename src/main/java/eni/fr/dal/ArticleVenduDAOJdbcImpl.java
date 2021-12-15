@@ -37,7 +37,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 //				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
 //				throw businessException;
 //			}
-			ArticleVendu returnArticle= new ArticleVendu();
+
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);) {
 
@@ -55,8 +55,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
 				
-				returnArticle.setNoArticle(rs.getInt(1));
-				//returnArticle.setNomArticle(rs.getString(2));
+				articleVendu.setNoArticle(rs.getInt(1));
 				
 			}
 		} catch (Exception e) {
@@ -72,7 +71,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 //				}
 //				throw businessException;
 		}
-		return returnArticle;
+		return articleVendu;
 
 	}
 
