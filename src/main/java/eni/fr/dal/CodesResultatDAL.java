@@ -64,7 +64,7 @@ public abstract class CodesResultatDAL {
 	
 	
 	
-	// ArticleVendu INSERTION/MODIFICATION/SUPPRESSION
+	// ArticleVendu INSERTION/MODIFICATION/SUPPRESSION/SELECTION
 	
 	/**
 	 * Echec de l'insertion d'un Nouveau Article Vendu à cause d'un champ null il faut remplir tous les cases.
@@ -101,7 +101,7 @@ public abstract class CodesResultatDAL {
 	
 	
 	
-	// Retrait INSERTION/MODIFICATION/SUPPRESSION
+	// Retrait INSERTION/MODIFICATION/SUPPRESSION/SELECTION
 	
 	/**
 	 * Echec de l'insertion des Informations de la Table Retrait a cause d'un champ null il faut remplir tous les cases.
@@ -132,29 +132,29 @@ public abstract class CodesResultatDAL {
 	
 	
 	
-	// ENCHERE   INSERTION/MODIFICATION/SUPPRESSION
+	// ENCHERE   INSERTION/MODIFICATION/SUPPRESSION/SELECTION
 	/**
 	 * Echec de l'insertion des Informations de la Table Enchère a cause d'un champ null il faut remplir tous les cases.
 	 */
 	public static final int INSERT_ENCHERE_TOUS_LES_CHAMPS_ECHEC=10019;
 	
 	/**
-	 * Echec de la supression d'un Enchère.
+	 * Echec de la suppression d'une Enchère.
 	 */
 	public static final int DELETE_ENCHERE_ECHEC=10020;
 	
 	/**
-	 * Echec de la modification d'un Enchère.
+	 * Echec de la modification d'une Enchère.
 	 */
 	public static final int UPDATE_ENCHERE_ECHEC=10021;
 	
 	/**
-	 * Echec de la lecture de tous les  Enchères.
+	 * Echec de la lecture de toutes les  Enchères.
 	 */
 	public static final int LECTURE_TOUS_ENCHERES_ECHEC=10022;
 	
 	/**
-	 * Echec de la lecture d'un Enchère par le numero d'utilisateur et le numéro d'article.
+	 * Echec de la lecture d'une Enchère par le numero d'utilisateur et le numéro d'article.
 	 */
 	public static final int LECTURE_ENCHERE_BY_ID_UTILISATEUR_ARTICLE_ECHEC=10023;
 	
@@ -162,7 +162,7 @@ public abstract class CodesResultatDAL {
 	
 	
 	
-	// ENCHERE   INSERTION/MODIFICATION/SUPPRESSION
+	// CATEGORIE   INSERTION/MODIFICATION/SUPPRESSION
 	
 	/**
 	 * Echec de l'insertion des Informations de la Table CATEGORIE a cause d'un champ null il faut remplir tous les cases.
@@ -180,7 +180,7 @@ public abstract class CodesResultatDAL {
 	public static final int UPDATE_CATEGORIE_ECHEC=10026;
 	
 	/**
-	 * Echec de la lecture de tous les  CATEGORIES.
+	 * Echec de la lecture de toutes les  CATEGORIES.
 	 */
 	public static final int LECTURE_TOUS_CATEGORIES_ECHEC=10027;
 	
