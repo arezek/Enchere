@@ -12,19 +12,19 @@ import eni.fr.bo.Retrait;
 public interface RetraitDAO {
 	
 			//Sélectionner un Retrait par son idRetrait
-			public Retrait selectById(int noArticle) throws BusinessException;
+			public Retrait selectById(int noArticle) throws DALException, BusinessException;
 			
 			//Sélectionner tous les Retraits 
-			public List<Retrait> selectAll() throws BusinessException;
+			public List<Retrait> selectAll() throws DALException,BusinessException;
 			
 			//Modifier les attributs d'un Retrait connu en BD
-			public void update(Retrait Retrait) throws BusinessException;
+			public void update(Retrait Retrait) throws DALException,BusinessException;
 			
 			//Insérer une nouvelle Retrait
-			public void insert(Retrait Retrait) throws BusinessException;
+			public void insert(Retrait Retrait) throws DALException,BusinessException;
 			
 			//Supprimer une Retrait
-			public void delete(int noArticle) throws BusinessException;
+			public void delete(int noArticle) throws DALException,BusinessException;
 	
 	
 }

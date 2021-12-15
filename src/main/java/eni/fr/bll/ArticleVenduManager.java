@@ -63,29 +63,22 @@ public class ArticleVenduManager {
 		return articleVendu;
 	}
 	
-	public List<ArticleVendu> rechercher(String nomArticle, Categorie noCategorie) throws BusinessException {
+	public List<ArticleVendu> rechercher(String nomArticle, int noCategorie) throws BusinessException {
 		
 		List<ArticleVendu> liste = new ArrayList<ArticleVendu>();
 		BusinessException exception = new BusinessException();
 		
-		ArticleVendu articleVendu = new ArticleVendu();
-		
-		this.validerNomArticle(articleVendu, exception);
-		this.validerDescription(articleVendu, exception);
-		this.validerDateDebutEncheres(articleVendu, exception);
-		this.validerDateFinEncheres(articleVendu, exception);
-		this.validerMiseAPrix(articleVendu, exception);
-		this.validerNoUtilisateur(articleVendu, exception);
-		this.validerNoCategorie(articleVendu, exception);
+		if (noCategorie > 5 || noCategorie < 1) {
+			exception.ajouterErreur(CodesResultatBLL.RECHERCHE_CATEGORIE_ERREUR);
+		}
 		
 		if(!exception.hasErreurs()) {
 			
 			try {
 				
-				int numCategorie = noCategorie.getNoCategorie();
 				
-				liste = this.articleVenduDAO.search(nomArticle, numCategorie);
-				System.out.println(nomArticle + " " + numCategorie);
+				liste = this.articleVenduDAO.search(nomArticle, noCategorie);
+				System.out.println(nomArticle + " " + noCategorie);
 				
 			} catch (DALException e) {
 				
@@ -103,7 +96,38 @@ public class ArticleVenduManager {
 		
 		return liste;
 	}
-	
+public List<ArticleVendu> selectAll() throws BusinessException {
+		
+		List<ArticleVendu> liste = new ArrayList<ArticleVendu>();
+		BusinessException exception = new BusinessException();
+		
+		
+		
+		if(!exception.hasErreurs()) {
+			
+			try {
+				
+				
+				
+				liste = this.articleVenduDAO.selectAll();
+				System.out.println(liste);
+				
+			} catch (DALException e) {
+				
+				e.printStackTrace();
+				
+			}
+			
+		}
+		
+		if (exception.hasErreurs()) {
+			
+			throw exception;
+			
+		}
+		
+		return liste;
+	}
 	// lors d'un update
 	
 	private void validerNomArticle (ArticleVendu articleVendu, BusinessException businessException) {

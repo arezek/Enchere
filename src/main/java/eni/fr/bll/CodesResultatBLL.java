@@ -38,7 +38,11 @@ public abstract class CodesResultatBLL {
 	public static final int ARTICLE_VENDU_NO_CATEGORIE_ERREUR=20007;
 	
 	// ARTICLES VENDUS MODIFICATION
-
+	// ArticlesVendu.recherche()
+	/**
+	 * Echec quand le num de catégorie est invalide
+	 */
+	public static final int RECHERCHE_CATEGORIE_ERREUR=20023;
 	
 	// UTILISATEUR INSERTION
 	

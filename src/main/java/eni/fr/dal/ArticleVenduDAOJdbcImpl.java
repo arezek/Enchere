@@ -29,7 +29,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	int i = 1;
 
 	@Override
-	public ArticleVendu insert(ArticleVendu articleVendu) throws  BusinessException {
+	public ArticleVendu insert(ArticleVendu articleVendu) throws DALException, BusinessException {
 
 		if(articleVendu==null)
 			{
@@ -76,7 +76,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	}
 
 	@Override
-	public ArticleVendu selectById(int noArticle) throws  BusinessException {
+	public ArticleVendu selectById(int noArticle) throws DALException, BusinessException {
 		ResultSet rs = null;
 		ArticleVendu art = new ArticleVendu();
 		try (Connection con = ConnectionProvider.getConnection(); 
@@ -129,7 +129,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	
 
 	@Override
-	public void update(ArticleVendu articleVendu) throws  BusinessException {
+	public void update(ArticleVendu articleVendu) throws DALException, BusinessException {
 	        try(Connection con = ConnectionProvider.getConnection();
 	        PreparedStatement Pstmt = con.prepareStatement(UPDATE,PreparedStatement.RETURN_GENERATED_KEYS);
 	                ) 
@@ -155,7 +155,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	}
 	
 	@Override
-	public void delete(int noArticle) throws BusinessException {
+	public void delete(int noArticle) throws DALException,BusinessException {
 		try (Connection con = ConnectionProvider.getConnection();
                 PreparedStatement Pstmt = con.prepareStatement(DELETE)){
                 Pstmt.setInt(1, noArticle);
@@ -169,7 +169,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	}
 
 	@Override
-	public List<ArticleVendu> selectAll() throws BusinessException {
+	public List<ArticleVendu> selectAll() throws DALException, BusinessException {
 		List<ArticleVendu> articlesVendus = new ArrayList<ArticleVendu>();
 		try (Connection con = ConnectionProvider.getConnection();
 				Statement stmt = con.createStatement();
@@ -213,7 +213,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	}
 
 	@Override
-	public List<ArticleVendu> search(String nomArticle, int noCategorie) throws  BusinessException {
+	public List<ArticleVendu> search(String nomArticle, int noCategorie) throws DALException, BusinessException {
 
 		ResultSet rs = null;
 		List<ArticleVendu> liste = new ArrayList<ArticleVendu>();
