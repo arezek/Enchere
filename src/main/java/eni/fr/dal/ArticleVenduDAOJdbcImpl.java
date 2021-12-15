@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import eni.fr.BusinessException;
 import eni.fr.bo.ArticleVendu;
 import eni.fr.bo.Categorie;
 import eni.fr.bo.Utilisateur;
@@ -28,14 +29,14 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	int i = 1;
 
 	@Override
-	public ArticleVendu insert(ArticleVendu articleVendu) throws DALException {
+	public ArticleVendu insert(ArticleVendu articleVendu) throws DALException, BusinessException {
 
-//		if(ArticleVendu==null)
-//			{
-//				BusinessException businessException = new BusinessException();
-//				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
-//				throw businessException;
-//			}
+		if(articleVendu==null)
+			{
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
+				throw businessException;
+			}
 
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);) {
@@ -59,23 +60,23 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-//				BusinessException businessException = new BusinessException();
-//				if(e.getMessage().contains("CK_ArticleVendu_note"))
-//				{
-//					businessException.ajouterErreur(CodesResultatDAL.INSERT_ArticleVendu_NOTE_ECHEC);
-//				}
-//				else
-//				{
-//					businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
-//				}
-//				throw businessException;
+				BusinessException businessException = new BusinessException();
+				if(e.getMessage().contains("CK_ArticleVendu_note"))
+				{
+					businessException.ajouterErreur(CodesResultatDAL.INSERT_ARTICLE_TOUS_LES_CHAMPS_ECHEC);
+				}
+				else
+				{
+					businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
+				}
+				throw businessException;
 		}
 		return articleVendu;
 
 	}
 
 	@Override
-	public ArticleVendu selectById(int noArticle) throws DALException {
+	public ArticleVendu selectById(int noArticle) throws DALException, BusinessException {
 		ResultSet rs = null;
 		ArticleVendu art = new ArticleVendu();
 		try (Connection con = ConnectionProvider.getConnection(); 
@@ -117,7 +118,10 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 		} catch (SQLException e) {
 			
-			throw new DALException("erreur de requete de recherche d'articles", e);
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_ARTICLE_VENDU_BY_ID_ECHEC);
+			throw businessException;
 		}
 
 		return art;
@@ -125,7 +129,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	
 
 	@Override
-	public void update(ArticleVendu articleVendu) throws DALException {
+	public void update(ArticleVendu articleVendu) throws DALException, BusinessException {
 	        try(Connection con = ConnectionProvider.getConnection();
 	        PreparedStatement Pstmt = con.prepareStatement(UPDATE,PreparedStatement.RETURN_GENERATED_KEYS);
 	                ) 
@@ -142,24 +146,30 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	            
 	        } catch (SQLException e) {
 	        	
-	            throw new DALException("erreur de requete update",e);
+	        	e.printStackTrace();
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.UPDATE_ARTICLE_VENDU_ECHEC);
+				throw businessException;
 	            
 	        }
 	}
 	
 	@Override
-	public void delete(int noArticle) throws DALException {
+	public void delete(int noArticle) throws DALException, BusinessException {
 		try (Connection con = ConnectionProvider.getConnection();
                 PreparedStatement Pstmt = con.prepareStatement(DELETE)){
                 Pstmt.setInt(1, noArticle);
                 Pstmt.executeUpdate();
         }catch (SQLException e) {
-        throw new DALException("erreur de requete Delete",e);
+        	e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.DELETE_ARTICLE_VENDU_ECHEC);
+			throw businessException;
     }
 	}
 
 	@Override
-	public List<ArticleVendu> selectAll() throws DALException {
+	public List<ArticleVendu> selectAll() throws DALException, BusinessException {
 		List<ArticleVendu> articlesVendus = new ArrayList<ArticleVendu>();
 		try (Connection con = ConnectionProvider.getConnection();
 				Statement stmt = con.createStatement();
@@ -193,14 +203,17 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("erreur de requete select ALL", e);
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_TOUS_ARTICLE_VENDUS_ECHEC);
+			throw businessException;
 		}
 		return articlesVendus;
 
 	}
 
 	@Override
-	public List<ArticleVendu> search(String nomArticle, int noCategorie) throws DALException {
+	public List<ArticleVendu> search(String nomArticle, int noCategorie) throws DALException, BusinessException {
 
 		ResultSet rs = null;
 		List<ArticleVendu> liste = new ArrayList<ArticleVendu>();
@@ -272,7 +285,10 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 		} catch (SQLException e) {
 			
-			throw new DALException("erreur de requete de recherche d'articles", e);
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_ARTICLE_VENDU_BY_NOMARTICLE_NOCATEGORIE_ECHEC);
+			throw businessException;
 		}
 		}
 
