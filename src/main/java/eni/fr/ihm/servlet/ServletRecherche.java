@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import eni.fr.BusinessException;
+import eni.fr.bll.ArticleVenduManager;
 import eni.fr.bo.ArticleVendu;
 import eni.fr.dal.ArticleVenduDAO;
 import eni.fr.dal.ArticleVenduDAOJdbcImpl;
@@ -43,7 +44,7 @@ public class ServletRecherche extends HttpServlet {
 				rechercherNom = request.getParameter("rechercherNom");
 				rechercherCategories = request.getParameter("rechercherCategories");
 //				int noCategorie=Integer.parseInt(rechercherCategories);
-				ArticleVenduDAO articleVenduManager = new ArticleVenduDAOJdbcImpl();
+				ArticleVenduManager articleVenduManager = new ArticleVenduManager();
 				List<ArticleVendu> listeArticles;
 				
 				if (rechercherNom == null && rechercherCategories == null ) {
@@ -52,7 +53,7 @@ public class ServletRecherche extends HttpServlet {
 					
 				} else {
 				
-					listeArticles = (List<ArticleVendu>) articleVenduManager.search(rechercherNom,Integer.parseInt(rechercherCategories));					
+					listeArticles = (List<ArticleVendu>) articleVenduManager.rechercher(rechercherNom,Integer.parseInt(rechercherCategories));					
 				
 				}
 				
@@ -61,11 +62,7 @@ public class ServletRecherche extends HttpServlet {
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			
-			} catch (BusinessException e) {
+			}  catch (BusinessException e) {
 
 				e.printStackTrace();
 			}
