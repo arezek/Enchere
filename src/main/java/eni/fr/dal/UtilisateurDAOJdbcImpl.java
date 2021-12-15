@@ -43,7 +43,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 			nombrePseudo = rs.getInt("compteur");
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
@@ -104,7 +104,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateur selectById(int noArticle) throws DALException, BusinessException {
+	public Utilisateur selectById(int noArticle) throws BusinessException {
 		ResultSet rs = null;
 		Utilisateur utilisateur = new Utilisateur();
 		try (Connection con = ConnectionProvider.getConnection(); 
@@ -132,7 +132,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			
 			System.out.println(utilisateur.getPseudo() + " " + utilisateur.getNom());
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
@@ -144,7 +144,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 	
 	@Override
-	public Utilisateur selectByPseudo(String pseudo) throws DALException, BusinessException {
+	public Utilisateur selectByPseudo(String pseudo) throws BusinessException {
 		ResultSet rs = null;
 		Utilisateur utilisateur = new Utilisateur();
 		try (Connection con = ConnectionProvider.getConnection(); 
@@ -172,7 +172,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			
 			System.out.println(utilisateur.getPseudo() + " " + utilisateur.getNom());
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
@@ -184,7 +184,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public List<Utilisateur> selectAll() throws DALException, BusinessException {
+	public List<Utilisateur> selectAll() throws BusinessException {
 		List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
 		try (Connection con = ConnectionProvider.getConnection();
 				Statement stmt = con.createStatement();
@@ -220,7 +220,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		
 			}
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.ajouterErreur(CodesResultatDAL.LECTURE_TOUS_Utilisateurs_ECHEC);
@@ -230,7 +230,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public void update(String champs, String valeur, Utilisateur utilisateur) throws DALException, BusinessException {
+	public void update(String champs, String valeur, Utilisateur utilisateur) throws  BusinessException {
 		String UPDATE = null;
 		if(champs.equals("pseudo")) {
 			UPDATE = "UPDATE UTILISATEURS SET pseudo = ? WHERE no_utilisateur = ?";
@@ -268,7 +268,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			          System.out.println(Pstmt.toString());
 			            Pstmt.executeUpdate();
 			            
-			        } catch (SQLException e) {
+			        } catch (Exception e) {
 			        	
 			        	e.printStackTrace();
 						BusinessException businessException = new BusinessException();
@@ -281,12 +281,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 
 	@Override
-	public void delete(int noUtilisateur) throws DALException, BusinessException {
+	public void delete(int noUtilisateur) throws  BusinessException {
 		try (Connection con = ConnectionProvider.getConnection();
                 PreparedStatement Pstmt = con.prepareStatement(DELETE)){
                 Pstmt.setInt(1, noUtilisateur);
                 Pstmt.executeUpdate();
-        }catch (SQLException e) {
+        }catch (Exception e) {
         	e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.ajouterErreur(CodesResultatDAL.DELETE_UTILISATEUR_ECHEC);
