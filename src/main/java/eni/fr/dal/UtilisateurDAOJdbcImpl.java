@@ -34,7 +34,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 		try (Connection con = ConnectionProvider.getConnection(); 
 			 PreparedStatement rqt = con.prepareStatement(SELECTCOUNTBYPSEUDO);)
-
 		{
 			
 			rqt.setString(1, pseudo);
