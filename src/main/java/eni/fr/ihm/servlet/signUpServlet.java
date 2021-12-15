@@ -65,9 +65,7 @@ public class signUpServlet extends HttpServlet {
 				motDePasseActuel = request.getParameter("mdpa");
 				motDePasse = request.getParameter("mdp");
 				motDePasseConfirme = request.getParameter("mdpc");
-				
-				HttpSession session=request.getSession();
-				Utilisateur utilisateurRecup = (Utilisateur) session.getAttribute("utilisateurLogged");
+				HttpSession session = null;
 				
 				if (session == null) {
 					
@@ -86,7 +84,7 @@ public class signUpServlet extends HttpServlet {
 							 codePostal, ville, motDePasse, creditDeDepart, administrateur);
 						
 						HttpSession sessionACreer = request.getSession();
-						session.setAttribute("utilisateur", utilisateur);
+						sessionACreer.setAttribute("utilisateur", utilisateur);
 						
 						try {
 							utilisateurD.insert(utilisateur);
@@ -99,6 +97,8 @@ public class signUpServlet extends HttpServlet {
 						
 					}
 				} else {
+					session=request.getSession();
+					Utilisateur utilisateurRecup = (Utilisateur) session.getAttribute("utilisateurLogged");
 					
 					System.out.println("une session est en cours, on essaie de faire un update");
 					

@@ -48,7 +48,7 @@
    
   </form>         
    
-  <form method="post" action="<%=request.getContextPath()%>/signUpServlet">
+  <form method="get" action="<%=request.getContextPath()%>/signUpServlet">
     
     <input type="submit" class ="loginButton"  value="Créer un compte">
      
