@@ -87,7 +87,7 @@ public class ServletVente extends HttpServlet {
 			RetraitManager retraitManager=new RetraitManager();
 			
 //			noArticle= request.getParameter("article");
-			String fileName = "";
+			
 			if(nomArticle != null && description != null && miseAPrix != 0 && dateDebutEncheres != null && 
 					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue != null && codePostal != null && ville != null /* && filePart != null*/)
 			
@@ -101,8 +101,9 @@ public class ServletVente extends HttpServlet {
 
 				try {
 					ArticleVendu Narticle =articleVenduManager.ajouter(nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, utilisateurLogged, noCategorie);
+					String fileName = Narticle.getNoArticle() + ".jpg";
 					filePart.write(IMAGES_FOLDER + fileName);
-					System.out.println(Narticle);
+					System.out.println(fileName);
 					//retraitArticle.getNoArticle().setNoArticle(Narticle);
 				//	System.out.println(retraitArticle.getNoArticle().getNoArticle());
 					
