@@ -33,7 +33,7 @@
     <%} %>
     
     <c:if test="${not empty sessionScope.utilisateurLogged  }">
-    <form method="get" action="<%=request.getContextPath()%>/signUpServlet">
+    <form method="get" action="<%=request.getContextPath()%>/ModifProfilServlet">
         
 	 <input type="submit" id="edtiProfilButton" value="Modifier">
   	

@@ -17,16 +17,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/query.css">
-	<c:if test="${empty sessionScope.utilisateurLogged }"><title>Inscription</title></c:if>
+    <c:if test="${not empty sessionScope.utilisateurLogged }"><title>Modification</title></c:if>
 </head>
 <body class="signUp">
 
-<c:if test="${empty sessionScope.utilisateurLogged }">
-<h1>Inscription</h1>
+<c:if test="${not empty sessionScope.utilisateurLogged }">
+<h1>Modification</h1>
 <div id="separator"></div>
-<h2>Créer un compte</h2>
+<h2>Modifier mon compte</h2>
 </c:if>
-
 <% List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur"); %>
 <c:if test="${listeCodesErreur!= null }">
 			<p>Une erreur est survenue :</p>
@@ -35,7 +34,7 @@
 			<% }%>
 		</c:if>
 
-<form method="post" action="<%=request.getContextPath()%>/signUpServlet">
+<form method="post" action="<%=request.getContextPath()%>/ModifProfilServlet">
 <div class="signUpForm">
   <div class="signUpForm">
     <label for="pseudo">Pseudo</label><br>
@@ -88,9 +87,15 @@
     <input type="text" id="ville" name="ville" value=""><br>
   </div>
   
-  <c:if test="${empty sessionScope.utilisateurLogged }">
+  <c:if test="${not empty sessionScope.utilisateurLogged }">
   <div class="signUp">
-    <label for="mdp">Mot de passe</label><br>
+    <label for="mdpa">Mot de passe actuel</label><br>
+  </div>
+  <div class="signUp">
+    <input type="password" id="mdp" name="mdpa" value=""><br>
+  </div>
+   <div class="signUp">
+    <label for="mdp">Nouveau mot de passe</label><br>
   </div>
   <div class="signUp">
     <input type="password" id="mdp" name="mdp" value=""><br>
@@ -101,13 +106,21 @@
   <div class="signUp">
     <input type="password" id="mdpc" name="mdpc" value=""><br>
   </div>
+  
+  <% Utilisateur utilisateur= (Utilisateur)request.getAttribute("utilisateur");
+    if(utilisateur!=null)
+    {System.out.println(utilisateur.toString());
+%>
+  <p>Crédit <%=utilisateur.getCredit() %></p>
+  <%} %>
   <div class="signUp">
-    <input type="submit" class="signUpButton" value="Créer">
+    <input type="submit" value="Enregistrer">
   </div>
   <div class="signUp">
-    <a href="<%=request.getContextPath()%>/accueilServlet"  ><input id="signUpButton" type="submit" value="Annuler"></a>
+    <input type="submit" id="deleteButton" value="Supprimer mon compte">
   </div>
   </c:if>
+  
 </div>
 </form> 
     
