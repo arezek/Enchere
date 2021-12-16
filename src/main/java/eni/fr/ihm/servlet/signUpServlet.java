@@ -70,7 +70,8 @@ public class signUpServlet extends HttpServlet {
 				motDePasseConfirme = request.getParameter("mdpc");
 				
 
-					System.out.println("une session a été créée");
+				
+				
 					
 					int creditDeDepart = 100;
 					UtilisateurManager utilisateurD=new UtilisateurManager();
@@ -89,26 +90,32 @@ public class signUpServlet extends HttpServlet {
 						
 						try {
 							utilisateurD.ajouter(utilisateur);
+							RequestDispatcher rd=request.getRequestDispatcher("/ServletRecherche");
+							rd.forward(request, response);
 						} catch (NumberFormatException e) {
 
 							List<Integer> listeCodesErreur = new ArrayList<>();
 							listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_AJOUTER_ERREUR);
 							request.setAttribute("listeCodesErreur", listeCodesErreur);
+							RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/signUp.jsp");
+							rd.forward(request, response);
+						
 
 						} catch (BusinessException | DALException e) {
 
 							request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
+							RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/signUp.jsp");
+							rd.forward(request, response);
+
 						}						
 						
 					}
-				
 			
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
 			
-			RequestDispatcher rd=request.getRequestDispatcher("/ServletRecherche");
-			rd.forward(request, response);
+		
 	}
 
 }
