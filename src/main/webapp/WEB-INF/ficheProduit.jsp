@@ -131,7 +131,7 @@ List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodes
 						min="100"  step="10" placeholder="100">
 				</div>
 				<div class="detail">
-					<input type="submit" id="signUpButton" value="Enchérir">
+					<input type="submit" id="bidButton" value="Enchérir">
 				</div>
 			
 			</div>			

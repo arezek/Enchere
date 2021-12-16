@@ -60,6 +60,10 @@ body {
 	width: 200px;
     margin-left: 100px;
 }
+#logo2{
+	width: 200px; 
+	margin-top : -5px;   
+}
 #brand {
 	padding-top : 13px;
 }
@@ -215,27 +219,25 @@ header {
 	text-decoration: underline;
 }
 /***********************************************LOGIN *************/
-.titleLogin {          
-    font-size: 60px;
+.titleLogin {  
+	margin-top: 50px;
+    font-size: 40px;
     color: #73d3c0 ;    
 }
 .formLogin {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 700;
     color: #a3e29b ; 
     display: block;
-    text-align: center;
+    text-align: center;    
 }
-.form  {
-    margin-top: 10px;
-    font-size: 30px;
-    font-weight: 700;    
-} 
-
+.form {
+	margin: 15px 0px;
+}
 .passLogin {
-    font-size: 15px;    
+    font-size: 13px;    
     color: black;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 /********************************************* Profil*****************************************/
@@ -246,7 +248,7 @@ header {
 
 /************************************************************ SignUp*******************************************/
 .signUpForm  {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 700;
     color: #404040 ; 
     display: block;    
@@ -257,7 +259,17 @@ header {
 #deleteButton {
 	width: 250px;
 }
-
+#header {
+	height: 50px;
+}
+#header a {	
+	padding : 18px;
+	display : block;
+	text-align: center;
+}
+#signUpButton {
+	margin : 15px 0px;
+}
 /**********************************Nouvelle Vente**********************************************************/
 
 .bid {
@@ -383,7 +395,7 @@ header {
 	margin-left : 15px;
 	width: 120px;
 }
-#signUpButton {
+#bidButton {
 	margin-left : 15px;
 	margin-top : -4px;
 }

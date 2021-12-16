@@ -22,94 +22,97 @@
 </head>
 <body class="signUp">
 
-<c:if test="${empty sessionScope.utilisateurLogged }">
-<h1>Inscription</h1>
-<div id="separator"></div>
-<h2>Créer un compte</h2>
-</c:if>
+<%-- <c:if test="${empty sessionScope.utilisateurLogged }">
+</c:if> --%>
+	<div id ="header">
+		<a href="<%=request.getContextPath()%>/ServletRecherche"><img src="img/eni_enchere_logo.png" id="logo2"/></a>
+	</div>
+	<div id="separator"></div>	
+	<h2>Créer un compte</h2>
 
-<% List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur"); %>
-<c:if test="${listeCodesErreur!= null }">
-			<p>Une erreur est survenue :</p>
-			<% for(int codeErreur:listeCodesErreur) { %>
-					<p><%=LecteurMessage.getMessageErreur(codeErreur) %></p>
-			<% }%>
-		</c:if>
+
+	<% List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur"); %>
+	<c:if test="${listeCodesErreur!= null }">
+		<p>Une erreur est survenue :</p>
+		<% for(int codeErreur:listeCodesErreur) { %>
+		<p><%=LecteurMessage.getMessageErreur(codeErreur) %></p>
+		<% }%>
+	</c:if>
 
 <form method="post" action="<%=request.getContextPath()%>/signUpServlet">
-<div class="signUpForm">
-  <div class="signUpForm">
-    <label for="pseudo">Pseudo</label><br>
-  </div>
-  <div class="signUp">
-    <input type="text" id="pseudo" name="pseudo" value=""><br>
-  </div>
-  <div class="signUp">
-    <label for="nom">Nom</label><br>
-  </div>
-  <div class="signUp">
-    <input type="text" id="nom" name="nom" value=""><br>
-  </div>
-  <div class="signUp">
-    <label for="prenom">Prénom</label><br>
-  </div>
-  <div class="signUp">
-    <input type="text" id="prenom" name="prenom" value=""><br>
-  </div>
-  <div class="signUp">
-    <label for="email">Email</label><br>
-  </div>
-  <div class="signUp">
-    <input type="email" id="email" name="email" value=""><br>
-  </div>
-  <div class="signUp">
-    <label for="telephone">Téléphone</label><br>
-  </div>
-  <div class="signUp">
-    <input type="tel" id="telephone" name="telephone" value=""><br>
-  </div><div class="signUp">
-    <label for="rue">Rue</label><br>
-  </div>
-  <div class="signUp">
-    <input type="text" id="rue" name="rue" value=""><br>
-  </div>
-  <div class="signUp">
-    
-  </div>
-  <div class="signUp">
-    <label for="cp">Code Postal</label><br>
-  </div>
-  <div class="signUp">
-    <input type="text" id="cp" name="cp" value=""><br>
-  </div>
-  <div class="signUp">
-    <label for="ville">Ville</label><br>
-  </div>
-  <div class="signUp">
-    <input type="text" id="ville" name="ville" value=""><br>
-  </div>
-  
-  <c:if test="${empty sessionScope.utilisateurLogged }">
-  <div class="signUp">
-    <label for="mdp">Mot de passe</label><br>
-  </div>
-  <div class="signUp">
-    <input type="password" id="mdp" name="mdp" value=""><br>
-  </div>
-  <div class="signUp">
-    <label for="mdpc">Confirmation</label><br>
-  </div>
-  <div class="signUp">
-    <input type="password" id="mdpc" name="mdpc" value=""><br>
-  </div>
-  <div class="signUp">
-    <input type="submit" class="signUpButton" value="Créer">
-  </div>
-  <div class="signUp">
-    <a href="<%=request.getContextPath()%>/accueilServlet"  ><input id="signUpButton" type="submit" value="Annuler"></a>
-  </div>
-  </c:if>
-</div>
+	<div class="signUpForm">
+	  <div class="signUpForm">
+	    <label for="pseudo">Pseudo</label><br>
+	  </div>
+	  <div class="signUp">
+	    <input type="text" id="pseudo" name="pseudo" value=""><br>
+	  </div>
+	  <div class="signUp">
+	    <label for="nom">Nom</label><br>
+	  </div>
+	  <div class="signUp">
+	    <input type="text" id="nom" name="nom" value=""><br>
+	  </div>
+	  <div class="signUp">
+	    <label for="prenom">Prénom</label><br>
+	  </div>
+	  <div class="signUp">
+	    <input type="text" id="prenom" name="prenom" value=""><br>
+	  </div>
+	  <div class="signUp">
+	    <label for="email">Email</label><br>
+	  </div>
+	  <div class="signUp">
+	    <input type="email" id="email" name="email" value=""><br>
+	  </div>
+	  <div class="signUp">
+	    <label for="telephone">Téléphone</label><br>
+	  </div>
+	  <div class="signUp">
+	    <input type="tel" id="telephone" name="telephone" value=""><br>
+	  </div><div class="signUp">
+	    <label for="rue">Rue</label><br>
+	  </div>
+	  <div class="signUp">
+	    <input type="text" id="rue" name="rue" value=""><br>
+	  </div>
+	  <div class="signUp">
+	    
+	  </div>
+	  <div class="signUp">
+	    <label for="cp">Code Postal</label><br>
+	  </div>
+	  <div class="signUp">
+	    <input type="text" id="cp" name="cp" value=""><br>
+	  </div>
+	  <div class="signUp">
+	    <label for="ville">Ville</label><br>
+	  </div>
+	  <div class="signUp">
+	    <input type="text" id="ville" name="ville" value=""><br>
+	  </div>
+	  
+	  <c:if test="${empty sessionScope.utilisateurLogged }">
+		  <div class="signUp">
+		    <label for="mdp">Mot de passe</label><br>
+		  </div>
+		  <div class="signUp">
+		    <input type="password" id="mdp" name="mdp" value=""><br>
+		  </div>
+		  <div class="signUp">
+		    <label for="mdpc">Confirmation</label><br>
+		  </div>
+		  <div class="signUp">
+		    <input type="password" id="mdpc" name="mdpc" value=""><br>
+		  </div>
+		  <div class="signUp">
+		    <input type="submit" id="signUpButton" value="Créer">
+		  </div>
+		  <div class="signUp">
+		    <a href="<%=request.getContextPath()%>/accueilServlet"  ><input id="cancelButton" type="submit" value="Annuler"></a>
+		  </div>
+	  </c:if>
+	</div>
 </form> 
     
 </body>
