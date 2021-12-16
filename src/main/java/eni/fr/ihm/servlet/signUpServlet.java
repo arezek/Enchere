@@ -21,7 +21,6 @@ import eni.fr.dal.DALException;
 import eni.fr.dal.UtilisateurDAO;
 import eni.fr.dal.UtilisateurDAOJdbcImpl;
 
-
 /**
  * Servlet implementation class signupServlet
  */

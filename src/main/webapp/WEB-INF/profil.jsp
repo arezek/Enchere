@@ -6,6 +6,7 @@
 <!--@author Fabien M. Gavoille & Eugénie FUCHS  -->
 <html lang="fr">
 <head>
+
      <%@ include file="/includes/head.jsp" %>
     <title>Page de profil</title>
 </head>

@@ -25,15 +25,6 @@ import eni.fr.dal.DALException;
 @WebServlet("/ServletRecherche")
 public class ServletRecherche extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private int nombrePassageInit=0;
-	private int nombreAppelServlet=0;
-	private int nombreDestruction=0;
-	
-    @Override
-    public void init() throws ServletException {
-    	this.nombrePassageInit+=1;
-    	super.init();
-    }   
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -41,14 +32,6 @@ public class ServletRecherche extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		this.nombreAppelServlet+=1;
-		System.out.println("nombreAppelServlet :" + String.valueOf(this.nombreAppelServlet));
-		response.getWriter().append("nombreAppelServlet :").append(String.valueOf(this.nombreAppelServlet));
-		response.getWriter().append(System.lineSeparator());
-		response.getWriter().append("nombrePassageInit :").append(String.valueOf(this.nombrePassageInit));
-		response.getWriter().append(System.lineSeparator());
-		response.getWriter().append("nombreDestruction :").append(String.valueOf(this.nombreDestruction));
 		
 		request.setCharacterEncoding("UTF-8");
 		String rechercherNom;
@@ -111,11 +94,6 @@ public class ServletRecherche extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
-	@Override
-	public void destroy() {
-		this.nombreDestruction+=1;
-		super.destroy();
-	}
+
 
 }
