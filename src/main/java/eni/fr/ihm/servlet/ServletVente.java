@@ -36,10 +36,10 @@ import eni.fr.dal.RetraitDAOJdbcImpl;
 @WebServlet("/ServletVente")
 public class ServletVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String IMAGES_FOLDER = "C://Users/eugen/git/Enchere/src/main/webapp/img/ArticlesPhotos/";
-	//C://Users/eugen/git/Enchere/src/main/webapp/img/ArticlesPhotos/
-	// C://Users/Pc/git/Enchere/src/main/webapp/img/ArticlesPhotos/
-	// C://Users/vmware/Documents/JavaProject/ENI-Encheres/src/main/webapp/img/ArticlesPhotos/
+	public static final String IMAGES_FOLDER = "C://Users/vmware/Documents/JavaProject/ENI-Encheres/src/main/webapp/img/ArticlesPhotos/";
+	//C://Users/eugen/git/Enchere/src/main/webapp/img/ArticlesPhotos/ Eugenie
+	// C://Users/Pc/git/Enchere/src/main/webapp/img/ArticlesPhotos/ Fatima
+	// C://Users/vmware/Documents/JavaProject/ENI-Encheres/src/main/webapp/img/ArticlesPhotos/ Abdel
   
 
 	/**
