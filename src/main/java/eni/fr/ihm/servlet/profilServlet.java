@@ -1,6 +1,8 @@
 package eni.fr.ihm.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,24 +43,16 @@ public class profilServlet extends HttpServlet {
 				request.setAttribute("utilisateur", utilisateur);
 				
 			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (BusinessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				List<Integer> listeCodesErreur = new ArrayList<>();
+				listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_SELECT_ID_ERREUR);
+				request.setAttribute("listeCodesErreur", listeCodesErreur);
+
+			} catch (BusinessException | DALException e) {
+
+				request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
 			}
 			
-		
-//		catch(NumberFormatException e)
-//		{
-//			List<Integer> listeCodesErreur=new ArrayList<>();
-//			listeCodesErreur.add(CodesResultatServlets.FORMAT_AVIS_NOTE_ERREUR);
-//			request.setAttribute("listeCodesErreur",listeCodesErreur);}
-		
-		
 			RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/profil.jsp");
 			rd.forward(request, response);
 	}

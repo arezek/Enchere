@@ -21,7 +21,23 @@ public abstract class CodesResultatServlets {
 	 * La méthode ne marche pas correctement
 	 */
 	public static final int UTILISATEUR_UPDATE_ERREUR=30003;
+	/**
+	 * La méthode ne marche pas correctement
+	 */
+	public static final int UTILISATEUR_SELECT_PSEUDO_ERREUR=30004;
+	/**
+	 * La méthode ne marche pas correctement
+	 */
+	public static final int UTILISATEUR_SELECT_ID_ERREUR=30005;
+	/**
+	 * La méthode ne marche pas correctement
+	 */
+	public static final int ARTICLE_SELECT_ID_ERREUR=30006;
 	
 	
-
+	
+	
+	
+	
+	
 }

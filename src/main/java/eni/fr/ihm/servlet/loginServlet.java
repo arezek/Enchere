@@ -1,7 +1,9 @@
 package eni.fr.ihm.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 
@@ -119,13 +121,15 @@ public class loginServlet extends HttpServlet {
 				
 			}
 			
-		} catch (DALException e) {
-			
-			e.printStackTrace();
-			
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (NumberFormatException e) {
+
+			List<Integer> listeCodesErreur = new ArrayList<>();
+			listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_SELECT_PSEUDO_ERREUR);
+			request.setAttribute("listeCodesErreur", listeCodesErreur);
+
+		} catch (BusinessException |DALException e) {
+
+			request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
 		}
 		
 	}

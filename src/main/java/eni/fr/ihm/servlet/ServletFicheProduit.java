@@ -1,7 +1,8 @@
 package eni.fr.ihm.servlet;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -21,8 +22,8 @@ import eni.fr.dal.RetraitDAOJdbcImpl;
 
 /**
  * Servlet implementation class ServletFicheProduit
- * @author Fabien M. Gavoille 
- * @author Zabaka fatima zahra 
+ * @author Fabien M. Gavoille Zabaka fatima zahra FUCHS Eugénie
+ * 
  */
 @WebServlet("/ServletFicheProduit")
 public class ServletFicheProduit extends HttpServlet {
@@ -36,7 +37,6 @@ public class ServletFicheProduit extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String numArticle;
-		@SuppressWarnings("unused")
 		ServletContext context = this.getServletContext();
 			
 			try {
@@ -55,25 +55,16 @@ public class ServletFicheProduit extends HttpServlet {
 //				request.setAttribute("retraitAdress ", retraitAdress );
 				
 			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				
-			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			
-			} catch (BusinessException e) {
 
-				e.printStackTrace();
+				List<Integer> listeCodesErreur = new ArrayList<>();
+				listeCodesErreur.add(CodesResultatServlets.ARTICLE_SELECT_ID_ERREUR);
+				request.setAttribute("listeCodesErreur", listeCodesErreur);
+
+			} catch (BusinessException | DALException e) {
+
+				request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
 			}
-		
-//		catch(NumberFormatException e)
-//		{
-//			List<Integer> listeCodesErreur=new ArrayList<>();
-//			listeCodesErreur.add(CodesResultatServlets.FORMAT_AVIS_NOTE_ERREUR);
-//			request.setAttribute("listeCodesErreur",listeCodesErreur);}
-		
-		
+	
 			RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/ficheProduit.jsp");
 			rd.forward(request, response);
 			
