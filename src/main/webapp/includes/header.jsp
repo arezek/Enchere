@@ -4,9 +4,9 @@
 <header id="headerbloc">
     	<div id="brand" >
         	<a href="<%=request.getContextPath()%>/ServletRecherche"><img src="img/eni_enchere_logo.png" id="logo"/></a>
-       		<c:if test="${not empty sessionScope.utilisateurLogged}"> 
+       		<%-- <c:if test="${not empty sessionScope.utilisateurLogged}"> 
        		<p class ="bonjour"> Bonjour ${sessionScope.utilisateurLogged.getPseudo()} </p>
-        	</c:if>
+        	</c:if> --%>
         </div> 
            
         <%-- ${sessionScope.utilisateurLogged} --%>

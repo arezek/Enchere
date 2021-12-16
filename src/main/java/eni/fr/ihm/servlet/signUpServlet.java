@@ -68,9 +68,9 @@ public class signUpServlet extends HttpServlet {
 				motDePasseActuel = request.getParameter("mdpa");
 				motDePasse = request.getParameter("mdp");
 				motDePasseConfirme = request.getParameter("mdpc");
-				HttpSession session = null;
+				HttpSession session = request.getSession();
 				
-				if (session == null) {
+				if (session.isNew()) {
 					
 					System.out.println("une session a été créée");
 					
@@ -94,10 +94,7 @@ public class signUpServlet extends HttpServlet {
 						} catch (BusinessException | DALException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-						}
-					
-						System.out.println(utilisateur.getNom()+" "+utilisateur.getRue()+" "+utilisateur.getPrenom()+" "+utilisateur.getEmail()+" "+utilisateur.getTelephone()+" ");
-						
+						}						
 						
 					}
 					
