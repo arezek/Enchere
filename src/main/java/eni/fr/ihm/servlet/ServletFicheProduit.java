@@ -10,12 +10,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import eni.fr.bo.Utilisateur;
 import eni.fr.BusinessException;
 import eni.fr.bo.ArticleVendu;
+import eni.fr.bo.Retrait;
 import eni.fr.dal.ArticleVenduDAO;
 import eni.fr.dal.ArticleVenduDAOJdbcImpl;
 import eni.fr.dal.DALException;
+import eni.fr.dal.RetraitDAO;
+import eni.fr.dal.RetraitDAOJdbcImpl;
 
 /**
  * Servlet implementation class ServletFicheProduit
@@ -34,6 +36,7 @@ public class ServletFicheProduit extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String numArticle;
+		@SuppressWarnings("unused")
 		ServletContext context = this.getServletContext();
 			
 			try {
@@ -41,11 +44,15 @@ public class ServletFicheProduit extends HttpServlet {
 				
 				int numArticleInt =Integer.parseInt(numArticle);
 				ArticleVenduDAO articleVenduManager = new ArticleVenduDAOJdbcImpl();
+//				RetraitDAO retraitManager = new RetraitDAOJdbcImpl();
 				
 				ArticleVendu articleVendu=(ArticleVendu)articleVenduManager.selectById(numArticleInt);
-				
+//				Retrait retraitAdress = retraitManager.selectById(numArticleInt);
+						
+						
 			System.out.println(articleVendu.getEtatVente());
 				request.setAttribute("articleVendu", articleVendu);
+//				request.setAttribute("retraitAdress ", retraitAdress );
 				
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block

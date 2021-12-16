@@ -25,7 +25,7 @@
 		
 		<section class="rightBid">		
 			
-			<form action="<%=request.getContextPath()%>/ServletVente" method="post">
+			<form action="<%=request.getContextPath()%>/ServletVente" method="post" enctype="multipart/form-data">
 				<div class="fieldset">
 					<div class="buyForm">
 						<label for="article">Article</label>
@@ -54,14 +54,12 @@
 							<option value="3">Vetement</option>
 							<option value="4">Sport Loisirs</option>
 						</select>	
-					</div>
-
+					</div>					
 					<div class="buyForm">
 					<%-- <c:if test="${ !empty photo }"><p><c:out value="L'image ${ photo }  a été uploadé !" /></p></c:if> --%>
 						<label for="photo">Photo de l'article  </label>
 						<input type="file" name="photo" id="imgLink" />
-							
-						<!-- <input type="submit" value="Charger" /> -->											
+																	
 					</div>
 
 					<div class="buyForm">

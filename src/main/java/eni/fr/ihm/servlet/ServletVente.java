@@ -1,15 +1,18 @@
 package eni.fr.ihm.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import eni.fr.BusinessException;
 import eni.fr.bll.ArticleVenduManager;
@@ -26,9 +29,14 @@ import eni.fr.dal.RetraitDAOJdbcImpl;
  * @author ZABAKA FATIMA ZAHRA
  * Servlet implementation class ServletVente
  */
+//@MultipartConfig(
+//		  fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+//		  maxFileSize = 1024 * 1024 * 10,      // 10 MB
+//		  maxRequestSize = 1024 * 1024 * 100) // 100 MB
 @WebServlet("/ServletVente")
 public class ServletVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+//	public static final String IMAGES_FOLDER = "C://Users/vmware/Documents/JavaProject/ENI-Encheres/src/main/webapp/img/ArticlesPhotos/";
   
 
 	/**
@@ -59,13 +67,18 @@ public class ServletVente extends HttpServlet {
 		//rue
 		//codepostal
 		//ville
-	
+		
 		try {
 			nomArticle= request.getParameter("article");
 			description= request.getParameter("description");
 			dateDebutEncheres= LocalDate.parse(request.getParameter("debutenchere"));
 			dateFinEncheres=LocalDate.parse(request.getParameter("finenchere"));
 			miseAPrix= Integer.parseInt(request.getParameter("miseaprix"));
+			
+//			Part filePart = request.getPart("photo");
+//			
+//			String fileName = filePart.getSubmittedFileName(); 			
+//		    fileName = fileName.substring(fileName.lastIndexOf(File.separatorChar)+1);	
 			
 			int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
 			noCategorie.setNoCategorie(no_categorie);
@@ -77,7 +90,7 @@ public class ServletVente extends HttpServlet {
 			RetraitManager retraitManager=new RetraitManager();
 			
 			if(nomArticle != null && description != null && miseAPrix != 0 && dateDebutEncheres != null && 
-					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue != null && codePostal != null && ville != null )
+					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue != null && codePostal != null && ville != null /* && filePart != null*/)
 			
 			{
 //				Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
@@ -89,14 +102,18 @@ public class ServletVente extends HttpServlet {
 
 				try {
 					ArticleVendu Narticle =articleVenduManager.ajouter(nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, utilisateurLogged, noCategorie);
-					
+//					filePart.write(IMAGES_FOLDER + fileName);
 					System.out.println(Narticle);
 					//retraitArticle.getNoArticle().setNoArticle(Narticle);
 				//	System.out.println(retraitArticle.getNoArticle().getNoArticle());
 					
+						
 					
+				    
 					
 					Retrait retraitArticle= retraitManager.ajouter(rue, codePostal, ville, Narticle);
+					
+					
 					
 				} catch (BusinessException e) {
 					// TODO Auto-generated catch block
@@ -105,7 +122,7 @@ public class ServletVente extends HttpServlet {
 				//System.out.println(art.getNomArticle()+" "+art.getDescription()+" "+art.getDateDebutEncheres()+" "+art.getDateFinEncheres()+" "+art.miseAPrix+" ");
 				
 			}else if (nomArticle != null && description != null && miseAPrix != 0 && dateDebutEncheres != null && 
-					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue==null && codePostal==null && ville==null) {
+					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue==null && codePostal==null && ville==null /* && filePart != null */) {
 				ArticleVendu art =new ArticleVendu(nomArticle,description,dateDebutEncheres,dateFinEncheres,miseAPrix,noCategorie);
 				art.setNoUtilisateur(utilisateurLogged);
 				rue=utilisateurLogged.getRue();
@@ -116,6 +133,8 @@ public class ServletVente extends HttpServlet {
 				try {
 					articleVenduManager.ajouter(nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, utilisateurLogged, noCategorie);
 					retraitManager.ajouter(rue, codePostal, ville, art);
+//					filePart.write(IMAGES_FOLDER + fileName);
+					
 				} catch (BusinessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

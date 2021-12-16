@@ -1,5 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="eni.fr.bo.ArticleVendu"%>
+<%-- <%@page import="eni.fr.bo.Retrait"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -18,6 +19,11 @@
         if(art!=null)
 		{System.out.println(art.toString());
         %>
+<%--    <% Retrait retrait= (Retrait)request.getAttribute("retraitAdress");
+        if(retrait!=null)
+		{System.out.println(retrait.toString());
+        %>     
+         --%>
         
 	
 	<div id="separator"></div>
@@ -83,13 +89,13 @@
 					<h4>Retrait:</h4>	
 				</div>
 				<div class="detail">
-					<p>retraits.Rue</p>
+					<p><%-- <%=retrait.getRue() %> --%></p>
 				</div>			
 			</div>
 			<div class="essai">
 				<div class="firstColumn"></div>
 				<div class="detail">
-					<p>retraits.code_postal + " " + retraits.ville</p>
+					<p> <%-- <%=retrait.getCodePostal() %> <%=retrait.getVille() %> --%></p>
 				</div>
 			</div>
 			<div class="essai">
@@ -124,7 +130,7 @@
 		</div>	
 
 	</section>
-	<%} %>  
+	 <%} %> 
 		
         	
        
