@@ -32,9 +32,7 @@
 		
 		<div class="photo">	
 			<div class="imgGroup">
-				<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/1.jpg" class="imgArticleFirst"/>
-	        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/2.jpg" class="imgArticleOthers"/>
-	        	<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/3.jpg" class="imgArticleOthers"/>	
+				<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>.jpg" class="imgArticleFirst"/>	        	
 			</div>	
 								
 		</div>
