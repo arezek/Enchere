@@ -1,8 +1,8 @@
 package eni.fr.ihm.servlet;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -23,6 +23,7 @@ import eni.fr.dal.UtilisateurDAOJdbcImpl;
 
 /**
  * Servlet implementation class profilServlet
+ * 
  * @author Fabien M. Gavoille et Eugénie Fuchs
  * @author cookie par Zabaka fatima Zahra
  */
@@ -31,9 +32,11 @@ public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher rd = null;
 
 		boolean cookiePresent = false;
@@ -58,16 +61,17 @@ public class loginServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher rd = null;
 
 		// récupérer les identifiants et les stocker dans la variable de session
 		String pseudo = request.getParameter("identifiant");
 		String motDePasse = request.getParameter("mdp");
-		
-		
+
 		if (pseudo.equals("identifiant") && motDePasse.equals("mdp")) {
 			if (request.getParameter("souvenirDeMoi") != null) {
 				if (request.getParameter("souvenirDeMoi").equals("ok")) {
@@ -80,58 +84,55 @@ public class loginServlet extends HttpServlet {
 			rd = request.getRequestDispatcher("/ServletRecherche");
 		} else {
 
-			
 			rd = request.getRequestDispatcher("WEB-INF/login.jsp");
 		}
 
-		
 		UtilisateurDAO utilisateurValidation = new UtilisateurDAOJdbcImpl();
-	
+
 		HttpSession session;
-		
+
 		try {
 			Utilisateur utilisateurLogged = (Utilisateur) utilisateurValidation.selectByPseudo(pseudo);
-			
-			if(motDePasse.equals(utilisateurLogged.getMotDePasse())) {
-				
+
+			if (motDePasse.equals(utilisateurLogged.getMotDePasse())) {
+
 				session = request.getSession();
-				
-				//ServletContext context = this.getServletContext();
-				//Utilisateur utilisateurEnSession = (Utilisateur) request.getAttribute(pseudo);
-				
+
+				// ServletContext context = this.getServletContext();
+				// Utilisateur utilisateurEnSession = (Utilisateur)
+				// request.getAttribute(pseudo);
+
 				session.setAttribute("isConnected", true);
-				
-				//int hc = utilisateurEnSession.getIdSession().hashCode();
+
+				// int hc = utilisateurEnSession.getIdSession().hashCode();
 				session.setAttribute("utilisateurLogged", utilisateurLogged);
-				
-				//session.setAttribute("identifiant", pseudo);
-				
+
+				// session.setAttribute("identifiant", pseudo);
+
 				// redirect l'utilisateur vers la page d'accueil
-				rd=request.getRequestDispatcher("ServletRecherche");
-				
-			
+				rd = request.getRequestDispatcher("ServletRecherche");
+
 			} else {
-				
+
 				session = request.getSession();
-				
+
 				session.setAttribute("hasErrors", true);
 				session.setAttribute("isConnected", false);
-				rd=request.getRequestDispatcher("/WEB-INF/login.jsp");
-				
-				
+				rd = request.getRequestDispatcher("/WEB-INF/login.jsp");
+
 			}
-			
+
 		} catch (NumberFormatException e) {
 
 			List<Integer> listeCodesErreur = new ArrayList<>();
 			listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_SELECT_PSEUDO_ERREUR);
 			request.setAttribute("listeCodesErreur", listeCodesErreur);
 
-		} catch (BusinessException |DALException e) {
+		} catch (BusinessException | DALException e) {
 
 			request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
 		}
 		rd.forward(request, response);
 	}
-	
+
 }

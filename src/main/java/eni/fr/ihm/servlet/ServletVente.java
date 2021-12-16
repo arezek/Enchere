@@ -19,7 +19,8 @@ import eni.fr.bo.Categorie;
 import eni.fr.bo.Utilisateur;
 
 /**
- * @author ZABAKA FATIMA ZAHRA GAVOILLE FABIEN ALLIOUCHE KERBOUA ABDELREZAK FUCHS EUGENIE
+ * @author ZABAKA FATIMA ZAHRA GAVOILLE FABIEN ALLIOUCHE KERBOUA ABDELREZAK
+ *         FUCHS EUGENIE Servlet implementation class ServletVente
  */
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
 		maxFileSize = 1024 * 1024 * 10, // 10 MB
@@ -27,7 +28,7 @@ import eni.fr.bo.Utilisateur;
 @WebServlet("/ServletVente")
 public class ServletVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String IMAGES_FOLDER = "C://Users/vmware/Documents/JavaProject/ENI-Encheres/src/main/webapp/img/ArticlesPhotos/";
+	public static final String IMAGES_FOLDER = "C://Users/Pc/git/Enchere/src/main/webapp/img/ArticlesPhotos/";
 	// C://Users/eugen/git/Enchere/src/main/webapp/img/ArticlesPhotos/ Eugenie
 	// C://Users/Pc/git/Enchere/src/main/webapp/img/ArticlesPhotos/ Fatima
 	// C://Users/vmware/Documents/JavaProject/ENI-Encheres/src/main/webapp/img/ArticlesPhotos/
@@ -53,18 +54,12 @@ public class ServletVente extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurLogged = (Utilisateur) session.getAttribute("utilisateurLogged");
 
-		// commentaire
 		String nomArticle;
 		String description;
-		// Utilisateur noutilisateur=null;
 		Categorie noCategorie = new Categorie();
-		// photo
 		int miseAPrix;
 		LocalDate dateDebutEncheres;
 		LocalDate dateFinEncheres;
-		// rue
-		// codepostal
-		// ville
 		Part filePart = request.getPart("photo");
 		try {
 			nomArticle = request.getParameter("article");
@@ -75,27 +70,17 @@ public class ServletVente extends HttpServlet {
 
 			int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
 			noCategorie.setNoCategorie(no_categorie);
-			// int no_utilisateur =
-			// Integer.parseInt(request.getParameter("no_utilisateur"));
 			String rue = request.getParameter("rue");
 			String codePostal = request.getParameter("codePostal");
 			String ville = request.getParameter("ville");
 			ArticleVenduManager articleVenduManager = new ArticleVenduManager();
 			RetraitManager retraitManager = new RetraitManager();
 
-//			noArticle= request.getParameter("article");
-
 			if (nomArticle != null && description != null && miseAPrix != 0 && dateDebutEncheres != null
 					&& dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue != null
 					&& codePostal != null && ville != null /* && filePart != null */)
 
 			{
-//				Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,
-//						 codePostal, ville, motDePasse, credit, administrateur);
-//				
-				// ArticleVendu art =new
-				// ArticleVendu(nomArticle,description,dateDebutEncheres,dateFinEncheres,miseAPrix,noCategorie);
-				// art.setNoUtilisateur(utilisateurLogged);
 
 				try {
 					ArticleVendu Narticle = articleVenduManager.ajouter(nomArticle, description, dateDebutEncheres,
@@ -103,8 +88,6 @@ public class ServletVente extends HttpServlet {
 					String fileName = Narticle.getNoArticle() + ".jpg";
 					filePart.write(IMAGES_FOLDER + fileName);
 					System.out.println(fileName);
-					// retraitArticle.getNoArticle().setNoArticle(Narticle);
-					// System.out.println(retraitArticle.getNoArticle().getNoArticle());
 
 					retraitManager.ajouter(rue, codePostal, ville, Narticle);
 
@@ -126,6 +109,7 @@ public class ServletVente extends HttpServlet {
 				codePostal = utilisateurLogged.getCodePostal();
 				ville = utilisateurLogged.getVille();
 
+				// Retrait retraitArticle=new Retrait(rue,codePostal,ville);
 				try {
 					articleVenduManager.ajouter(nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix,
 							utilisateurLogged, noCategorie);
