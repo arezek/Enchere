@@ -13,7 +13,7 @@
      <%@ include file="/includes/head.jsp" %>
     <title>Page de profil</title>
 </head>
-<body class="profil">
+<body>
 <%@ include file="/includes/header.jsp" %>
 <% Utilisateur utilisateur= (Utilisateur)request.getAttribute("utilisateur");
     if(utilisateur!=null)
@@ -33,26 +33,34 @@
     <div id="separator"></div>
    
    
-    <h3 class="titleMyprofil">Profil</h3>
-
-
-    <p>Pseudo: <%=utilisateur.getPseudo() %></p>
-    <p>Nom: <%=utilisateur.getNom() %></p>
-    <p>Prénom: <%=utilisateur.getPrenom() %></p>
-    <p>Email: <%=utilisateur.getEmail() %></p>
-    <p>Téléphone: <%=utilisateur.getTelephone() %></p>
-    <p>Rue: <%=utilisateur.getRue() %></p>
-    <p>Code postal: <%=utilisateur.getCodePostal() %></p>
-    <p>Ville : <%=utilisateur.getVille() %></p>
-    <%} %>
     
-    <c:if test="${not empty sessionScope.utilisateurLogged  }">
-    <form method="get" action="<%=request.getContextPath()%>/ModifProfilServlet">
-        
-	 <input type="submit" id="edtiProfilButton" value="Modifier">
-  	
-	</form> 
- 	</c:if>
-    
+
+	<div class="profil">
+		<h3 class="titleMyprofil"><%=utilisateur.getPseudo() %></h3> 
+		<p class="champ">Nom:</p> 
+		<p> <%=utilisateur.getNom() %></p>
+		<p>Prénom:</p> 
+		<p> <%=utilisateur.getPrenom() %></p>
+		<p>Email:</p> 
+		<p> <%=utilisateur.getEmail() %></p>
+		<p>Téléphone:</p> 
+		<p> <%=utilisateur.getTelephone() %></p>
+		<p>Rue:</p> 
+		<p> <%=utilisateur.getRue() %></p>
+		<p>Code postal:</p>
+		<p> <%=utilisateur.getCodePostal() %></p>
+		<p>Ville :</p>
+		<p> <%=utilisateur.getVille() %></p>
+		
+	    <%} %>  
+	    
+	    <c:if test="${not empty sessionScope.utilisateurLogged  }">
+	    <form method="get" action="<%=request.getContextPath()%>/ModifProfilServlet">
+	        
+		 <input type="submit" id="edtiProfilButton" value="Modifier">
+	  	
+		</form> 
+	 	</c:if>
+    </div>
 </body>
 </html>

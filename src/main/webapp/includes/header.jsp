@@ -19,18 +19,18 @@
         
           <div class="connected">
         	
-        	<a href="<%=request.getContextPath()%>/ServletRecherche?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Enchères</a>
-          	<a href="<%=request.getContextPath()%>/ServletVente?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Vendre un article</a>
-          	<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Mon Profil</a>
-          	<a href="<%=request.getContextPath()%>/Deconnexion?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Déconnexion</a>
+        	<a href="<%=request.getContextPath()%>/ServletRecherche?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Enchères<img src="img/encheres.png" class="cnxIcon1"/></a>
+          	<a href="<%=request.getContextPath()%>/ServletVente?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Vendre un article<img src="img/vendre.png" class="cnxIcon1"/></a>
+          	<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Mon Profil<img src="img/monProfil.png" class="cnxIcon1"/></a>
+          	<a href="<%=request.getContextPath()%>/Deconnexion?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Déconnexion<img src="img/deconnexion.png" class="cnxIcon1"/></a>
                 	<%-- <% } else { %> --%> 
            </div>  	
        	 </c:if>      
           
 			<c:if test="${empty sessionScope.utilisateurLogged  }"> 
 			<div class="notConnected">
-				<a href="login" class="headerlinks">Connexion<img src="img/connexion.png" id="cnxIcon"/></a>
-				<a href="signUp" class="headerlinks">S'inscrire<img src="img/inscription.png" id="signInIcon"/></a>
+				<a href="login" class="headerlinks">Connexion<img src="img/connexion.png" class="cnxIcon1"/></a>
+				<a href="signUp" class="headerlinks">S'inscrire<img src="img/inscription.png" class="cnxIcon1"/></a>
 			</div> 
 			</c:if> 
 		            

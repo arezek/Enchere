@@ -68,7 +68,7 @@ body {
 	padding-top : 13px;
 }
 .connected, .notConnected {
-	padding-top : 17px;
+	padding-top : 13px;
 	color : #73d368;
 }
 header {
@@ -87,12 +87,11 @@ header {
 }
 
 .headerlinks {
-   margin-right: 25px; 
-
+   margin-right: 25px;  
 }
-.headerlinks img{
-	width: 10px;
-	margin-left: 10 px;
+.cnxIcon1 {	
+	height: 20px;
+	margin-left: 7px;
 }
 /* SEPARATION */
 #separator{
@@ -245,7 +244,9 @@ header {
     text-align: center;
     font-size: 25px;    
 }
-
+.champ {
+	
+}
 /************************************************************ SignUp*******************************************/
 .signUpForm  {
     font-size: 20px;
