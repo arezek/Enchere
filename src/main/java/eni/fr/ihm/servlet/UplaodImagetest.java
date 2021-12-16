@@ -42,9 +42,10 @@ public class UplaodImagetest extends HttpServlet {
 	
 		
 		Part filePart = request.getPart("photo");
-	    String fileName = filePart.getSubmittedFileName();
-		
-	    fileName = fileName.substring(fileName.lastIndexOf(File.separatorChar)+1);		
+//	    String fileName = filePart.getSubmittedFileName();
+//		
+//	    fileName = fileName.substring(fileName.lastIndexOf(File.separatorChar)+1);	
+	    
 		
 	    filePart.write(IMAGES_FOLDER + fileName);
 		

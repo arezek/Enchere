@@ -29,14 +29,14 @@ import eni.fr.dal.RetraitDAOJdbcImpl;
  * @author ZABAKA FATIMA ZAHRA
  * Servlet implementation class ServletVente
  */
-//@MultipartConfig(
-//		  fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
-//		  maxFileSize = 1024 * 1024 * 10,      // 10 MB
-//		  maxRequestSize = 1024 * 1024 * 100) // 100 MB
+@MultipartConfig(
+		  fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+		  maxFileSize = 1024 * 1024 * 10,      // 10 MB
+		  maxRequestSize = 1024 * 1024 * 100) // 100 MB
 @WebServlet("/ServletVente")
 public class ServletVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-//	public static final String IMAGES_FOLDER = "C://Users/vmware/Documents/JavaProject/ENI-Encheres/src/main/webapp/img/ArticlesPhotos/";
+	public static final String IMAGES_FOLDER = "C://Users/vmware/Documents/JavaProject/ENI-Encheres/src/main/webapp/img/ArticlesPhotos/";
   
 
 	/**
@@ -64,21 +64,18 @@ public class ServletVente extends HttpServlet {
 		int miseAPrix;
 		LocalDate dateDebutEncheres;
 		LocalDate dateFinEncheres;
+		String noArticle;
 		//rue
 		//codepostal
 		//ville
-		
+		Part filePart = request.getPart("photo");
 		try {
 			nomArticle= request.getParameter("article");
 			description= request.getParameter("description");
 			dateDebutEncheres= LocalDate.parse(request.getParameter("debutenchere"));
 			dateFinEncheres=LocalDate.parse(request.getParameter("finenchere"));
-			miseAPrix= Integer.parseInt(request.getParameter("miseaprix"));
-			
-//			Part filePart = request.getPart("photo");
-//			
-//			String fileName = filePart.getSubmittedFileName(); 			
-//		    fileName = fileName.substring(fileName.lastIndexOf(File.separatorChar)+1);	
+			miseAPrix= Integer.parseInt(request.getParameter("miseaprix"));			
+				
 			
 			int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
 			noCategorie.setNoCategorie(no_categorie);
@@ -89,6 +86,8 @@ public class ServletVente extends HttpServlet {
 			ArticleVenduManager articleVenduManager = new ArticleVenduManager();
 			RetraitManager retraitManager=new RetraitManager();
 			
+//			noArticle= request.getParameter("article");
+			String fileName = "";
 			if(nomArticle != null && description != null && miseAPrix != 0 && dateDebutEncheres != null && 
 					dateFinEncheres != null && noCategorie != null && utilisateurLogged != null && rue != null && codePostal != null && ville != null /* && filePart != null*/)
 			
@@ -102,7 +101,7 @@ public class ServletVente extends HttpServlet {
 
 				try {
 					ArticleVendu Narticle =articleVenduManager.ajouter(nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, utilisateurLogged, noCategorie);
-//					filePart.write(IMAGES_FOLDER + fileName);
+					filePart.write(IMAGES_FOLDER + fileName);
 					System.out.println(Narticle);
 					//retraitArticle.getNoArticle().setNoArticle(Narticle);
 				//	System.out.println(retraitArticle.getNoArticle().getNoArticle());
