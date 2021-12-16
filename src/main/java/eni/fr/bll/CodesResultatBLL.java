@@ -27,7 +27,7 @@ public abstract class CodesResultatBLL {
 	/**
 	 * Echec quand on essaie d'ajouter un article dont la vente est terminé (en tant qu'admin ?)
 	 */
-	public static final int ARTICLE_VENDU_ETAT_VENTE_ERREUR=20005;
+	//public static final int ARTICLE_VENDU_ETAT_VENTE_ERREUR=20005;
 	/**
 	 * Echec quand on essaie d'ajouter un article sans être connecté (sécurité ?)
 	 */

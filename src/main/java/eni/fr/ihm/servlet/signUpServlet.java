@@ -1,8 +1,8 @@
 package eni.fr.ihm.servlet;
 
 import java.io.IOException;
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -91,9 +91,15 @@ public class signUpServlet extends HttpServlet {
 						
 						try {
 							utilisateurD.ajouter(utilisateur);
+						} catch (NumberFormatException e) {
+
+							List<Integer> listeCodesErreur = new ArrayList<>();
+							listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_AJOUTER_ERREUR);
+							request.setAttribute("listeCodesErreur", listeCodesErreur);
+
 						} catch (BusinessException | DALException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+
+							request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
 						}						
 						
 					}
@@ -120,9 +126,16 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(champs, valeur, utilisateurRecup);
+						} catch (NumberFormatException e) {
+
+							List<Integer> listeCodesErreur = new ArrayList<>();
+							listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_UPDATE_ERREUR);
+							request.setAttribute("listeCodesErreur", listeCodesErreur);
+
 						} catch (BusinessException | DALException e) {
-							e.printStackTrace();
-						}
+
+							request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
+						}	
 						
 					}
 						
@@ -134,9 +147,16 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(champs, valeur, utilisateurRecup);
+						} catch (NumberFormatException e) {
+
+							List<Integer> listeCodesErreur = new ArrayList<>();
+							listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_UPDATE_ERREUR);
+							request.setAttribute("listeCodesErreur", listeCodesErreur);
+
 						} catch (BusinessException | DALException e) {
-							e.printStackTrace();
-						}
+
+							request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
+						}	
 						
 					}
 					
@@ -148,9 +168,16 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(champs, valeur, utilisateurRecup);
+						} catch (NumberFormatException e) {
+
+							List<Integer> listeCodesErreur = new ArrayList<>();
+							listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_UPDATE_ERREUR);
+							request.setAttribute("listeCodesErreur", listeCodesErreur);
+
 						} catch (BusinessException | DALException e) {
-							e.printStackTrace();
-						}
+
+							request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
+						}	
 						
 					}
 					
@@ -162,9 +189,16 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(champs, valeur, utilisateurRecup);
+						} catch (NumberFormatException e) {
+
+							List<Integer> listeCodesErreur = new ArrayList<>();
+							listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_UPDATE_ERREUR);
+							request.setAttribute("listeCodesErreur", listeCodesErreur);
+
 						} catch (BusinessException | DALException e) {
-							e.printStackTrace();
-						}
+
+							request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
+						}	
 						
 					}
 					
@@ -176,9 +210,16 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(champs, valeur, utilisateurRecup);
+						} catch (NumberFormatException e) {
+
+							List<Integer> listeCodesErreur = new ArrayList<>();
+							listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_UPDATE_ERREUR);
+							request.setAttribute("listeCodesErreur", listeCodesErreur);
+
 						} catch (BusinessException | DALException e) {
-							e.printStackTrace();
-						}
+
+							request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
+						}	
 						
 					}
 					
@@ -191,9 +232,16 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(champs, valeur, utilisateurRecup);
+						} catch (NumberFormatException e) {
+
+							List<Integer> listeCodesErreur = new ArrayList<>();
+							listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_UPDATE_ERREUR);
+							request.setAttribute("listeCodesErreur", listeCodesErreur);
+
 						} catch (BusinessException | DALException e) {
-							e.printStackTrace();
-						}
+
+							request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
+						}	
 						
 					}
 					
@@ -205,9 +253,16 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(champs, valeur, utilisateurRecup);
+						} catch (NumberFormatException e) {
+
+							List<Integer> listeCodesErreur = new ArrayList<>();
+							listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_UPDATE_ERREUR);
+							request.setAttribute("listeCodesErreur", listeCodesErreur);
+
 						} catch (BusinessException | DALException e) {
-							e.printStackTrace();
-						}
+
+							request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
+						}	
 						
 					}
 					
@@ -219,9 +274,16 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(champs, valeur, utilisateurRecup);
+						} catch (NumberFormatException e) {
+
+							List<Integer> listeCodesErreur = new ArrayList<>();
+							listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_UPDATE_ERREUR);
+							request.setAttribute("listeCodesErreur", listeCodesErreur);
+
 						} catch (BusinessException | DALException e) {
-							e.printStackTrace();
-						}
+
+							request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
+						}	
 						
 					}
 					
@@ -234,9 +296,16 @@ public class signUpServlet extends HttpServlet {
 						try {
 							//utilisateurD.update(champs, valeur, utilisateurRecup);
 							utilisateurD.modifier(champs, valeur, utilisateurRecup);
+						} catch (NumberFormatException e) {
+
+							List<Integer> listeCodesErreur = new ArrayList<>();
+							listeCodesErreur.add(CodesResultatServlets.UTILISATEUR_UPDATE_ERREUR);
+							request.setAttribute("listeCodesErreur", listeCodesErreur);
+
 						} catch (BusinessException | DALException e) {
-							e.printStackTrace();
-						}
+
+							request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
+						}	
 						
 					}
 					

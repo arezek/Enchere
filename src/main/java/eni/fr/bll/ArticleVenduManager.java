@@ -132,7 +132,10 @@ public List<ArticleVendu> selectAll() throws BusinessException {
 	
 	private void validerNomArticle (ArticleVendu articleVendu, BusinessException businessException) {
 		
-		if(articleVendu.getNomArticle() == null) {
+		String nom = articleVendu.getNomArticle();
+		int tailleNom = nom.length();
+		
+		if(articleVendu.getNomArticle() == null || tailleNom > 30) {
 			
 			businessException.ajouterErreur(CodesResultatBLL.ARTICLE_VENDU_NOM_ERREUR);
 			
@@ -142,7 +145,10 @@ public List<ArticleVendu> selectAll() throws BusinessException {
 	
 	private void validerDescription (ArticleVendu articleVendu, BusinessException businessException) {
 		
-		if(articleVendu.getDescription() == null) {
+		String description = articleVendu.getDescription();
+		int tailleDescription = description.length();
+		
+		if(articleVendu.getDescription() == null || tailleDescription > 300 ) {
 			
 			businessException.ajouterErreur(CodesResultatBLL.ARTICLE_VENDU_DESCRIPTION_ERREUR);
 			
@@ -173,7 +179,7 @@ public List<ArticleVendu> selectAll() throws BusinessException {
 	
 	private void validerMiseAPrix (ArticleVendu articleVendu, BusinessException businessException) {
 		
-		if(articleVendu.getMiseAPrix() == 0) {
+		if(articleVendu.getMiseAPrix() == 100) {
 			
 			businessException.ajouterErreur(CodesResultatBLL.ARTICLE_VENDU_MISE_A_PRIX_ERREUR);
 			
