@@ -5,6 +5,10 @@ public abstract class CodesResultatBLL {
 	// ARTICLES VENDUS INSERTION
 	
 	/**
+	 * Echec quand l'id de l'article n'est pas valide 
+	 */
+	public static final int ARTICLE_VENDU_ID_ERREUR=20024;
+	/**
 	 * Echec quand le nom de l'article n'est pas rentré 
 	 */
 	public static final int ARTICLE_VENDU_NOM_ERREUR=20000;
@@ -45,7 +49,10 @@ public abstract class CodesResultatBLL {
 	public static final int RECHERCHE_CATEGORIE_ERREUR=20023;
 	
 	// UTILISATEUR INSERTION
-	
+	/**
+	 * Echec quand l'id de l'TILISATEUR n'est pas valide 
+	 */
+	public static final int TILISATEUR_ID_ERREUR=20025;
 	/**
 	 * Echec quand le pseudo de l'utilisateur n'est pas rentré 
 	 */

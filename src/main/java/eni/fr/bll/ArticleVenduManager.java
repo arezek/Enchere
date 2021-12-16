@@ -22,6 +22,18 @@ public class ArticleVenduManager {
 	
 	}
 	
+	public ArticleVendu selectById(int id) throws DALException, BusinessException {
+		ArticleVendu article = new ArticleVendu();
+		BusinessException exception = new BusinessException();
+		if(id < 1 ){
+			
+			exception.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREDIT_ERREUR);
+			
+		}else {
+		article = this.articleVenduDAO.selectById(id);
+		}
+		return article;				
+	}
 	// lors d'un insert
 	public ArticleVendu ajouter(String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, int miseAPrix, Utilisateur noUtilisateur, Categorie noCategorie) throws BusinessException {

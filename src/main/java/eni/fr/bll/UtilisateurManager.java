@@ -189,7 +189,34 @@ private UtilisateurDAO utilisateurDAO;
 		
 		return utilisateurRecup;
 	}
-
+	
+	public Utilisateur selectById(int id) throws DALException, BusinessException {
+		Utilisateur utilisateur = new Utilisateur();
+		BusinessException exception = new BusinessException();
+		if(id < 1 ){
+			
+			exception.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREDIT_ERREUR);
+			
+		}else {
+		utilisateur = this.utilisateurDAO.selectById(id);
+		}
+		return utilisateur;				
+	}
+	
+	public Utilisateur selectByPseudo(String pseudo) throws DALException, BusinessException {
+		Utilisateur utilisateur = new Utilisateur();
+		BusinessException exception = new BusinessException();
+		int taillePseudo = pseudo.length();
+		int compteur = this.utilisateurDAO.selectCountByPseudo(pseudo);
+		if(pseudo == null || taillePseudo > 30 || compteur > 0){
+			
+			exception.ajouterErreur(CodesResultatBLL.UTILISATEUR_PSEUDO_ERREUR);
+			
+		}else {
+		utilisateur = this.utilisateurDAO.selectByPseudo(pseudo);
+		}
+		return utilisateur;				
+	}
 	
 	private void validerPseudo (Utilisateur utilisateur, BusinessException businessException) throws DALException, BusinessException {
 		

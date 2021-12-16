@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import eni.fr.BusinessException;
+import eni.fr.bll.UtilisateurManager;
 import eni.fr.bo.Utilisateur;
 import eni.fr.dal.DALException;
 import eni.fr.dal.UtilisateurDAO;
@@ -33,11 +34,11 @@ public class profilServlet extends HttpServlet {
 		String numUtilisateur;
 		
 			
-			try {
+			try { 
 				numUtilisateur = request.getParameter("noUtilisateur") ;
 				
 				int numArticleInt =Integer.parseInt(numUtilisateur);
-				UtilisateurDAO utilisateurManager = new UtilisateurDAOJdbcImpl();
+				UtilisateurManager utilisateurManager = new UtilisateurManager();
 				Utilisateur utilisateur=(Utilisateur)utilisateurManager.selectById(numArticleInt);
 			System.out.println(utilisateur.getPrenom());
 				request.setAttribute("utilisateur", utilisateur);
