@@ -167,7 +167,7 @@ public void insert(Enchere enchere) throws DALException, BusinessException {
 			}
 
 		try (Connection cnx = ConnectionProvider.getConnection();
-				PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);) {
+				PreparedStatement pstmt = cnx.prepareStatement(INSERT);) {
 
 			pstmt.setDate(i++, java.sql.Date.valueOf(enchere.getDateEnchere()));
 			pstmt.setInt(i++, enchere.getMontantEnchere());
@@ -175,11 +175,8 @@ public void insert(Enchere enchere) throws DALException, BusinessException {
 			pstmt.setInt(i++, enchere.getNoArticle().getNoArticle());
 
 			pstmt.executeUpdate(); 
-			ResultSet rs = pstmt.getGeneratedKeys();
-			if (rs.next()) {
-				//enchere.setNoArticle(rs.getInt(1));
-				//enchere.setNoUtilisateur(rs.getInt(1));
-			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 				BusinessException businessException = new BusinessException();

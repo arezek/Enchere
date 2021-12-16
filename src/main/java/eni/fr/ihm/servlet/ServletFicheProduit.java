@@ -1,6 +1,7 @@
 package eni.fr.ihm.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import eni.fr.BusinessException;
 import eni.fr.bo.ArticleVendu;
+import eni.fr.bo.Enchere;
 import eni.fr.bo.Retrait;
+import eni.fr.bo.Utilisateur;
 import eni.fr.dal.ArticleVenduDAO;
 import eni.fr.dal.ArticleVenduDAOJdbcImpl;
 import eni.fr.dal.DALException;
@@ -74,8 +79,15 @@ public class ServletFicheProduit extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String montant = request.getParameter("encherir");
+		Enchere enchere = new Enchere();
+		enchere.setDateEnchere(LocalDate.now());
+		HttpSession session = request.getSession();
+		Utilisateur utilisateurLogged = (Utilisateur)session.getAttribute("utilisateurLogged");
+		enchere.setNoUtilisateur(utilisateurLogged);
+		int noArticle = (int) request.getAttribute("numArticle");
+		System.out.println(noArticle);
+		ArticleVendu article = new ArticleVendu();
 	}
 
 }

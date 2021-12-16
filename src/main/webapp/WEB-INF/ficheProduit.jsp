@@ -125,13 +125,15 @@ List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodes
 				</div>
 			
 			</div>
-			<form action="<%=request.getContextPath()%>/ServletFicheProduit" method="post">
+			<form action="<%=request.getContextPath()%>/EncheresServlet" method="post">
 				<div class="essai">
 					<div class="firstColumn">
+					<label name="numArticle" value="<%art.getNoArticle(); %>">youhou</label>
 						<input type="number" id="encherir" name="encherir"
 							min="100"  step="10" placeholder="100">
 					</div>
 					<div class="detail">
+					
 						<input type="submit" id="bidButton" value="Enchérir">
 					</div>
 				
