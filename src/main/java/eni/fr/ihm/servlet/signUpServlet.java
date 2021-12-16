@@ -71,6 +71,7 @@ public class signUpServlet extends HttpServlet {
 				
 
 				
+				
 					
 					int creditDeDepart = 100;
 					UtilisateurManager utilisateurD=new UtilisateurManager();
