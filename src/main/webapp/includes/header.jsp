@@ -19,7 +19,7 @@
         
           <div class="connected">
         	
-        	<a href="" class="headerlinks">Enchères</a>
+        	<a href="<%=request.getContextPath()%>/ServletRecherche?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Enchères</a>
           	<a href="<%=request.getContextPath()%>/ServletVente?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Vendre un article</a>
           	<a href="<%=request.getContextPath()%>/profilServlet?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Mon Profil</a>
           	<a href="<%=request.getContextPath()%>/Deconnexion?noUtilisateur=${sessionScope.utilisateurLogged.getNoUtilisateur()}" class="headerlinks">Déconnexion</a>
