@@ -1,3 +1,6 @@
+ <%@page import="eni.fr.messages.LecteurMessage" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <%@page import="eni.fr.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -16,6 +19,16 @@
     if(utilisateur!=null)
     {System.out.println(utilisateur.toString());
 %>
+     <% 
+   List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur");
+	%>
+	
+		<c:if test="${listeCodesErreur!= null }">
+			<p>Une erreur est survenue :</p>
+			<% for(int codeErreur:listeCodesErreur) { %>
+					<p><%=LecteurMessage.getMessageErreur(codeErreur) %></p>
+			<% }%>
+		</c:if>
      
     <div id="separator"></div>
    

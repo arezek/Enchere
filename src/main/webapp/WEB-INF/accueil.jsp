@@ -90,9 +90,8 @@
 		{
 	for(ArticleVendu art: articlesVendus){ 
 	%>
-		 <a href="<%=request.getContextPath()%>/ServletFicheProduit?noArticle=<%=art.getNoArticle() %>">
-				
-	                
+		
+			<a href="<c:if test="${not empty utilisateurLogged}"><%=request.getContextPath()%>/ServletFicheProduit?noArticle=<%=art.getNoArticle() %></c:if>"> 
 			
 			<div class="articleIndex">
             	<div class="left">

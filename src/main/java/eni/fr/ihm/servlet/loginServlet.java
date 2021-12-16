@@ -108,7 +108,7 @@ public class loginServlet extends HttpServlet {
 				
 				// redirect l'utilisateur vers la page d'accueil
 				rd=request.getRequestDispatcher("ServletRecherche");
-				rd.forward(request, response);
+				
 			
 			} else {
 				
@@ -117,7 +117,7 @@ public class loginServlet extends HttpServlet {
 				session.setAttribute("hasErrors", true);
 				session.setAttribute("isConnected", false);
 				rd=request.getRequestDispatcher("/WEB-INF/login.jsp");
-				rd.forward(request, response);
+				
 				
 			}
 			
@@ -131,7 +131,7 @@ public class loginServlet extends HttpServlet {
 
 			request.setAttribute("listeCodesErreur", ((BusinessException) e).getListeCodesErreur());
 		}
-		
+		rd.forward(request, response);
 	}
 	
 }

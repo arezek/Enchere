@@ -1,7 +1,9 @@
 
-<!--@author ZABAKA fatima zahra  -->
+<!--@author ZABAKA fatima zahra eugénie fuchs ALLIOUCHE KERBOUA Abdelrezak gavoille fabien -->
 <%@page import="eni.fr.bo.Utilisateur"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="eni.fr.messages.LecteurMessage" %>
+<%@page import="java.util.List"%>
 <%@page import="eni.fr.bo.ArticleVendu"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -15,6 +17,15 @@
 </head>
 <body>
 <%@ include file="/includes/header.jsp" %>
+
+<% List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur"); %>
+<c:if test="${listeCodesErreur!= null }">
+			<p>Une erreur est survenue :</p>
+			<% for(int codeErreur:listeCodesErreur) { %>
+					<p><%=LecteurMessage.getMessageErreur(codeErreur) %></p>
+			<% }%>
+		</c:if>
+		
 <h1>Nouvelle Vente</h1>
 	<div id="separator"></div>
 	<div class="bid">
