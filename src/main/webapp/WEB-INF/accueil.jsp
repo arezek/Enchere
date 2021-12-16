@@ -96,7 +96,7 @@
 			
 			<div class="articleIndex">
             	<div class="left">
-          			<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>/1.jpg" class="imgArticleIndex"/>
+          			<img src="img/ArticlesPhotos/<%=art.getNoArticle() %>.jpg" class="imgArticleIndex"/>
                 </div>
                 <div class="right">
 
