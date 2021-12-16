@@ -125,17 +125,18 @@ List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodes
 				</div>
 			
 			</div>
-			<div class="essai">
-				<div class="firstColumn">
-					<input type="number" id="encherir" name="encherir"
-						min="100"  step="10" placeholder="100">
-				</div>
-				<div class="detail">
-					<input type="submit" id="bidButton" value="Enchérir">
-				</div>
-			
-			</div>			
+			<form action="<%=request.getContextPath()%>/ServletFicheProduit" method="post">
+				<div class="essai">
+					<div class="firstColumn">
+						<input type="number" id="encherir" name="encherir"
+							min="100"  step="10" placeholder="100">
+					</div>
+					<div class="detail">
+						<input type="submit" id="bidButton" value="Enchérir">
+					</div>
 				
+				</div>			
+			</form>	
 		</div>	
 
 	</section>
