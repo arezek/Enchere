@@ -19,7 +19,7 @@ public class ArticleVenduManager {
 	public ArticleVenduManager() {
 		
 		this.articleVenduDAO = DAOFactory.getArticleVenduDAO();
-		
+	
 	}
 	
 	// lors d'un insert

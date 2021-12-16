@@ -23,5 +23,5 @@ public abstract class CodesResultatServlets {
 	public static final int UTILISATEUR_UPDATE_ERREUR=30003;
 	
 	
-	
+
 }
