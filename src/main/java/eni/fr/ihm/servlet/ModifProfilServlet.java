@@ -31,6 +31,7 @@ public class ModifProfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/modifier.jsp");
 		rd.forward(request, response);
 	}
@@ -52,6 +53,7 @@ public class ModifProfilServlet extends HttpServlet {
 		String motDePasse;
 		String motDePasseConfirme;
 		String motDePasseActuel;
+		
 		int credit;
 		boolean administrateur = false;
 			
@@ -67,7 +69,7 @@ public class ModifProfilServlet extends HttpServlet {
 				motDePasseActuel = request.getParameter("mdpa");
 				motDePasse = request.getParameter("mdp");
 				motDePasseConfirme = request.getParameter("mdpc");
-		
+				
 		HttpSession session = request.getSession();
 		
 		session=request.getSession();
@@ -272,6 +274,8 @@ public class ModifProfilServlet extends HttpServlet {
 			}	
 			
 		}
+		
+		
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}

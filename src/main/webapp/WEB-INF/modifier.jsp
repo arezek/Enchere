@@ -115,13 +115,15 @@
   <div class="signUp">
     <input type="submit" value="Enregistrer">
   </div>
-  <div class="signUp">
-    <input type="submit" id="deleteButton" value="Supprimer mon compte">
-  </div>
   </c:if>
-  
 </div>
 </form> 
+
+<form method="get" action="<%=request.getContextPath()%>/Suppression">
+	<div class="signUp">
+    	<input type="submit" name="deleteButton" id="deleteButton" value="Supprimer mon compte">
+  	</div>
+ </form>
     
 </body>
 </html>
