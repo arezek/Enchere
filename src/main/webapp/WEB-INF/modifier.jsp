@@ -49,6 +49,14 @@
 		</div>
 		<div class="essai">
 			 <div class="firstColumn">
+			    <label for="nom">Nom</label><br>
+			 </div>
+			 <div class="detail">
+			 	<input type="text" id="nom" name="nom" value=""><br>
+	 		 </div>
+		</div>
+		<div class="essai">
+			 <div class="firstColumn">
 			    <label for="prenom">Prénom</label><br>
 			 </div>
 			 <div class="detail">

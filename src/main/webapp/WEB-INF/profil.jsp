@@ -62,15 +62,7 @@
 			<div class="detail">
 				<p> <%=utilisateur.getTelephone() %></p>
 			</div>
-		</div>	
-		<div class="essai">
-			<div class="firstColumn">
-				<p>Téléphone:</p> 
-			</div>
-			<div class="detail">
-				<p> <%=utilisateur.getTelephone() %></p>
-			</div>
-		</div>		
+		</div>				
 		<div class="essai">
 			<div class="firstColumn">
 				<p>Rue:</p> 
