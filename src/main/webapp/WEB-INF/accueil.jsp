@@ -122,7 +122,7 @@
 		</c:if>
          
         </section>
-       
+    
 </body>
 <script type="text/javascript">
 	var ventes = document.getElementById("ventes");

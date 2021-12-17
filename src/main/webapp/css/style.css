@@ -27,6 +27,8 @@ button:hover, .loginButton:hover, .signUpButton:hover{
 } 
 * {
     font-family: Helvetica,Arial, sans-serif;
+     margin:0;
+    padding:0;
     
 }
 a {
@@ -51,9 +53,13 @@ input {
 }
 	
 body {
-    margin : 0px;
-    background-color: #fafafa;
-    
+    /* margin : 0px; */
+    background-color: #fafafa;      
+   /*  padding-bottom: 0px !important;
+    margin-bottom: -40px !important; */
+    /* Margin bottom by footer height */
+ 	 margin: 0;
+ 	 padding : 0;
 }   
 
 /* HEADER */
@@ -414,10 +420,13 @@ header {
 }
 /******************Foooter ****************/
 footer {
-	background-color: #fafafa;   
-    height : 30px;    
- 	bottom: 0;
-	width: 100%;   
+	background-color: #fafafa;      	
+	width: 100%; 	
+	position : absolute  ;
+	bottom : 0;
+	height : 10px;
+	
+	
 }
 #foot {		
 	display : flex;	
@@ -431,6 +440,13 @@ footer {
 #foot h5 {
 	margin : 0px;
 }
-#bodyLogin {
-	height : 600px;
+#separatorFooter{
+    margin-bottom: 10px;
+	height: 10px;
+    width: 100%;
+    background: linear-gradient(
+0deg, rgba(122,122,122,0) 0%, rgba(130,226,212,1) 100%);
+}
+#by {
+	font-size: 15px;
 }
