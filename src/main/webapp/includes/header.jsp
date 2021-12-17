@@ -35,6 +35,7 @@
 			</c:if> 
 		            
 			<%-- 	<%} %> --%>
- 
+ 	
             
 	</header>
+	<div id="separator"></div>

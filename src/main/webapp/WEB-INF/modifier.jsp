@@ -22,7 +22,7 @@
 
 <c:if test="${not empty sessionScope.utilisateurLogged }">
 <h1>Modification</h1>
-<div id="separator"></div>
+
 <h2>Modifier mon compte</h2>
 </c:if>
 <% List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur"); %>

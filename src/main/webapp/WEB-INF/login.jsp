@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="css/query.css">
     <title>Connexion</title>
 </head>
-<body>
+<body id="bodyLogin">
 	<% 
 		List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur");
 	%>
@@ -67,4 +67,5 @@
  	</div>
   
 </body>
+<%@ include file="/includes/footer.jsp" %>
 </html>

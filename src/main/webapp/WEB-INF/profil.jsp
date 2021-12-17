@@ -29,10 +29,7 @@
 					<p><%=LecteurMessage.getMessageErreur(codeErreur) %></p>
 			<% }%>
 		</c:if>
-     
-    <div id="separator"></div>
-   
-   
+        
     
 
 	<div class="profil">

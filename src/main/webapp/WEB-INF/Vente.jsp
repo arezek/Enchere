@@ -26,8 +26,8 @@
 			<% }%>
 		</c:if>
 		
-<h1>Nouvelle Vente</h1>
-	<div id="separator"></div>
+<h1 id="buyTitle">Nouvelle Vente</h1>
+	
 	<div class="bid">
 		<section class="leftBid">		
 			<a href="" id="imgLink"><img src="/img/pic.jpg" id="imgArticleVente" alt="Photo Article"></a>  
@@ -55,15 +55,15 @@
 					</div>
 
 					<div class="buyForm">
-						<label for="categorie">Categorie</label>
+						<label for="categorie">Catégorie</label>
 					</div>
 
 					<div class="buyForm">
 						<select name="no_categorie" id="categories">     
 							<option value="1">Informatique</option>
 							<option value="2">Ameublement</option>
-							<option value="3">Vetement</option>
-							<option value="4">Sport Loisirs</option>
+							<option value="3">Vêtements</option>
+							<option value="4">Sport-Loisirs</option>
 						</select>	
 					</div>					
 					<div class="buyForm">
@@ -129,8 +129,9 @@
 					</div>														
 				</div >
 				<div class="buyButton">
-					<input type="submit" class="signUpButton" value="Enregistrer">
-					<input type="reset" id="signUpButton" value="Annuler">
+					<input type="submit" class="newButton" value="Enregistrer">
+					<input type="submit" class="newButton" value="Annuler">
+					<!-- TODO bouton annuler ne marche pas -->
 				</div>	   
 							   
 							   
@@ -139,5 +140,8 @@
 		</section>
 
 	</div>
+
 </body>
+	<%@ include file="/includes/footer.jsp" %>
+
 </html>

@@ -53,6 +53,7 @@ input {
 body {
     margin : 0px;
     background-color: #fafafa;
+    
 }   
 
 /* HEADER */
@@ -244,9 +245,7 @@ header {
     text-align: center;
     font-size: 25px;    
 }
-.champ {
-	
-}
+
 /************************************************************ SignUp*******************************************/
 .signUpForm  {
     font-size: 20px;
@@ -324,9 +323,10 @@ header {
     font-size: 20px;
     
 }
-.buyButton {
-    text-align: center;
-    opacity: 0.8;
+#buyTitle {
+	text-align: center;
+	color : #73d3c0;
+	margin: 40px 0px;
 }
 
 /******************************************FicheProduit****************************************/
@@ -356,28 +356,19 @@ header {
 	-moz-border-radius-topleft: 15px;
 	-moz-border-radius-bottomright: 15px;
 	border-top-left-radius: 15px;
-	border-bottom-right-radius: 15px; 
+	border-bottom-right-radius: 15px; 	
+}
 
-}
-.imgGroup {
-	margin-top : 60px;
-}
 .imgArticleFirst {	
 	height: 280px;
 	width: 343px;
 	border : 2px solid white; 
-}
-.imgArticleOthers {
-	height: 140px;
-	width: 170px;	
-	
+	margin-top : 120px;
 }
 .essai {
    display: flex;    
    width: 400px;
-   padding-bottom : 15px;
-   
-   
+   padding-bottom : 25px;     
 }
 .firstColumn {
     width: 140px;
@@ -404,4 +395,28 @@ header {
 .fiche h3, h4, p{
 	margin : 0px;
     padding :0px;
+}
+
+/******************Foooter ****************/
+footer {
+	background-color: #fafafa;   
+    height : 30px;  
+    
+ 	bottom: 0;
+	width: 100%;   
+}
+#foot {		
+	display : flex;	
+	justify-content: space-around;	
+	margin-bottom: 20px;			
+} 
+#foot div {
+	margin :0px;
+	padding : 0px;
+}
+#foot h5 {
+	margin : 0px;
+}
+#bodyLogin {
+	height : 600px;
 }

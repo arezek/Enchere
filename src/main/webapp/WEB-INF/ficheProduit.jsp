@@ -37,7 +37,7 @@ List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodes
 			<% }%>
 		</c:if>
 	
-	<div id="separator"></div>
+	
 	
 	<section class="product">
 		
@@ -105,6 +105,7 @@ List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodes
 				<div class="firstColumn"></div>
 				<div class="detail">
 					<p> <%-- <%=retrait.getCodePostal() %> <%=retrait.getVille() %> --%></p>
+					<!-- // TODP LADRESSE RETRAIT  -->
 				</div>
 			</div>
 			<div class="essai">
@@ -128,7 +129,7 @@ List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodes
 			<form action="<%=request.getContextPath()%>/EncheresServlet" method="post">
 				<div class="essai">
 					<div class="firstColumn">
-					<label name="numArticle" value="<%art.getNoArticle(); %>">youhou</label>
+					<label name="numArticle" value="<%art.getNoArticle(); %>"></label>
 						<input type="number" id="encherir" name="encherir"
 							min="100"  step="10" placeholder="100">
 					</div>
@@ -144,8 +145,7 @@ List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodes
 	</section>
 	 <%} %> 
 		
-        	
        
-        
 </body>
+<%@ include file="/includes/footer.jsp" %>
 </html>

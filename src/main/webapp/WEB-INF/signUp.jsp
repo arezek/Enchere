@@ -27,7 +27,8 @@
 	<div id ="header">
 		<a href="<%=request.getContextPath()%>/ServletRecherche"><img src="img/eni_enchere_logo.png" id="logo2"/></a>
 	</div>
-	<div id="separator"></div>	
+	<div id="separator"></div>
+		
 	<h2>Créer un compte</h2>
 
 
@@ -116,4 +117,5 @@
 </form> 
     
 </body>
+<%@ include file="/includes/footer.jsp" %>
 </html>

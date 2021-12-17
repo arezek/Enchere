@@ -23,7 +23,7 @@
 	<%@ include file="/includes/header.jsp" %>
 	
           
-        <div id="separator"></div>
+       
         
         <section id ="sectionSearch">            
          <form class ="searchBar" action="<%=request.getContextPath()%>/ServletRecherche" method="get">
@@ -38,8 +38,8 @@
                         <option value="5">Toutes</option>
                         <option value="1">Informatique</option>
                         <option value="2">Ameublement</option>
-                        <option value="3">Vetement</option>
-                        <option value="4">Sport Loisirs</option>                    
+                        <option value="3">Vêtements</option>
+                        <option value="4">Sport-Loisirs</option>                    
                      </select>
                 </div>
                 <div>
@@ -154,4 +154,5 @@ window.onload = checkboxDesactiver;
 ventes.onclick = checkboxDesactiver;
 achat.onclick = checkboxDesactiver;
 </script>
+<%@ include file="/includes/footer.jsp" %>
 </html>
