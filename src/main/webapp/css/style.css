@@ -53,13 +53,14 @@ input {
 }
 	
 body {
+	
     /* margin : 0px; */
     background-color: #fafafa;      
    /*  padding-bottom: 0px !important;
     margin-bottom: -40px !important; */
     /* Margin bottom by footer height */
- 	 margin: 0;
- 	 padding : 0;
+ 	 margin-bottom: 0px;
+ 	 padding : 0; 	 
 }   
 
 /* HEADER */
@@ -235,7 +236,8 @@ header {
     font-weight: 700;
     color: #a3e29b ; 
     display: block;
-    text-align: center;    
+    text-align: center;  
+    height: 83vh;  
 }
 .form {
 	margin: 15px 0px;
@@ -256,8 +258,12 @@ header {
 	margin-top : 30px;
 	margin-left : 70px;
 }
+#bodyProfil {
+	height: 80vh;
+}
 #bodyProfil div.essai {
 	padding-bottom : 30px;
+	
 	
 }
 
@@ -267,7 +273,9 @@ header {
     font-weight: 700;
     color: #404040 ;       
     width: 400px;
-    margin : auto;    
+    margin : auto; 
+    
+    height: 88vh;   
 }
 .signUpForm h2 {
 	margin-left : 50px;
@@ -351,7 +359,7 @@ header {
     grid-gap: 10px;
     /* grid-auto-flow: column;  focer la mise en colonne*/
     margin: 10px auto 20px auto;
-    
+    height: 85vh;
     place-items: center; 
 }
 .fiche {
@@ -422,10 +430,9 @@ header {
 footer {
 	background-color: #fafafa;      	
 	width: 100%; 	
-	position : absolute  ;
-	bottom : 0;
-	height : 10px;
-	
+	/* position : absolute;
+	bottom : 0; */
+	height : 10px;	
 	
 }
 #foot {		

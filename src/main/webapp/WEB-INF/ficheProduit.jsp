@@ -74,7 +74,7 @@ List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodes
 					<h4>Meilleur Offre</h4>
 				</div>
 				<div class="detail">
-					<p>150 points</p>
+					
 				</div>
 			</div>	
 			<div class="essai">
