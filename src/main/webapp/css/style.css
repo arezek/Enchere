@@ -192,7 +192,9 @@ header {
 	-moz-border-radius-bottomright: 15px;
 	border-top-left-radius: 15px;
 	border-bottom-right-radius: 15px;
-    
+}	
+.articleIndex {
+	margin-bottom: 15px;    
 }
 .right {      
    max-width: auto ;
@@ -215,15 +217,20 @@ header {
 .titreArticleIndex {
 	font-size: 30px;
 	margin : 0;	
+	margin-bottom : 20px;
 }
 .prix {
 	font-size: 20px;
+	padding-bottom : 35px;
 }
 .adresse {
 	font-size: 14px;
+	margin-top: 15px;  
 }
 .vendeur {
 	text-decoration: underline;
+	margin-bottom: 15px;  
+	font-size: 20px;
 }
 /***********************************************LOGIN *************/
 .titleLogin {  
