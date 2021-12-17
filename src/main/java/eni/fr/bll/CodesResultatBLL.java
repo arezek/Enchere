@@ -118,6 +118,8 @@ public abstract class CodesResultatBLL {
 	 * Echec quand le numéro d'article correspond à ce point de retrait n'est pas rentré
 	 */
 	public static final int RETRAIT_NO_ARTICLE_ERREUR=20022;
+	public static final int ENCHERE_INVALIDE = 20030;
+	public static final int ENCHERE_DEPASSE = 20031;
 	
 	
 	

@@ -22,7 +22,7 @@ import eni.fr.bo.Utilisateur;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
-	private static final String INSERT = "INSERT INTO ENCHERES(rue, code_postal, ville, no_article) VALUES (?, ?, ?, ?)";
+	private static final String INSERT = "INSERT INTO ENCHERES(date_enchere, montant_enchere, no_utilisateur, no_article) VALUES (?, ?, ?, ?)";
 	private static final String SELECTBYID = "SELECT a.no_article, nom_article,description,date_debut_encheres,date_fin_encheres, prix_initial,etat_vente, u.no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur,date_enchere, montant_enchere FROM ENCHERES e INNER JOIN UTILISATEURS u ON u.no_utilisateur=e.no_utilisateur INNER JOIN ARTICLES_VENDUS a on a.no_article=e.no_article WHERE a.no_article = ?";
 	private static final String SELECTALL = "SELECT e.no_article, nom_article,description,date_debut_encheres,date_fin_encheres, prix_initial,etat_vente, a.no_utilisateur, a.no_categorie, pseudo, nom, prenom, email, telephone, u.rue, u.code_postal, u.ville, mot_de_passe, credit, administrateur, libelle, date_enchere, montant_enchere FROM ENCHERES e INNER JOIN ARTICLES_VENDUS a on e.no_article=a.no_article INNER JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur INNER JOIN CATEGORIES c ON a.no_categorie=c.no_categorie";
 	private static final String UPDATE = "UPDATE ENCHERES SET date_enchere =?, montant_enchere= ? WHERE no_article = ? AND no_utilisateur = ?";
@@ -168,7 +168,7 @@ public void insert(Enchere enchere) throws DALException, BusinessException {
 
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT);) {
-
+			int i = 1;
 			pstmt.setDate(i++, java.sql.Date.valueOf(enchere.getDateEnchere()));
 			pstmt.setInt(i++, enchere.getMontantEnchere());
 			pstmt.setInt(i++, enchere.getNoUtilisateur().getNoUtilisateur());

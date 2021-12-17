@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import eni.fr.BusinessException;
+import eni.fr.bll.EnchereManager;
 import eni.fr.bo.ArticleVendu;
 import eni.fr.bo.Enchere;
 import eni.fr.bo.Retrait;
@@ -22,6 +23,8 @@ import eni.fr.bo.Utilisateur;
 import eni.fr.dal.ArticleVenduDAO;
 import eni.fr.dal.ArticleVenduDAOJdbcImpl;
 import eni.fr.dal.DALException;
+import eni.fr.dal.EnchereDAO;
+import eni.fr.dal.EnchereDAOJdbcImpl;
 import eni.fr.dal.RetraitDAO;
 import eni.fr.dal.RetraitDAOJdbcImpl;
 
@@ -33,7 +36,7 @@ import eni.fr.dal.RetraitDAOJdbcImpl;
 @WebServlet("/ServletFicheProduit")
 public class ServletFicheProduit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private ArticleVendu articleVendu= new ArticleVendu();   
    
 
 	/**
@@ -51,7 +54,7 @@ public class ServletFicheProduit extends HttpServlet {
 				ArticleVenduDAO articleVenduManager = new ArticleVenduDAOJdbcImpl();
 //				RetraitDAO retraitManager = new RetraitDAOJdbcImpl();
 				
-				ArticleVendu articleVendu=(ArticleVendu)articleVenduManager.selectById(numArticleInt);
+				articleVendu=(ArticleVendu)articleVenduManager.selectById(numArticleInt);
 //				Retrait retraitAdress = retraitManager.selectById(numArticleInt);
 						
 						
@@ -79,15 +82,24 @@ public class ServletFicheProduit extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String montant = request.getParameter("encherir");
 		Enchere enchere = new Enchere();
+		String montant = request.getParameter("encherir");
+//		int montantInt = Integer.parseInt(montant);
+		enchere.setMontantEnchere(Integer.parseInt(montant));
 		enchere.setDateEnchere(LocalDate.now());
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurLogged = (Utilisateur)session.getAttribute("utilisateurLogged");
 		enchere.setNoUtilisateur(utilisateurLogged);
-		int noArticle = (int) request.getAttribute("numArticle");
-		System.out.println(noArticle);
-		ArticleVendu article = new ArticleVendu();
+		System.out.println(enchere.getNoUtilisateur().getNoUtilisateur());
+		enchere.setNoArticle(articleVendu);
+		System.out.println(enchere.getNoArticle().getNoArticle());
+		EnchereManager articleVenduManager = new EnchereManager();
+		try {
+			articleVenduManager.ajouter(enchere);
+		} catch (BusinessException | DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
