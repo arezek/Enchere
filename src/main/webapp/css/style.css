@@ -201,8 +201,8 @@ header {
 }
 .imgArticleIndex {
     
-    min-width: 80px;
-    min-height: 80px; 
+    width: 200px;
+    height: 200px;
     border : 2px solid white;    
 }
 .left {
