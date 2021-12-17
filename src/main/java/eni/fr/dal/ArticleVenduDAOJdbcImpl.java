@@ -225,10 +225,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 					ArticleVendu art = new ArticleVendu();
 					rqt.setString(1, "%"+nomArticle+"%");
 					
-					rs = rqt.executeQuery();
-//					rs.next();
-
-					
+					rs = rqt.executeQuery();		
 
 					while (rs.next()) {
 						Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
@@ -242,14 +239,10 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 						art.setNoUtilisateur(utilisateur);
 						art.setNoCategorie(categorie);
 						
-						liste.add(art);
-						
+						liste.add(art);	
 					}
 
-						
-
 				} catch (Exception e) {
-					
 					
 					e.printStackTrace();
 					BusinessException businessException = new BusinessException();
@@ -257,45 +250,38 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 					throw businessException;
 				}
 		}else {
-		try (Connection con = ConnectionProvider.getConnection(); 
-			 PreparedStatement rqt = con.prepareStatement(SEARCH);)
+			try (Connection con = ConnectionProvider.getConnection(); 
+				 PreparedStatement rqt = con.prepareStatement(SEARCH);)
+	
+			{
+				ArticleVendu art = new ArticleVendu();
+				rqt.setString(1, "%"+nomArticle+"%");
+				rqt.setInt(2, noCategorie);
+				rs = rqt.executeQuery();
 
-		{
-			ArticleVendu art = new ArticleVendu();
-			rqt.setString(1, "%"+nomArticle+"%");
-			rqt.setInt(2, noCategorie);
-			rs = rqt.executeQuery();
-//			rs.next();
-
-			
-
-			while (rs.next()) {
-				Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
-						rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
+				while (rs.next()) {
+					Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
+							rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
+					
+					Categorie categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+					
+					art = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),rs.getString("description"),rs.getDate("date_debut_encheres").toLocalDate(),
+							rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"), rs.getString("etat_vente"));
+					
+					art.setNoUtilisateur(utilisateur);
+					art.setNoCategorie(categorie);
+					
+					liste.add(art);
+					
+				}
+			} catch (Exception e) {
 				
-				Categorie categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
-				
-				art = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),rs.getString("description"),rs.getDate("date_debut_encheres").toLocalDate(),
-						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"), rs.getString("etat_vente"));
-				
-				art.setNoUtilisateur(utilisateur);
-				art.setNoCategorie(categorie);
-				
-				liste.add(art);
-				
+				e.printStackTrace();
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.LECTURE_ARTICLE_VENDU_BY_NOMARTICLE_NOCATEGORIE_ECHEC);
+				throw businessException;
 			}
-
-				
-
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.LECTURE_ARTICLE_VENDU_BY_NOMARTICLE_NOCATEGORIE_ECHEC);
-			throw businessException;
 		}
-		}
-
 		return liste;
 	}
 }
