@@ -277,6 +277,10 @@ header {
     
     height: 88vh;   
 }
+.globalForm h2 {
+	margin-left : 50px;
+	margin-bottom: 30px;
+}
 .signUpForm h2 {
 	margin-left : 50px;
 }
