@@ -30,7 +30,7 @@
 	
 	<div class="bid">
 		<section class="leftBid">		
-			<a href="" id="imgLink"><img src="/img/pic.jpg" id="imgArticleVente" alt="Photo Article"></a>  
+			<!-- <a href="" id="imgLink"><img src="/img/pic.jpg" id="imgArticleVente" alt="Photo Article"></a>   -->
 			     
 		</section>
 		

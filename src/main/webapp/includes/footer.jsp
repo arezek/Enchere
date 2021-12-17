@@ -4,9 +4,9 @@
 
 
 <footer id="footer">
-	<div id="separator"></div>
+	<div id="separatorFooter"></div>
 	<div id="foot">
 		<div><h5>Copyright © 2021, All Right Reserved</h5></div>
-		<div><a href="">Accueil</a></div>
+		<div><h5>Developpé Par  : <span id="by">FUCHS Eugénie ** ZABAKA Fatima-Zahra ** GAVOILLE Fabien ** ALLIOUCHE KERBOUA Abdelrezak </span>  </h5></div>
 	</div>
 </footer>

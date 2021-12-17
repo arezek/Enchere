@@ -104,28 +104,9 @@
 			</form> 
 	 	</c:if>
 	 	
-	</div>
-		 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	     
-	    
-	    
-	    
-	        
-		 
-	  	
-		
+	</div>		
    
 </body>
+
+<%@ include file="/includes/footer.jsp" %>
 </html>
