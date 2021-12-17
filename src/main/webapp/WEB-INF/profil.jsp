@@ -13,7 +13,7 @@
      <%@ include file="/includes/head.jsp" %>
     <title>Page de profil</title>
 </head>
-<body>
+<body id="bodyProfil">
 <%@ include file="/includes/header.jsp" %>
 <% Utilisateur utilisateur= (Utilisateur)request.getAttribute("utilisateur");
     if(utilisateur!=null)
@@ -29,35 +29,103 @@
 					<p><%=LecteurMessage.getMessageErreur(codeErreur) %></p>
 			<% }%>
 		</c:if>
-        
-    
-
-	<div class="profil">
-		<h3 class="titleMyprofil"><%=utilisateur.getPseudo() %></h3> 
-		<p class="champ">Nom:</p> 
-		<p> <%=utilisateur.getNom() %></p>
-		<p>Prénom:</p> 
-		<p> <%=utilisateur.getPrenom() %></p>
-		<p>Email:</p> 
-		<p> <%=utilisateur.getEmail() %></p>
-		<p>Téléphone:</p> 
-		<p> <%=utilisateur.getTelephone() %></p>
-		<p>Rue:</p> 
-		<p> <%=utilisateur.getRue() %></p>
-		<p>Code postal:</p>
-		<p> <%=utilisateur.getCodePostal() %></p>
-		<p>Ville :</p>
-		<p> <%=utilisateur.getVille() %></p>
+    <div class="globalForm">
+    	<h3 id="titleMyprofil"><%=utilisateur.getPseudo() %></h3> 
+    	<div class="essai">
+			<div class="firstColumn">
+				<p class="champ">Nom:</p> 
+			</div>
+			<div class="detail">
+				<p> <%=utilisateur.getNom() %></p>
+			</div>
+		</div>
+		<div class="essai">
+			<div class="firstColumn">
+				<p>Prénom:</p>
+			</div>
+			<div class="detail">
+				<p> <%=utilisateur.getPrenom() %></p>
+			</div>
+		</div>
+		<div class="essai">
+			<div class="firstColumn">
+				<p>Email:</p> 
+			</div>
+			<div class="detail">
+				<p> <%=utilisateur.getEmail() %></p>
+			</div>
+		</div>
+		<div class="essai">
+			<div class="firstColumn">
+				<p>Téléphone:</p> 
+			</div>
+			<div class="detail">
+				<p> <%=utilisateur.getTelephone() %></p>
+			</div>
+		</div>	
+		<div class="essai">
+			<div class="firstColumn">
+				<p>Téléphone:</p> 
+			</div>
+			<div class="detail">
+				<p> <%=utilisateur.getTelephone() %></p>
+			</div>
+		</div>		
+		<div class="essai">
+			<div class="firstColumn">
+				<p>Rue:</p> 
+			</div>
+			<div class="detail">
+				<p> <%=utilisateur.getRue() %></p>
+			</div>
+		</div>		
+		<div class="essai">
+			<div class="firstColumn">
+				<p>Code postal:</p>
+			</div>
+			<div class="detail">
+				<p> <%=utilisateur.getCodePostal() %></p>
+			</div>
+		</div>		
+		<div class="essai">
+			<div class="firstColumn">
+				<p>Ville :</p>
+			</div>
+			<div class="detail">
+				<p> <%=utilisateur.getVille() %></p>
+			</div>
+		</div>	
+			
+		<%} %> 
 		
-	    <%} %>  
-	    
-	    <c:if test="${not empty sessionScope.utilisateurLogged  }">
-	    <form method="get" action="<%=request.getContextPath()%>/ModifProfilServlet">
-	        
-		 <input type="submit" id="edtiProfilButton" value="Modifier">
-	  	
-		</form> 
+		<c:if test="${not empty sessionScope.utilisateurLogged  }">
+	    	<form method="get" action="<%=request.getContextPath()%>/ModifProfilServlet">	        
+				<input type="submit" id="edtiProfilButton" value="Modifier">	  	
+			</form> 
 	 	</c:if>
-    </div>
+	 	
+	</div>
+		 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	     
+	    
+	    
+	    
+	        
+		 
+	  	
+		
+   
 </body>
 </html>

@@ -241,23 +241,30 @@ header {
 }
 
 /********************************************* Profil*****************************************/
-.profil {
-    text-align: center;
-    font-size: 25px;    
+#titleMyprofil {
+	margin : 40px 0;
+	font-size: 50px;
+	margin-left : 50px; 
+}
+#edtiProfilButton {
+	margin-top : 30px;
+	margin-left : 70px;
+}
+#bodyProfil div.essai {
+	padding-bottom : 30px;
+	
 }
 
 /************************************************************ SignUp*******************************************/
-.signUpForm  {
+.globalForm  {
     font-size: 20px;
     font-weight: 700;
-    color: #404040 ; 
-    display: block;    
+    color: #404040 ;       
+    width: 400px;
+    margin : auto;    
 }
-.signUp {
-    text-align: center;
-}
-#deleteButton {
-	width: 250px;
+.signUpForm h2 {
+	margin-left : 50px;
 }
 #header {
 	height: 50px;
@@ -267,8 +274,8 @@ header {
 	display : block;
 	text-align: center;
 }
-#signUpButton {
-	margin : 15px 0px;
+#signupButton {
+	margin : 0 30px;
 }
 /**********************************Nouvelle Vente**********************************************************/
 
@@ -396,12 +403,19 @@ header {
 	margin : 0px;
     padding :0px;
 }
+/******************** MODIFIER *****************/
 
+.buttonEdit {
+	margin-left : 120px;
+	margin-bottom : 15px;
+}
+.globalForm h1 {
+	font-size: 40px;
+}
 /******************Foooter ****************/
 footer {
 	background-color: #fafafa;   
-    height : 30px;  
-    
+    height : 30px;    
  	bottom: 0;
 	width: 100%;   
 }
