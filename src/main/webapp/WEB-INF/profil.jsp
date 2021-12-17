@@ -90,7 +90,7 @@
 			
 		<%} %> 
 		
-		<c:if test="${not empty sessionScope.utilisateurLogged  }">
+		<c:if test="${sessionScope.utilisateurLogged.getNoUtilisateur()==utilisateur.getNoUtilisateur()  }">
 	    	<form method="get" action="<%=request.getContextPath()%>/ModifProfilServlet">	        
 				<input type="submit" id="edtiProfilButton" value="Modifier">	  	
 			</form> 
